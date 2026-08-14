@@ -45,10 +45,13 @@ export function SiteHeader() {
             initial={{ height: 36, opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="relative bg-navy-deep text-white/80 text-xs tracking-[0.15em] uppercase text-center py-2.5 px-12 border-b border-white/5 z-50 overflow-hidden"
+            className="relative bg-navy-deep text-white/80 text-xs tracking-[0.15em] uppercase text-center py-2.5 px-4 sm:px-12 border-b border-white/5 z-50 overflow-hidden"
           >
-            <span className="font-medium">
+            <span className="font-medium hidden sm:inline">
               Custom Marine Upholstery & Covers — Kuwait
+            </span>
+            <span className="font-medium sm:hidden">
+              Marine Upholstery — Kuwait
             </span>
             <button
               onClick={() => setAnnouncementVisible(false)}

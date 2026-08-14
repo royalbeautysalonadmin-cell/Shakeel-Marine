@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Anchor, Mail, MapPin, Phone } from 'lucide-react';
 import { siteConfig, getWhatsAppUrl, whatsappMessages } from '@/lib/site-config';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { footerQuickLinks, footerServiceLinks } from '@/data/navigation';
 
 export function Footer() {
@@ -91,8 +92,8 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 text-sm hover:text-white transition-colors"
                 >
-                  <Phone className="w-4 h-4 mt-0.5 text-ocean shrink-0" />
-                  WhatsApp
+                   <WhatsAppIcon className="w-4 h-4 mt-0.5 text-ocean shrink-0" />
+                   WhatsApp
                 </a>
               </li>
               <li>

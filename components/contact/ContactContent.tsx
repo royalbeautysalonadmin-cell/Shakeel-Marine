@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import { siteConfig, getWhatsAppUrl, getPhoneUrl, whatsappMessages } from '@/lib/site-config';
-import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactFormSchema, type ContactFormData, serviceOptions } from '@/lib/schemas';
@@ -29,7 +30,7 @@ export function ContactContent() {
 
   const contactInfo = [
     { icon: Phone, label: 'Phone', value: siteConfig.phone, href: getPhoneUrl() },
-    { icon: MessageCircle, label: 'WhatsApp', value: 'Chat on WhatsApp', href: getWhatsAppUrl(whatsappMessages.general) },
+    { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat on WhatsApp', href: getWhatsAppUrl(whatsappMessages.general) },
     { icon: Mail, label: 'Email', value: siteConfig.email, href: `mailto:${siteConfig.email}` },
     { icon: MapPin, label: 'Location', value: siteConfig.address, href: siteConfig.mapUrl },
     { icon: Clock, label: 'Hours', value: siteConfig.hours, href: undefined },
@@ -106,7 +107,7 @@ export function ContactContent() {
                     rel="noopener noreferrer"
                   >
                     <Button variant="secondary" size="lg" className="w-full">
-                      <MessageCircle className="w-4 h-4" />
+                      <WhatsAppIcon className="w-4 h-4" />
                       Chat on WhatsApp
                     </Button>
                   </a>

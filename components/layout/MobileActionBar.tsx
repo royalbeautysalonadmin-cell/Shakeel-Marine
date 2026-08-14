@@ -1,7 +1,8 @@
 'use client';
 
-import { MessageCircle, Phone, FileText } from 'lucide-react';
+import { Phone, FileText } from 'lucide-react';
 import { siteConfig, getWhatsAppUrl, getPhoneUrl, whatsappMessages } from '@/lib/site-config';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 
 export function MobileActionBar() {
   return (
@@ -14,7 +15,7 @@ export function MobileActionBar() {
           className="flex flex-col items-center justify-center gap-1 py-3 text-white/80 hover:text-white active:bg-white/5 transition-colors"
           aria-label="Contact via WhatsApp"
         >
-          <MessageCircle className="w-5 h-5 text-green-400" />
+          <WhatsAppIcon className="w-5 h-5 text-green-400" />
           <span className="text-[10px] font-medium uppercase tracking-wider">
             WhatsApp
           </span>
