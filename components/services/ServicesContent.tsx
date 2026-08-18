@@ -6,6 +6,7 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { services } from '@/data/services';
+import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 
 export function ServicesContent() {
@@ -52,6 +53,8 @@ export function ServicesContent() {
                       alt={service.imageAlt}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      placeholder="blur"
+                      blurDataURL={SHIMMER}
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/50 via-transparent to-transparent" />

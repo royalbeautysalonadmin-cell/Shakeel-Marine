@@ -103,20 +103,18 @@ function LightRays() {
   return (
     <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
       <div
-        className="absolute -top-1/4 right-1/4 w-[600px] h-[800px] opacity-[0.03] rotate-12"
+        className="absolute -top-1/4 right-1/4 w-[600px] h-[800px] rotate-12"
         style={{
           background:
-            'linear-gradient(180deg, rgba(14,116,144,0.4) 0%, transparent 70%)',
-          filter: 'blur(60px)',
+            'radial-gradient(ellipse at top, rgba(14,116,144,0.35) 0%, transparent 65%)',
           animation: 'lightRay 8s ease-in-out infinite',
         }}
       />
       <div
-        className="absolute -top-1/4 right-1/3 w-[400px] h-[600px] opacity-[0.02] rotate-6"
+        className="absolute -top-1/4 right-1/3 w-[400px] h-[600px] rotate-6 opacity-70"
         style={{
           background:
-            'linear-gradient(180deg, rgba(198,161,91,0.3) 0%, transparent 60%)',
-          filter: 'blur(80px)',
+            'radial-gradient(ellipse at top, rgba(198,161,91,0.25) 0%, transparent 65%)',
           animation: 'lightRay 10s ease-in-out infinite reverse',
         }}
       />
@@ -128,6 +126,7 @@ export function HeroSection() {
   const ref = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -138,7 +137,14 @@ export function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
-    if (videoRef.current) {
+    const timer = setTimeout(() => {
+      setShouldLoadVideo(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current && videoLoaded) {
       videoRef.current.playbackRate = 0.7;
     }
   }, [videoLoaded]);
@@ -163,22 +169,24 @@ export function HeroSection() {
           className={`object-cover ${videoLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000`}
         />
 
-        {/* Video background */}
-        <video
-          ref={videoRef}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            videoLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          onLoadedData={() => setVideoLoaded(true)}
-          poster="/images/sections/hero-ocean.jpg"
-        >
-          <source src="/videos/hero-jetski.mp4" type="video/mp4" />
-        </video>
+        {/* Video background — lazy-loaded after hero is visible */}
+        {shouldLoadVideo && (
+          <video
+            ref={videoRef}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              videoLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            onLoadedData={() => setVideoLoaded(true)}
+            poster="/images/sections/hero-ocean.jpg"
+          >
+            <source src="/videos/hero-jetski.mp4" type="video/mp4" />
+          </video>
+        )}
 
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-navy-deep/50" />

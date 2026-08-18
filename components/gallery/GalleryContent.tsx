@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { galleryImages, galleryCategories, type GalleryCategory } from '@/data/gallery';
+import { SHIMMER } from '@/lib/utils';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export function GalleryContent() {
@@ -88,6 +89,8 @@ export function GalleryContent() {
                     alt={image.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    placeholder="blur"
+                    blurDataURL={SHIMMER}
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-navy-deep/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -144,6 +147,8 @@ export function GalleryContent() {
               alt={filteredImages[lightboxIndex]?.alt ?? ''}
               fill
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={SHIMMER}
               className="object-contain"
             />
           </div>

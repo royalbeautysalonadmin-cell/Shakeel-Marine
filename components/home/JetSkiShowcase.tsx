@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
+import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 
 const features = [
@@ -28,6 +29,8 @@ export function JetSkiShowcase() {
                   alt="Custom jet ski seat cover by Shakeel Marine"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
+                  placeholder="blur"
+                  blurDataURL={SHIMMER}
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/40 via-transparent to-transparent" />

@@ -1,19 +1,21 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { HeroSection } from '@/components/home/HeroSection';
 import { TrustSection } from '@/components/home/TrustSection';
-import { ServicesSection } from '@/components/home/ServicesSection';
-import { JetSkiShowcase } from '@/components/home/JetSkiShowcase';
-import { BoatShipSection } from '@/components/home/BoatShipSection';
-import { CanopySection } from '@/components/home/CanopySection';
-import { MaterialsSection } from '@/components/home/MaterialsSection';
-import { WhySection } from '@/components/home/WhySection';
-import { ProcessSection } from '@/components/home/ProcessSection';
-import { GalleryPreview } from '@/components/home/GalleryPreview';
-import { TestimonialsSection } from '@/components/home/TestimonialsSection';
-import { FaqPreview } from '@/components/home/FaqPreview';
-import { CoverageSection } from '@/components/home/CoverageSection';
-import { FinalCta } from '@/components/home/FinalCta';
 import { generatePageMetadata, getOrganizationSchema, getWebSiteSchema } from '@/lib/seo';
+
+const ServicesSection = dynamic(() => import('@/components/home/ServicesSection').then(m => ({ default: m.ServicesSection })));
+const JetSkiShowcase = dynamic(() => import('@/components/home/JetSkiShowcase').then(m => ({ default: m.JetSkiShowcase })));
+const BoatShipSection = dynamic(() => import('@/components/home/BoatShipSection').then(m => ({ default: m.BoatShipSection })));
+const CanopySection = dynamic(() => import('@/components/home/CanopySection').then(m => ({ default: m.CanopySection })));
+const MaterialsSection = dynamic(() => import('@/components/home/MaterialsSection').then(m => ({ default: m.MaterialsSection })));
+const WhySection = dynamic(() => import('@/components/home/WhySection').then(m => ({ default: m.WhySection })));
+const ProcessSection = dynamic(() => import('@/components/home/ProcessSection').then(m => ({ default: m.ProcessSection })));
+const GalleryPreview = dynamic(() => import('@/components/home/GalleryPreview').then(m => ({ default: m.GalleryPreview })));
+const TestimonialsSection = dynamic(() => import('@/components/home/TestimonialsSection').then(m => ({ default: m.TestimonialsSection })));
+const FaqPreview = dynamic(() => import('@/components/home/FaqPreview').then(m => ({ default: m.FaqPreview })));
+const CoverageSection = dynamic(() => import('@/components/home/CoverageSection').then(m => ({ default: m.CoverageSection })));
+const FinalCta = dynamic(() => import('@/components/home/FinalCta').then(m => ({ default: m.FinalCta })));
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Shakeel Marine | Marine Upholstery & Custom Covers in Kuwait',

@@ -6,6 +6,7 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { galleryImages } from '@/data/gallery';
+import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 
 export function GalleryPreview() {
@@ -31,6 +32,8 @@ export function GalleryPreview() {
                   alt={image.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  placeholder="blur"
+                  blurDataURL={SHIMMER}
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 {/* Hover overlay */}

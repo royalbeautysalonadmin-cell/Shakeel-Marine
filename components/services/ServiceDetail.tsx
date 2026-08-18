@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
+import { SHIMMER } from '@/lib/utils';
 import { Check, ChevronRight } from 'lucide-react';
 import type { ServiceData } from '@/data/services';
 import { getWhatsAppUrl } from '@/lib/site-config';
@@ -68,6 +69,8 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
                     alt={service.imageAlt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    placeholder="blur"
+                    blurDataURL={SHIMMER}
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/40 via-transparent to-transparent" />
