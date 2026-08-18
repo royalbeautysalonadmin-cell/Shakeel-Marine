@@ -34,6 +34,8 @@ export function ContactContent() {
 
   const contactInfo = [
     { icon: Phone, label: 'Phone', value: siteConfig.phone, href: getPhoneUrl() },
+    { icon: Phone, label: 'Phone 2', value: siteConfig.phone2, href: `tel:${siteConfig.phone2.replace(/\s/g, '')}` },
+    { icon: Phone, label: 'Phone 3', value: siteConfig.phone3, href: `tel:${siteConfig.phone3.replace(/\s/g, '')}` },
     { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat on WhatsApp', href: getWhatsAppUrl(whatsappMessages.general) },
     { icon: Mail, label: 'Email', value: siteConfig.email, href: `mailto:${siteConfig.email}` },
     { icon: MapPin, label: 'Location', value: siteConfig.address, href: siteConfig.mapUrl },

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
+import { media } from '@/lib/media';
 import { siteConfig } from '@/lib/site-config';
 import { SHIMMER } from '@/lib/utils';
 import { Ruler, Scissors, Wrench, Paintbrush } from 'lucide-react';
@@ -74,7 +75,7 @@ export function AboutContent() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep relative">
                   <Image
-                    src="/images/sections/boat-ship.jpg"
+                    src={media.images.sections.boatShip}
                     alt={`${siteConfig.name} marine craftsmen at work`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"

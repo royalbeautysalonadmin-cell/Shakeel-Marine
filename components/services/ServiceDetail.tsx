@@ -4,10 +4,21 @@ import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
+import { media } from '@/lib/media';
 import { SHIMMER } from '@/lib/utils';
 import { Check, ChevronRight } from 'lucide-react';
 import type { ServiceData } from '@/data/services';
 import { getWhatsAppUrl } from '@/lib/site-config';
+
+const serviceImages: Record<string, string> = {
+  'jet-ski-seat-cover': media.images.services.jetSkiSeatCover,
+  'boat-ship-seats': media.images.services.boatShipSeats,
+  'marine-upholstery': media.images.services.marineUpholstery,
+  'canopy-covers': media.images.services.canopyCovers,
+  'boat-seat': media.images.services.boatShipSeats,
+  'ship-seat': media.images.services.boatShipSeats,
+  'other': media.images.services.boatShipSeats,
+};
 
 interface ServiceDetailProps {
   service: ServiceData;
@@ -65,7 +76,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep relative">
                   <Image
-                    src={service.image}
+                    src={serviceImages[service.slug] || service.image}
                     alt={service.imageAlt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"

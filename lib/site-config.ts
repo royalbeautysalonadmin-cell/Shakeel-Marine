@@ -5,9 +5,11 @@ export const siteConfig = {
     'Custom marine upholstery and covers for jet skis, boats and ships in Kuwait.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://shakeelmarine.com',
 
-  // Contact — replace with real values via environment variables
-  phone: process.env.NEXT_PUBLIC_PHONE || '+965-XXXX-XXXX',
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '965XXXXXXXX',
+  // Contact
+  phone: process.env.NEXT_PUBLIC_PHONE || '+965 9922 5170',
+  phone2: process.env.NEXT_PUBLIC_PHONE2 || '+965 9401 5114',
+  phone3: process.env.NEXT_PUBLIC_PHONE3 || '+965 5099 4715',
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '96599225170',
   email: process.env.NEXT_PUBLIC_EMAIL || 'info@shakeelmarine.com',
 
   // Location
@@ -45,11 +47,20 @@ export function getWhatsAppUrl(message?: string): string {
 }
 
 /**
- * Generate a tel: URL for the phone number.
+ * Generate a tel: URL for the primary phone number.
  */
 export function getPhoneUrl(): string {
   return `tel:${siteConfig.phone.replace(/\s/g, '')}`;
 }
+
+/**
+ * All phone numbers for display.
+ */
+export const phoneNumbers = [
+  { label: 'Primary', value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/\s/g, '')}` },
+  { label: 'Secondary', value: siteConfig.phone2, href: `tel:${siteConfig.phone2.replace(/\s/g, '')}` },
+  { label: 'Tertiary', value: siteConfig.phone3, href: `tel:${siteConfig.phone3.replace(/\s/g, '')}` },
+];
 
 /**
  * WhatsApp messages per service context.

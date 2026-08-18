@@ -5,8 +5,19 @@ import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { services } from '@/data/services';
+import { media } from '@/lib/media';
 import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+
+const serviceImages: Record<string, string> = {
+  'jet-ski-seat-cover': media.images.services.jetSkiSeatCover,
+  'boat-ship-seats': media.images.services.boatShipSeats,
+  'marine-upholstery': media.images.services.marineUpholstery,
+  'canopy-covers': media.images.services.canopyCovers,
+  'boat-seat': media.images.services.boatShipSeats,
+  'ship-seat': media.images.services.boatShipSeats,
+  'other': media.images.services.boatShipSeats,
+};
 
 export function ServicesSection() {
   return (
@@ -30,7 +41,7 @@ export function ServicesSection() {
                 {/* Image */}
                 <div className="aspect-[4/3] bg-navy-deep relative overflow-hidden">
                   <Image
-                    src={service.image}
+                    src={serviceImages[service.slug] || service.image}
                     alt={service.imageAlt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"

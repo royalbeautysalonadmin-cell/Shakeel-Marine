@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
+import { media } from '@/lib/media';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 
@@ -25,7 +26,7 @@ export function JetSkiShowcase() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep relative">
                 <Image
-                  src="/images/sections/jetski-showcase.jpg"
+                  src={media.images.sections.jetskiShowcase}
                   alt="Custom jet ski seat cover by Shakeel Marine"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

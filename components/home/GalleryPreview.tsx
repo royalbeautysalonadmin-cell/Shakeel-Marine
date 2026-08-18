@@ -6,6 +6,7 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { galleryImages } from '@/data/gallery';
+import { media } from '@/lib/media';
 import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 

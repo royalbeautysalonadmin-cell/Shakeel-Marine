@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
+import { media } from '@/lib/media';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 
@@ -57,7 +58,7 @@ export function MaterialsSection() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep relative">
                 <Image
-                  src="/images/sections/canopy.jpg"
+                  src={media.images.sections.canopy}
                   alt="Marine materials and finishes by Shakeel Marine"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { media } from '@/lib/media';
 import { Anchor, Shield, Palette } from 'lucide-react';
 
 const trustItems = [
@@ -118,7 +119,7 @@ export function HeroSection() {
       {/* Background — poster image always visible, video only on desktop */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 z-0">
         <Image
-          src="/images/sections/hero-ocean.jpg"
+          src={media.images.sections.heroOcean}
           alt=""
           fill
           priority
@@ -138,9 +139,9 @@ export function HeroSection() {
             playsInline
             preload="none"
             onLoadedData={() => setVideoLoaded(true)}
-            poster="/images/sections/hero-ocean.jpg"
+            poster={media.images.sections.heroOcean}
           >
-            <source src="/videos/hero-jetski.mp4" type="video/mp4" />
+            <source src={media.videos.heroJetski} type="video/mp4" />
           </video>
         )}
 

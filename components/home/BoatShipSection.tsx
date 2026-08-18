@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
+import { media } from '@/lib/media';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 
@@ -61,7 +62,7 @@ export function BoatShipSection() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep relative">
                 <Image
-                  src="/images/sections/boat-ship.jpg"
+                  src={media.images.sections.boatShip}
                   alt="Custom boat marine seating by Shakeel Marine"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

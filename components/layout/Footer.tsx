@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Anchor, Mail, MapPin, Phone } from 'lucide-react';
-import { siteConfig, getWhatsAppUrl, whatsappMessages } from '@/lib/site-config';
+import { siteConfig, getWhatsAppUrl, whatsappMessages, phoneNumbers } from '@/lib/site-config';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { footerQuickLinks, footerServiceLinks } from '@/data/navigation';
 
@@ -76,15 +76,17 @@ export function Footer() {
               Contact
             </h3>
             <ul className="space-y-4">
-              <li>
-                <a
-                  href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
-                  className="flex items-start gap-3 text-sm hover:text-white transition-colors"
-                >
-                  <Phone className="w-4 h-4 mt-0.5 text-ocean shrink-0" />
-                  {siteConfig.phone}
-                </a>
-              </li>
+              {phoneNumbers.map((p) => (
+                <li key={p.value}>
+                  <a
+                    href={p.href}
+                    className="flex items-start gap-3 text-sm hover:text-white transition-colors"
+                  >
+                    <Phone className="w-4 h-4 mt-0.5 text-ocean shrink-0" />
+                    {p.value}
+                  </a>
+                </li>
+              ))}
               <li>
                 <a
                   href={getWhatsAppUrl(whatsappMessages.general)}
