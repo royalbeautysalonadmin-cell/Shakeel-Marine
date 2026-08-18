@@ -21,9 +21,13 @@ export function ContactContent() {
     resolver: zodResolver(contactFormSchema),
   });
 
-  const onSubmit = async () => {
-    // Simulate submission
-    await new Promise((r) => setTimeout(r, 1500));
+  const onSubmit = async (data: ContactFormData) => {
+    const res = await fetch('/api/contacts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error('Failed to submit');
     setSubmitted(true);
     reset();
   };

@@ -26,8 +26,13 @@ export function QuoteContent() {
     resolver: zodResolver(quoteFormSchema),
   });
 
-  const onSubmit = async () => {
-    await new Promise((r) => setTimeout(r, 1500));
+  const onSubmit = async (data: QuoteFormData) => {
+    const res = await fetch('/api/quotes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error('Failed to submit');
     setSubmitted(true);
     reset();
   };

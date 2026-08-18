@@ -118,16 +118,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Performance: contain layout/paint for isolated sections */
-section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 800px;
-}
-
+/* Performance: GPU-accelerate static layers */
 img, video {
   max-width: 100%;
-  height: auto;
-  content-visibility: auto;
+  will-change: auto;
 }
 
 /* ===== TYPOGRAPHY ===== */
