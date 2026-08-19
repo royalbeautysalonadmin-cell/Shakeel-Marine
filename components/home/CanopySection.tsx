@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
-import { media } from '@/lib/media';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 
@@ -30,7 +29,7 @@ export function CanopySection() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-navy border border-white/5 relative">
                 <Image
-                  src={media.images.sections.canopy}
+                  src="/images/sections/canopy.jpg"
                   alt="Custom ship top canopy cover by Shakeel Marine"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

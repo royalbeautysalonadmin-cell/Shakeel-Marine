@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
 import { Manrope, Inter } from 'next/font/google';
 import './globals.css';
-import { SiteHeader } from '@/components/layout/SiteHeader';
-import { Footer } from '@/components/layout/Footer';
-import { MobileActionBar } from '@/components/layout/MobileActionBar';
-import { WhatsAppFloating } from '@/components/shared/WhatsAppButton';
+import { LayoutClient } from '@/components/layout/LayoutClient';
 import { siteConfig } from '@/lib/site-config';
 
 const manrope = Manrope({
@@ -56,11 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${manrope.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <MobileActionBar />
-        <WhatsAppFloating />
+        <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
   );

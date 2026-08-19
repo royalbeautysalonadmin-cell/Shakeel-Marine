@@ -35,21 +35,21 @@ export const galleryCategories: { value: GalleryCategory; label: string }[] = [
 export const galleryImages: GalleryImage[] = [
   // -- Jet Ski --
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/jet-ski-01.webp',
+    src: '/images/gallery/jet-ski-01.jpg',
     alt: 'Custom jet ski seat cover — front view',
     category: 'jet-ski',
     width: 800,
     height: 600,
   },
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/jet-ski-02.webp',
+    src: '/images/gallery/jet-ski-02.jpg',
     alt: 'Custom jet ski seat cover — detail stitching',
     category: 'jet-ski',
     width: 800,
     height: 600,
   },
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/jet-ski-03.webp',
+    src: '/images/gallery/jet-ski-03.jpg',
     alt: 'Jet ski seat cover installation complete',
     category: 'jet-ski',
     width: 800,
@@ -57,21 +57,21 @@ export const galleryImages: GalleryImage[] = [
   },
   // -- Boat & Ship --
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/boat-01.webp',
+    src: '/images/gallery/boat-01.jpg',
     alt: 'Custom boat seat upholstery',
     category: 'boat-ship',
     width: 800,
     height: 600,
   },
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/boat-02.webp',
+    src: '/images/gallery/boat-02.jpg',
     alt: 'Ship seating — custom marine seats',
     category: 'boat-ship',
     width: 800,
     height: 600,
   },
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/boat-03.webp',
+    src: '/images/gallery/boat-03.jpg',
     alt: 'Boat bench seating — custom design',
     category: 'boat-ship',
     width: 800,
@@ -79,14 +79,14 @@ export const galleryImages: GalleryImage[] = [
   },
   // -- Upholstery --
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/upholstery-01.webp',
+    src: '/images/gallery/upholstery-01.jpg',
     alt: 'Marine upholstery — custom stitching detail',
     category: 'upholstery',
     width: 800,
     height: 600,
   },
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/upholstery-02.webp',
+    src: '/images/gallery/upholstery-02.jpg',
     alt: 'Custom marine upholstery — color selection',
     category: 'upholstery',
     width: 800,
@@ -94,14 +94,14 @@ export const galleryImages: GalleryImage[] = [
   },
   // -- Canopy --
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/canopy-01.webp',
+    src: '/images/gallery/canopy-01.jpg',
     alt: 'Custom ship top canopy cover',
     category: 'canopy',
     width: 800,
     height: 600,
   },
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/canopy-02.webp',
+    src: '/images/gallery/canopy-02.jpg',
     alt: 'Marine canopy cover — installed on vessel',
     category: 'canopy',
     width: 800,
@@ -109,14 +109,14 @@ export const galleryImages: GalleryImage[] = [
   },
   // -- Installation --
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/install-01.webp',
+    src: '/images/gallery/install-01.jpg',
     alt: 'Professional seat cover installation',
     category: 'installation',
     width: 800,
     height: 600,
   },
   {
-    src: 'https://res.cloudinary.com/your-cloud-name/image/upload/shakeelmarine/gallery/install-02.webp',
+    src: '/images/gallery/install-02.jpg',
     alt: 'Canopy cover installation on boat',
     category: 'installation',
     width: 800,

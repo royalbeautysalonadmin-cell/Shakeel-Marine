@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, Anchor } from 'lucide-react';
+import { Menu, X, ChevronDown, Anchor, Globe } from 'lucide-react';
 import { mainNavigation } from '@/data/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
+import { useLang } from '@/components/shared/LangProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function SiteHeader() {
+  const { t, toggle, isArabic } = useLang();
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -93,7 +95,9 @@ export function SiteHeader() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
-            {mainNavigation.map((item) => (
+            {mainNavigation.map((item) => {
+              const navKey = item.href === '/' ? 'home' : item.href === '/services' ? 'services' : item.href === '/gallery' ? 'gallery' : item.href === '/about' ? 'about' : item.href === '/contact' ? 'contact' : null;
+              return (
               <div
                 key={item.href}
                 className="relative"
@@ -104,7 +108,7 @@ export function SiteHeader() {
                   href={item.href}
                   className="flex items-center gap-1 px-4 py-2 text-sm text-white/80 hover:text-white transition-colors font-medium"
                 >
-                  {item.label}
+                  {navKey ? t.nav[navKey] : item.label}
                   {item.children && (
                     <ChevronDown
                       className={cn(
@@ -141,13 +145,22 @@ export function SiteHeader() {
                   </AnimatePresence>
                 )}
               </div>
-            ))}
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={toggle}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all font-medium"
+              aria-label="Toggle language"
+            >
+              <Globe className="w-4 h-4" />
+              {isArabic ? 'EN' : 'عربي'}
+            </button>
             <Button href="/request-a-quote" size="sm" variant="primary">
-              Request a Quote
+              {t.nav.quote}
             </Button>
           </div>
 
@@ -179,7 +192,9 @@ export function SiteHeader() {
                   className="flex flex-col pt-24 px-8 gap-1"
                   aria-label="Mobile navigation"
                 >
-                  {mainNavigation.map((item) => (
+                  {mainNavigation.map((item) => {
+                    const navKey = item.href === '/' ? 'home' : item.href === '/services' ? 'services' : item.href === '/gallery' ? 'gallery' : item.href === '/about' ? 'about' : item.href === '/contact' ? 'contact' : null;
+                    return (
                     <div key={item.href}>
                       {item.children ? (
                         <>
@@ -189,7 +204,7 @@ export function SiteHeader() {
                             }
                             className="flex items-center justify-between w-full py-4 text-lg text-white/90 font-medium border-b border-white/5"
                           >
-                            {item.label}
+                            {navKey ? t.nav[navKey] : item.label}
                             <ChevronDown
                               className={cn(
                                 'w-5 h-5 transition-transform',
@@ -228,20 +243,28 @@ export function SiteHeader() {
                           onClick={() => setMobileOpen(false)}
                           className="block py-4 text-lg text-white/90 font-medium border-b border-white/5 hover:text-white transition-colors"
                         >
-                          {item.label}
+                          {navKey ? t.nav[navKey] : item.label}
                         </Link>
                       )}
                     </div>
-                  ))}
+                    );
+                  })}
 
-                  <div className="mt-8">
+                  <div className="mt-8 space-y-3">
+                    <button
+                      onClick={toggle}
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-white/70 hover:text-white border border-white/10 hover:bg-white/5 transition-all font-medium"
+                    >
+                      <Globe className="w-4 h-4" />
+                      {isArabic ? 'Switch to English' : '\u0627\u0644\u062a\u0628\u062f\u064a\u0644 \u0625\u0644\u0649 \u0627\u0644\u0639\u0631\u0628\u064a\u0629'}
+                    </button>
                     <Button
                       href="/request-a-quote"
                       size="lg"
                       variant="primary"
                       className="w-full"
                     >
-                      Request a Quote
+                      {t.nav.quote}
                     </Button>
                   </div>
                 </nav>

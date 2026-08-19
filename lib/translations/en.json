@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "gallery": "Gallery",
+    "about": "About",
+    "contact": "Contact",
+    "quote": "Get a Quote"
+  },
+  "hero": {
+    "eyebrow": "Marine Upholstery \u2022 Kuwait",
+    "title1": "Premium Marine",
+    "title2": "Upholstery & Custom",
+    "title3": "Covers",
+    "description": "Custom jet ski seats, boat & ship upholstery, marine seating and canopy covers \u2014 professionally crafted and installed in Kuwait.",
+    "cta1": "Request a Quote",
+    "cta2": "Explore Our Services",
+    "trust1": "Custom Made",
+    "trust2": "Professional Installation",
+    "trust3": "Marine-Suitable Materials",
+    "scroll": "Scroll"
+  },
+  "services": {
+    "eyebrow": "What We Do",
+    "title": "Our Marine Services",
+    "description": "Custom solutions designed around your vessel, your style and your needs.",
+    "explore": "Explore"
+  },
+  "contact": {
+    "title": "Let's Talk About Your Marine Project",
+    "description": "Get in touch to discuss your requirements. We are happy to help with any marine upholstery or cover project.",
+    "formTitle": "Send Us a Message",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "service": "Service",
+    "message": "Message",
+    "send": "Send Inquiry",
+    "sent": "Message Sent",
+    "sentDesc": "Thank you for reaching out. We will get back to you shortly.",
+    "sendAnother": "Send Another Message",
+    "whatsapp": "Chat on WhatsApp"
+  },
+  "quote": {
+    "title": "Request Your Custom Marine Quote",
+    "description": "Share your project details and we will prepare a tailored quote for your marine upholstery or cover requirements.",
+    "projectDetails": "Project Details",
+    "projectDesc": "Fill in as much detail as possible to help us prepare an accurate quote.",
+    "fullName": "Full Name",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "service": "Service Needed",
+    "vesselType": "Vessel Type",
+    "vesselDetails": "Vessel Details",
+    "vesselPlaceholder": "Make, model, year (optional)",
+    "projectDescription": "Project Description",
+    "projectPlaceholder": "Describe your project \u2014 what you need, any preferences...",
+    "color": "Preferred Color",
+    "colorPlaceholder": "e.g. Navy blue, black (optional)",
+    "design": "Preferred Design",
+    "designPlaceholder": "e.g. Diamond stitch, plain (optional)",
+    "contactMethod": "Preferred Contact Method",
+    "submit": "Submit Quote Request",
+    "received": "Quote Request Received",
+    "receivedDesc": "Thank you for your interest. We will review your project details and get back to you shortly.",
+    "submitAnother": "Submit Another Quote",
+    "alsoWhatsApp": "Also WhatsApp Us"
+  },
+  "footer": {
+    "description": "Custom marine upholstery and covers for jet skis, boats and ships in Kuwait.",
+    "craftsmanship": "Marine Craftsmanship",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  },
+  "mobile": {
+    "whatsapp": "WhatsApp",
+    "call": "Call",
+    "quote": "Quote"
+  },
+  "common": {
+    "loading": "Loading...",
+    "viewAll": "View All",
+    "back": "Back"
+  }
+}
