@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { useLang } from '@/components/shared/LangProvider';
 import { Anchor, Shield, Palette } from 'lucide-react';
 
 const trustItems = [
@@ -75,6 +76,7 @@ function FloatingParticles() {
 }
 
 export function HeroSection() {
+  const { t, isArabic } = useLang();
   const ref = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -170,7 +172,7 @@ export function HeroSection() {
             >
               <div className="h-px w-12 bg-gradient-to-r from-ocean to-transparent" />
               <span className="text-ocean text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em]">
-                Marine Upholstery &bull; Kuwait
+                {t.hero.eyebrow}
               </span>
             </motion.div>
 
@@ -180,12 +182,12 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="text-white font-heading font-bold leading-[1.05]"
             >
-              <span className="text-[2.2rem] sm:text-[2.5rem] lg:text-[clamp(3rem,6vw,5rem)]">Premium Marine</span>
+              <span className="text-[2.2rem] sm:text-[2.5rem] lg:text-[clamp(3rem,6vw,5rem)]">{t.hero.title1}</span>
               <br />
-              <span className="text-[2.2rem] sm:text-[2.5rem] lg:text-[clamp(3rem,6vw,5rem)]">Upholstery &amp; Custom</span>
+              <span className="text-[2.2rem] sm:text-[2.5rem] lg:text-[clamp(3rem,6vw,5rem)]">{t.hero.title2}</span>
               <br />
               <span className="relative inline-block">
-                <span className="text-ocean text-[2.2rem] sm:text-[2.5rem] lg:text-[clamp(3rem,6vw,5rem)]">Covers</span>
+                <span className="text-ocean text-[2.2rem] sm:text-[2.5rem] lg:text-[clamp(3rem,6vw,5rem)]">{t.hero.title3}</span>
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
@@ -201,8 +203,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-6 sm:mt-8 text-white/60 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed"
             >
-              Custom jet ski seats, boat &amp; ship upholstery, marine seating
-              and canopy covers — professionally crafted and installed in Kuwait.
+              {t.hero.description}
             </motion.p>
 
             <motion.div
@@ -212,10 +213,10 @@ export function HeroSection() {
               className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Button href="/request-a-quote" variant="primary" size="lg">
-                Request a Quote
+                {t.hero.cta1}
               </Button>
               <Button href="/services" variant="outline" size="lg">
-                Explore Our Services
+                {t.hero.cta2}
               </Button>
             </motion.div>
 
@@ -225,7 +226,11 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 1.1 }}
               className="mt-12 sm:mt-16 flex flex-wrap gap-6 sm:gap-8"
             >
-              {trustItems.map((item, i) => (
+              {[
+                { icon: Anchor, label: t.hero.trust1 },
+                { icon: Shield, label: t.hero.trust2 },
+                { icon: Palette, label: t.hero.trust3 },
+              ].map((item, i) => (
                 <motion.div
                   key={item.label}
                   initial={{ opacity: 0, y: 10 }}
@@ -254,7 +259,7 @@ export function HeroSection() {
           transition={{ delay: 2, duration: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
         >
-          <span className="text-white/30 text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+          <span className="text-white/30 text-[10px] uppercase tracking-[0.2em]">{t.hero.scroll}</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}

@@ -1,10 +1,12 @@
 'use client';
 
 import { Phone, FileText } from 'lucide-react';
-import { siteConfig, getWhatsAppUrl, getPhoneUrl, whatsappMessages } from '@/lib/site-config';
+import { getWhatsAppUrl, getPhoneUrl, whatsappMessages } from '@/lib/site-config';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function MobileActionBar() {
+  const { t } = useLang();
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-navy-deep/95 backdrop-blur-lg border-t border-white/10 safe-bottom">
       <div className="grid grid-cols-3 divide-x divide-white/10">
@@ -16,9 +18,7 @@ export function MobileActionBar() {
           aria-label="Contact via WhatsApp"
         >
           <WhatsAppIcon className="w-5 h-5 text-green-400" />
-          <span className="text-[10px] font-medium uppercase tracking-wider">
-            WhatsApp
-          </span>
+          <span className="text-[10px] font-medium uppercase tracking-wider">{t.mobile.whatsapp}</span>
         </a>
         <a
           href={getPhoneUrl()}
@@ -26,9 +26,7 @@ export function MobileActionBar() {
           aria-label="Call us"
         >
           <Phone className="w-5 h-5 text-ocean" />
-          <span className="text-[10px] font-medium uppercase tracking-wider">
-            Call
-          </span>
+          <span className="text-[10px] font-medium uppercase tracking-wider">{t.mobile.call}</span>
         </a>
         <a
           href="/request-a-quote"
@@ -36,9 +34,7 @@ export function MobileActionBar() {
           aria-label="Request a quote"
         >
           <FileText className="w-5 h-5 text-sand" />
-          <span className="text-[10px] font-medium uppercase tracking-wider">
-            Quote
-          </span>
+          <span className="text-[10px] font-medium uppercase tracking-wider">{t.mobile.quote}</span>
         </a>
       </div>
     </div>
