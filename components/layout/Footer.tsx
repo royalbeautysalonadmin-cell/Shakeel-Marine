@@ -90,6 +90,22 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      <div className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center">
+          <p className="text-xs text-white/30">
+            Developed by{' '}
+            <a
+              href="https://www.orbitrixsolutions.com"
+              target="_blank"
+              rel="noopener noreferrer dofollow"
+              className="text-ocean/60 hover:text-ocean transition-colors"
+            >
+              Orbitrix Solutions
+            </a>
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
