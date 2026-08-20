@@ -8,8 +8,10 @@ import { Button } from '@/components/ui/Button';
 import { services } from '@/data/services';
 import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function ServicesContent() {
+  const { t } = useLang();
   return (
     <>
       {/* Hero */}
@@ -18,19 +20,16 @@ export function ServicesContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-              Services
+              {t.servicesPage.eyebrow}
             </span>
             <h1
               className="mt-4 text-white font-heading font-bold"
               style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)' }}
             >
-              Our Marine
-              <br />
-              Services
+              {t.servicesPage.title}
             </h1>
             <p className="mt-6 text-white/60 text-lg md:text-xl max-w-xl leading-relaxed">
-              Custom upholstery and cover solutions for jet skis, boats and
-              ships.
+              {t.servicesPage.description}
             </p>
           </ScrollReveal>
         </div>
@@ -67,7 +66,7 @@ export function ServicesContent() {
                       {service.tagline}
                     </p>
                     <div className="mt-6 flex items-center gap-2 text-ocean text-sm font-semibold uppercase tracking-wider group-hover:gap-3 transition-all">
-                      <span>Learn More</span>
+                      <span>{t.servicesPage.learnMore}</span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -84,18 +83,17 @@ export function ServicesContent() {
         <div className="max-w-4xl mx-auto container-padding text-center relative z-10">
           <ScrollReveal>
             <h2 className="font-heading font-bold text-white" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
-              Not Sure Which Service You Need?
+              {t.servicesPage.notSure}
             </h2>
             <p className="mt-4 text-white/60 text-lg max-w-xl mx-auto">
-              Contact us with your project details and we will guide you to the
-              right solution.
+              {t.servicesPage.notSureDesc}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button href="/request-a-quote" variant="primary" size="lg">
-                Request a Quote
+                {t.finalCta.cta1}
               </Button>
               <Button href="/contact" variant="outline" size="lg">
-                Contact Us
+                {t.finalCta.cta2}
               </Button>
             </div>
           </ScrollReveal>

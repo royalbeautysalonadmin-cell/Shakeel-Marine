@@ -6,8 +6,10 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { faqData } from '@/data/faq';
 import { ArrowRight, ChevronRight } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function FaqPreview() {
+  const { t } = useLang();
   const previewFaqs = faqData.slice(0, 4);
 
   return (
@@ -15,9 +17,9 @@ export function FaqPreview() {
       <div className="max-w-7xl mx-auto container-padding">
         <ScrollReveal>
           <SectionHeading
-            eyebrow="FAQ"
-            title="Frequently Asked Questions"
-            description="Quick answers to common questions about our marine services."
+            eyebrow={t.faqPreview.eyebrow}
+            title={t.faqPreview.title}
+            description={t.faqPreview.description}
           />
         </ScrollReveal>
 
@@ -44,7 +46,7 @@ export function FaqPreview() {
         <ScrollReveal>
           <div className="mt-12 text-center">
             <Button href="/faq" variant="ghost" size="md">
-              View All Questions
+              {t.faqPreview.viewAll}
               <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
           </div>

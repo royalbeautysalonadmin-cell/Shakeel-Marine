@@ -8,12 +8,14 @@ import { SHIMMER } from '@/lib/utils';
 import { Check, ChevronRight } from 'lucide-react';
 import type { ServiceData } from '@/data/services';
 import { getWhatsAppUrl } from '@/lib/site-config';
+import { useLang } from '@/components/shared/LangProvider';
 
 interface ServiceDetailProps {
   service: ServiceData;
 }
 
 export function ServiceDetail({ service }: ServiceDetailProps) {
+  const { t } = useLang();
   return (
     <>
       {/* Hero */}
@@ -50,10 +52,10 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
             <ScrollReveal>
               <div>
                 <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-                  Overview
+                  {t.serviceDetail.overview}
                 </span>
                 <h2 className="mt-4 font-heading font-bold text-charcoal" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
-                  {service.title} in Kuwait
+                  {service.title} {t.serviceDetail.inKuwait}
                 </h2>
                 <p className="mt-5 text-muted text-lg leading-relaxed">
                   {service.description}
@@ -87,8 +89,8 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
         <div className="max-w-7xl mx-auto container-padding">
           <ScrollReveal>
             <SectionHeading
-              eyebrow="Features"
-              title="What's Included"
+              eyebrow={t.serviceDetail.features}
+              title={t.serviceDetail.whatsIncluded}
             />
           </ScrollReveal>
 
@@ -112,8 +114,8 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
         <div className="max-w-7xl mx-auto container-padding">
           <ScrollReveal>
             <SectionHeading
-              eyebrow="Benefits"
-              title="Why Choose This Service"
+              eyebrow={t.serviceDetail.benefits}
+              title={t.serviceDetail.whyChoose}
             />
           </ScrollReveal>
 
@@ -146,8 +148,8 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
         <div className="max-w-7xl mx-auto container-padding">
           <ScrollReveal>
             <SectionHeading
-              eyebrow="Process"
-              title="How It Works"
+              eyebrow={t.serviceDetail.process}
+              title={t.serviceDetail.howItWorks}
             />
           </ScrollReveal>
 
@@ -176,8 +178,8 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
         <div className="max-w-3xl mx-auto container-padding">
           <ScrollReveal>
             <SectionHeading
-              eyebrow="FAQ"
-              title="Common Questions"
+              eyebrow={t.serviceDetail.faq}
+              title={t.serviceDetail.commonQuestions}
             />
           </ScrollReveal>
 
@@ -224,7 +226,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
                 rel="noopener noreferrer"
               >
                 <Button variant="outline" size="lg">
-                  WhatsApp Us
+                  {t.serviceDetail.whatsappUs}
                 </Button>
               </a>
             </div>

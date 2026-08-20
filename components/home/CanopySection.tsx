@@ -5,18 +5,10 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
-
-const features = [
-  'Custom measurements for your vessel',
-  'Custom fitting and fabrication',
-  'Marine-suitable materials',
-  'Weather protection',
-  'UV resistance where supported',
-  'Custom color selection',
-  'Professional finishing and installation',
-];
+import { useLang } from '@/components/shared/LangProvider';
 
 export function CanopySection() {
+  const { t } = useLang();
   return (
     <section className="section-padding bg-navy-deep overflow-hidden relative">
       {/* Background accent */}
@@ -47,20 +39,17 @@ export function CanopySection() {
           <ScrollReveal direction="right">
             <div>
               <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-                Canopy Covers
+                {t.canopy.eyebrow}
               </span>
               <h2 className="mt-4 font-heading font-bold text-white" style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)' }}>
-                Custom Ship Top &amp; Canopy Covers
+                {t.canopy.title}
               </h2>
               <p className="mt-5 text-white/60 text-lg leading-relaxed">
-                Protect your vessel with custom-designed canopy and ship top
-                covers. Each cover is measured, fabricated and installed to
-                fit your specific vessel — with your choice of colors and
-                materials.
+                {t.canopy.description}
               </p>
 
               <ul className="mt-8 space-y-3">
-                {features.map((feature) => (
+                {t.canopy.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <div className="mt-1 w-5 h-5 rounded-full bg-ocean/20 flex items-center justify-center shrink-0">
                       <Check className="w-3 h-3 text-ocean" />
@@ -72,7 +61,7 @@ export function CanopySection() {
 
               <div className="mt-10">
                 <Button href="/request-a-quote" variant="primary" size="lg">
-                  Request a Canopy Quote
+                  {t.canopy.cta}
                 </Button>
               </div>
             </div>

@@ -5,6 +5,7 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import { getWhatsAppUrl, whatsappMessages } from '@/lib/site-config';
 import { Send, FileText } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -16,6 +17,7 @@ import {
 } from '@/lib/schemas';
 
 export function QuoteContent() {
+  const { t } = useLang();
   const [submitted, setSubmitted] = useState(false);
   const {
     register,
@@ -45,19 +47,16 @@ export function QuoteContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-              Quote
+              {t.quote.eyebrow}
             </span>
             <h1
               className="mt-4 text-white font-heading font-bold"
               style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)' }}
             >
-              Request Your
-              <br />
-              Custom Marine Quote
+              {t.quote.title}
             </h1>
             <p className="mt-6 text-white/60 text-lg md:text-xl max-w-xl leading-relaxed">
-              Share your project details and we will prepare a tailored quote
-              for your marine upholstery or cover requirements.
+              {t.quote.description}
             </p>
           </ScrollReveal>
         </div>
@@ -74,15 +73,14 @@ export function QuoteContent() {
                   <FileText className="w-9 h-9 text-ocean" />
                 </div>
                 <h2 className="font-heading font-bold text-charcoal text-2xl">
-                  Quote Request Received
+                  {t.quote.received}
                 </h2>
                 <p className="mt-3 text-muted text-lg max-w-md mx-auto">
-                  Thank you for your interest. We will review your project
-                  details and get back to you shortly.
+                  {t.quote.receivedDesc}
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                   <Button onClick={() => setSubmitted(false)} variant="ghost">
-                    Submit Another Quote
+                    {t.quote.submitAnother}
                   </Button>
                   <a
                     href={getWhatsAppUrl(whatsappMessages.quote)}
@@ -90,7 +88,7 @@ export function QuoteContent() {
                     rel="noopener noreferrer"
                   >
                     <Button variant="secondary">
-                      Also WhatsApp Us
+                      {t.quote.alsoWhatsApp}
                     </Button>
                   </a>
                 </div>
@@ -102,11 +100,10 @@ export function QuoteContent() {
               >
                 <div className="mb-4">
                   <h2 className="font-heading font-bold text-charcoal text-2xl">
-                    Project Details
+                    {t.quote.projectDetails}
                   </h2>
                   <p className="mt-1 text-muted text-sm">
-                    Fill in as much detail as possible to help us prepare an
-                    accurate quote.
+                    {t.quote.projectDesc}
                   </p>
                 </div>
 
@@ -114,14 +111,14 @@ export function QuoteContent() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="quote-name" className="block text-sm font-medium text-charcoal mb-1.5">
-                      Full Name *
+                      {t.quote.fullName}
                     </label>
                     <input
                       id="quote-name"
                       type="text"
                       {...register('fullName')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                      placeholder="Your full name"
+                      placeholder={t.quote.fullNamePlaceholder}
                     />
                     {errors.fullName && (
                       <p className="mt-1 text-red-500 text-xs">{errors.fullName.message}</p>
@@ -129,14 +126,14 @@ export function QuoteContent() {
                   </div>
                   <div>
                     <label htmlFor="quote-phone" className="block text-sm font-medium text-charcoal mb-1.5">
-                      Phone *
+                      {t.quote.phone}
                     </label>
                     <input
                       id="quote-phone"
                       type="tel"
                       {...register('phone')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                      placeholder="Your phone number"
+                      placeholder={t.quote.phonePlaceholder}
                     />
                     {errors.phone && (
                       <p className="mt-1 text-red-500 text-xs">{errors.phone.message}</p>
@@ -148,26 +145,26 @@ export function QuoteContent() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="quote-whatsapp" className="block text-sm font-medium text-charcoal mb-1.5">
-                      WhatsApp
+                      {t.quote.whatsapp}
                     </label>
                     <input
                       id="quote-whatsapp"
                       type="tel"
                       {...register('whatsapp')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                      placeholder="WhatsApp number (optional)"
+                      placeholder={t.quote.whatsappPlaceholder}
                     />
                   </div>
                   <div>
                     <label htmlFor="quote-email" className="block text-sm font-medium text-charcoal mb-1.5">
-                      Email *
+                      {t.quote.email}
                     </label>
                     <input
                       id="quote-email"
                       type="email"
                       {...register('email')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                      placeholder="Your email"
+                      placeholder={t.quote.emailPlaceholder}
                     />
                     {errors.email && (
                       <p className="mt-1 text-red-500 text-xs">{errors.email.message}</p>
@@ -179,14 +176,14 @@ export function QuoteContent() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="quote-service" className="block text-sm font-medium text-charcoal mb-1.5">
-                      Service Needed *
+                      {t.quote.service}
                     </label>
                     <select
                       id="quote-service"
                       {...register('service')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
                     >
-                      <option value="">Select a service</option>
+                      <option value="">{t.quote.servicePlaceholder}</option>
                       {serviceOptions.map((opt) => (
                         <option key={opt.value} value={opt.value}>
                           {opt.label}
@@ -199,14 +196,14 @@ export function QuoteContent() {
                   </div>
                   <div>
                     <label htmlFor="quote-vessel" className="block text-sm font-medium text-charcoal mb-1.5">
-                      Vessel Type *
+                      {t.quote.vesselType}
                     </label>
                     <select
                       id="quote-vessel"
                       {...register('vesselType')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
                     >
-                      <option value="">Select vessel type</option>
+                      <option value="">{t.quote.vesselPlaceholder}</option>
                       {vesselTypeOptions.map((opt) => (
                         <option key={opt.value} value={opt.value}>
                           {opt.label}
@@ -222,28 +219,28 @@ export function QuoteContent() {
                 {/* Vessel Details */}
                 <div>
                   <label htmlFor="quote-vessel-details" className="block text-sm font-medium text-charcoal mb-1.5">
-                    Vessel Details
+                    {t.quote.vesselDetails}
                   </label>
                   <input
                     id="quote-vessel-details"
                     type="text"
                     {...register('vesselDetails')}
                     className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                    placeholder="Make, model, year (optional)"
+                    placeholder={t.quote.vesselDetailsPlaceholder}
                   />
                 </div>
 
                 {/* Project Description */}
                 <div>
                   <label htmlFor="quote-description" className="block text-sm font-medium text-charcoal mb-1.5">
-                    Project Description *
+                    {t.quote.projectDescription}
                   </label>
                   <textarea
                     id="quote-description"
                     {...register('projectDescription')}
                     rows={4}
                     className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors resize-none"
-                    placeholder="Describe your project — what you need, any preferences..."
+                    placeholder={t.quote.projectPlaceholder}
                   />
                   {errors.projectDescription && (
                     <p className="mt-1 text-red-500 text-xs">{errors.projectDescription.message}</p>
@@ -254,26 +251,26 @@ export function QuoteContent() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="quote-color" className="block text-sm font-medium text-charcoal mb-1.5">
-                      Preferred Color
+                      {t.quote.color}
                     </label>
                     <input
                       id="quote-color"
                       type="text"
                       {...register('preferredColor')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                      placeholder="e.g. Navy blue, black (optional)"
+                      placeholder={t.quote.colorPlaceholder}
                     />
                   </div>
                   <div>
                     <label htmlFor="quote-design" className="block text-sm font-medium text-charcoal mb-1.5">
-                      Preferred Design
+                      {t.quote.design}
                     </label>
                     <input
                       id="quote-design"
                       type="text"
                       {...register('preferredDesign')}
                       className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                      placeholder="e.g. Diamond stitch, plain (optional)"
+                      placeholder={t.quote.designPlaceholder}
                     />
                   </div>
                 </div>
@@ -281,14 +278,14 @@ export function QuoteContent() {
                 {/* Preferred Contact Method */}
                 <div>
                   <label htmlFor="quote-contact" className="block text-sm font-medium text-charcoal mb-1.5">
-                    Preferred Contact Method *
+                    {t.quote.contactMethod}
                   </label>
                   <select
                     id="quote-contact"
                     {...register('preferredContactMethod')}
                     className="w-full px-4 py-3 rounded-lg border border-border bg-off-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
                   >
-                    <option value="">How should we contact you?</option>
+                    <option value="">{t.quote.contactPlaceholder}</option>
                     {contactMethodOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>
                         {opt.label}
@@ -307,7 +304,7 @@ export function QuoteContent() {
                   loading={isSubmitting}
                   className="w-full"
                 >
-                  Submit Quote Request
+                  {t.quote.submit}
                 </Button>
               </form>
             )}

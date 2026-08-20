@@ -7,15 +7,12 @@ import { Button } from '@/components/ui/Button';
 import { siteConfig } from '@/lib/site-config';
 import { SHIMMER } from '@/lib/utils';
 import { Ruler, Scissors, Wrench, Paintbrush } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
-const approachSteps = [
-  { icon: Ruler, title: 'Measure', description: 'We take precise measurements of your vessel or seating.' },
-  { icon: Paintbrush, title: 'Design', description: 'We plan the design, colors and materials with you.' },
-  { icon: Scissors, title: 'Fabricate', description: 'Your project is custom-built to the agreed specifications.' },
-  { icon: Wrench, title: 'Install', description: 'Professional fitting and finishing on your vessel.' },
-];
+const approachIcons = [Ruler, Paintbrush, Scissors, Wrench];
 
 export function AboutContent() {
+  const { t } = useLang();
   return (
     <>
       {/* Hero */}
@@ -24,19 +21,16 @@ export function AboutContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-              About Us
+              {t.about.eyebrow}
             </span>
             <h1
               className="mt-4 text-white font-heading font-bold"
               style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)' }}
             >
-              Crafted for
-              <br />
-              the Water
+              {t.about.title}
             </h1>
             <p className="mt-6 text-white/60 text-lg md:text-xl max-w-xl leading-relaxed">
-              Marine upholstery and custom cover solutions tailored to your
-              vessel.
+              {t.about.description}
             </p>
           </ScrollReveal>
         </div>
@@ -50,22 +44,16 @@ export function AboutContent() {
             <ScrollReveal>
               <div>
                 <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-                  Who We Are
+                  {t.about.whoWeAre}
                 </span>
                 <h2 className="mt-4 font-heading font-bold text-charcoal" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
-                  Marine Upholstery &amp; Cover Specialists
+                  {t.about.specialists}
                 </h2>
                 <p className="mt-5 text-muted text-lg leading-relaxed">
-                  Shakeel Marine is a Kuwait-based business specializing in
-                  custom marine upholstery and cover solutions. We work across
-                  jet skis, boats and ships — delivering tailored seating,
-                  covers and canopy solutions designed to fit each vessel.
+                  {t.about.whoDesc1}
                 </p>
                 <p className="mt-4 text-muted leading-relaxed">
-                  Our focus is on quality craftsmanship, custom fitting and
-                  professional installation. Every project is approached with
-                  attention to detail and a commitment to delivering results
-                  that meet your requirements.
+                  {t.about.whoDesc2}
                 </p>
               </div>
             </ScrollReveal>
@@ -96,21 +84,14 @@ export function AboutContent() {
         <div className="max-w-7xl mx-auto container-padding">
           <ScrollReveal>
             <SectionHeading
-              eyebrow="What We Do"
-              title="Our Services"
-              description="Comprehensive marine upholstery and cover solutions."
+              eyebrow={t.about.whatWeDo}
+              title={t.about.ourServices}
+              description={t.about.servicesDesc}
             />
           </ScrollReveal>
 
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: 'Jet Ski Seats', desc: 'Custom seat covers, design and installation for jet skis.' },
-              { title: 'Boat Seats', desc: 'Custom boat seating, covers and reupholstery.' },
-              { title: 'Ship Seats', desc: 'Ship seating fabrication, covers and restoration.' },
-              { title: 'Marine Upholstery', desc: 'Full upholstery services across all marine vessels.' },
-              { title: 'Canopy Covers', desc: 'Custom canopy and ship top cover solutions.' },
-              { title: 'Custom Marine Covers', desc: 'Bespoke cover solutions for various marine applications.' },
-            ].map((item, i) => (
+            {t.about.serviceCards.map((item, i) => (
               <ScrollReveal key={item.title} delay={i * 0.1}>
                 <div className="bg-white rounded-lg p-6 border border-border">
                   <h3 className="font-heading font-bold text-charcoal">
@@ -131,24 +112,24 @@ export function AboutContent() {
         <div className="max-w-7xl mx-auto container-padding">
           <ScrollReveal>
             <SectionHeading
-              eyebrow="Our Approach"
-              title="How We Work"
-              description="A clear process from start to finish."
+              eyebrow={t.about.approach}
+              title={t.about.howWeWork}
+              description={t.about.approachDesc}
             />
           </ScrollReveal>
 
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {approachSteps.map((step, i) => (
+            {t.about.approachSteps.map((step, i) => (
               <ScrollReveal key={step.title} delay={i * 0.12}>
                 <div className="text-center">
                   <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-ocean/10 flex items-center justify-center">
-                    <step.icon className="w-7 h-7 text-ocean" />
+                    {(() => { const Icon = approachIcons[i]; return <Icon className="w-7 h-7 text-ocean" />; })()}
                   </div>
                   <h3 className="font-heading font-bold text-charcoal text-lg uppercase tracking-wider">
                     {step.title}
                   </h3>
                   <p className="mt-2 text-muted text-sm leading-relaxed">
-                    {step.description}
+                    {step.desc}
                   </p>
                 </div>
               </ScrollReveal>
@@ -163,16 +144,13 @@ export function AboutContent() {
         <div className="max-w-4xl mx-auto container-padding text-center relative z-10">
           <ScrollReveal>
             <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-              Quality &amp; Craftsmanship
+              {t.about.quality}
             </span>
             <h2 className="mt-4 font-heading font-bold text-white" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
-              Attention to Every Detail
+              {t.about.attention}
             </h2>
             <p className="mt-5 text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
-              Every project receives careful attention — from precise measurement
-              and custom design to clean stitching, professional finishing and
-              thorough installation. We focus on delivering results that meet
-              your exact requirements.
+              {t.about.qualityDesc}
             </p>
           </ScrollReveal>
         </div>
@@ -183,14 +161,14 @@ export function AboutContent() {
         <div className="max-w-4xl mx-auto container-padding text-center">
           <ScrollReveal>
             <h2 className="font-heading font-bold text-charcoal" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
-              Have a Marine Project in Mind?
+              {t.about.ctaTitle}
             </h2>
             <p className="mt-4 text-muted text-lg">
-              Tell us about your requirements. We will prepare a custom solution.
+              {t.about.ctaDesc}
             </p>
             <div className="mt-8">
               <Button href="/request-a-quote" variant="primary" size="lg">
-                Request a Quote
+                {t.about.cta}
               </Button>
             </div>
           </ScrollReveal>

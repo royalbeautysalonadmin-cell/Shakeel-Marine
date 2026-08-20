@@ -5,17 +5,10 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
-
-const features = [
-  'Custom designs tailored to your jet ski',
-  'Your choice of colors and stitching',
-  'Marine-suitable materials',
-  'Professional measurement and fitting',
-  'Clean stitching and finishing',
-  'Complete installation service',
-];
+import { useLang } from '@/components/shared/LangProvider';
 
 export function JetSkiShowcase() {
+  const { t } = useLang();
   return (
     <section className="section-padding bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto container-padding">
@@ -45,20 +38,17 @@ export function JetSkiShowcase() {
           <ScrollReveal direction="right">
             <div>
               <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-                Jet Ski Seats
+                {t.jetSki.eyebrow}
               </span>
               <h2 className="mt-4 font-heading font-bold text-charcoal" style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)' }}>
-                Custom Jet Ski Seat Covers
+                {t.jetSki.title}
               </h2>
               <p className="mt-5 text-muted text-lg leading-relaxed">
-                Every jet ski seat cover we produce is designed around your
-                specific model. Choose your colors, stitching patterns and
-                finishing style — we handle the rest from measurement to
-                professional installation.
+                {t.jetSki.description}
               </p>
 
               <ul className="mt-8 space-y-3">
-                {features.map((feature) => (
+                {t.jetSki.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <div className="mt-1 w-5 h-5 rounded-full bg-ocean/10 flex items-center justify-center shrink-0">
                       <Check className="w-3 h-3 text-ocean" />
@@ -70,7 +60,7 @@ export function JetSkiShowcase() {
 
               <div className="mt-10">
                 <Button href="/request-a-quote" variant="primary" size="lg">
-                  Get a Jet Ski Seat Quote
+                  {t.jetSki.cta}
                 </Button>
               </div>
             </div>

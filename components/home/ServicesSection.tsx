@@ -7,16 +7,18 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { services } from '@/data/services';
 import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function ServicesSection() {
+  const { t } = useLang();
   return (
     <section className="section-padding bg-off-white">
       <div className="max-w-7xl mx-auto container-padding">
         <ScrollReveal>
           <SectionHeading
-            eyebrow="What We Do"
-            title="Our Marine Services"
-            description="Custom solutions designed around your vessel, your style and your needs."
+            eyebrow={t.services.eyebrow}
+            title={t.services.title}
+            description={t.services.description}
           />
         </ScrollReveal>
 
@@ -49,7 +51,7 @@ export function ServicesSection() {
                     {service.tagline}
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-ocean text-sm font-semibold uppercase tracking-wider group-hover:gap-3 transition-all">
-                    <span>Explore</span>
+                    <span>{t.services.explore}</span>
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>

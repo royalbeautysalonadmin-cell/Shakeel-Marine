@@ -5,18 +5,10 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
-
-const features = [
-  'Custom dimensions for your vessel',
-  'Choice of colors and materials',
-  'Custom stitching and patterns',
-  'Comfortable marine seating',
-  'Professional finishing',
-  'Reupholstery where applicable',
-  'Complete installation',
-];
+import { useLang } from '@/components/shared/LangProvider';
 
 export function BoatShipSection() {
+  const { t } = useLang();
   return (
     <section className="section-padding bg-off-white overflow-hidden">
       <div className="max-w-7xl mx-auto container-padding">
@@ -25,20 +17,17 @@ export function BoatShipSection() {
           <ScrollReveal direction="left">
             <div>
               <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-                Boat &amp; Ship
+                {t.boatShip.eyebrow}
               </span>
               <h2 className="mt-4 font-heading font-bold text-charcoal" style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)' }}>
-                Made for Your Vessel
+                {t.boatShip.title}
               </h2>
               <p className="mt-5 text-muted text-lg leading-relaxed">
-                We design and fabricate custom seating solutions for boats and
-                ships. Whether you need new seats, replacement covers or
-                reupholstery of existing marine seating — each project is
-                tailored to your vessel and preferences.
+                {t.boatShip.description}
               </p>
 
               <ul className="mt-8 space-y-3">
-                {features.map((feature) => (
+                {t.boatShip.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <div className="mt-1 w-5 h-5 rounded-full bg-ocean/10 flex items-center justify-center shrink-0">
                       <Check className="w-3 h-3 text-ocean" />
@@ -50,7 +39,7 @@ export function BoatShipSection() {
 
               <div className="mt-10">
                 <Button href="/request-a-quote" variant="primary" size="lg">
-                  Discuss Your Project
+                  {t.boatShip.cta}
                 </Button>
               </div>
             </div>

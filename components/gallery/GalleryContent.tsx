@@ -6,8 +6,10 @@ import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { galleryImages, galleryCategories, type GalleryCategory } from '@/data/gallery';
 import { SHIMMER } from '@/lib/utils';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function GalleryContent() {
+  const { t } = useLang();
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -38,16 +40,16 @@ export function GalleryContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-              Gallery
+              {t.gallery.eyebrow}
             </span>
             <h1
               className="mt-4 text-white font-heading font-bold"
               style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)' }}
             >
-              Our Work
+              {t.gallery.title}
             </h1>
             <p className="mt-6 text-white/60 text-lg md:text-xl max-w-xl leading-relaxed">
-              A selection of our custom marine upholstery and cover projects.
+              {t.gallery.description}
             </p>
           </ScrollReveal>
         </div>
@@ -95,7 +97,7 @@ export function GalleryContent() {
                   />
                   <div className="absolute inset-0 bg-navy-deep/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="text-white text-sm font-medium">
-                      View
+                      {t.gallery.view}
                     </span>
                   </div>
                 </button>
@@ -106,7 +108,7 @@ export function GalleryContent() {
           {filteredImages.length === 0 && (
             <div className="text-center py-20">
               <p className="text-muted text-lg">
-                No images in this category yet.
+                {t.gallery.noImages}
               </p>
             </div>
           )}

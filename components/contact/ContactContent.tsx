@@ -6,11 +6,13 @@ import { Button } from '@/components/ui/Button';
 import { siteConfig, getWhatsAppUrl, getPhoneUrl, whatsappMessages } from '@/lib/site-config';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { useLang } from '@/components/shared/LangProvider';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactFormSchema, type ContactFormData, serviceOptions } from '@/lib/schemas';
 
 export function ContactContent() {
+  const { t } = useLang();
   const [submitted, setSubmitted] = useState(false);
   const {
     register,
@@ -33,13 +35,13 @@ export function ContactContent() {
   };
 
   const contactInfo = [
-    { icon: Phone, label: 'Phone', value: siteConfig.phone, href: getPhoneUrl() },
-    { icon: Phone, label: 'Phone 2', value: siteConfig.phone2, href: `tel:${siteConfig.phone2.replace(/\s/g, '')}` },
-    { icon: Phone, label: 'Phone 3', value: siteConfig.phone3, href: `tel:${siteConfig.phone3.replace(/\s/g, '')}` },
-    { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat on WhatsApp', href: getWhatsAppUrl(whatsappMessages.general) },
-    { icon: Mail, label: 'Email', value: siteConfig.email, href: `mailto:${siteConfig.email}` },
-    { icon: MapPin, label: 'Location', value: siteConfig.address, href: siteConfig.mapUrl },
-    { icon: Clock, label: 'Hours', value: siteConfig.hours, href: undefined },
+    { icon: Phone, label: t.contact.phoneLabel, value: siteConfig.phone, href: getPhoneUrl(), isExternal: false },
+    { icon: Phone, label: t.contact.phone2Label, value: siteConfig.phone2, href: `tel:${siteConfig.phone2.replace(/\s/g, '')}`, isExternal: false },
+    { icon: Phone, label: t.contact.phone3Label, value: siteConfig.phone3, href: `tel:${siteConfig.phone3.replace(/\s/g, '')}`, isExternal: false },
+    { icon: WhatsAppIcon, label: t.contact.whatsappLabel, value: t.contact.whatsapp, href: getWhatsAppUrl(whatsappMessages.general), isExternal: true },
+    { icon: Mail, label: t.contact.emailLabel, value: siteConfig.email, href: `mailto:${siteConfig.email}`, isExternal: false },
+    { icon: MapPin, label: t.contact.locationLabel, value: siteConfig.address, href: siteConfig.mapUrl, isExternal: true },
+    { icon: Clock, label: t.contact.hoursLabel, value: siteConfig.hours, href: undefined, isExternal: false },
   ];
 
   return (
@@ -50,19 +52,16 @@ export function ContactContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-              Contact
+              {t.contact.eyebrow}
             </span>
             <h1
               className="mt-4 text-white font-heading font-bold"
               style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)' }}
             >
-              Let&apos;s Talk About
-              <br />
-              Your Marine Project
+              {t.contact.title}
             </h1>
             <p className="mt-6 text-white/60 text-lg md:text-xl max-w-xl leading-relaxed">
-              Get in touch to discuss your requirements. We are happy to help
-              with any marine upholstery or cover project.
+              {t.contact.description}
             </p>
           </ScrollReveal>
         </div>
@@ -77,7 +76,7 @@ export function ContactContent() {
             <div className="lg:col-span-2">
               <ScrollReveal>
                 <h2 className="font-heading font-bold text-charcoal text-2xl mb-8">
-                  Get in Touch
+                  {t.contact.getInTouch}
                 </h2>
                 <div className="space-y-6">
                   {contactInfo.map((item) => (
@@ -92,8 +91,8 @@ export function ContactContent() {
                         {item.href ? (
                           <a
                             href={item.href}
-                            target={item.label === 'WhatsApp' || item.label === 'Location' ? '_blank' : undefined}
-                            rel={item.label === 'WhatsApp' || item.label === 'Location' ? 'noopener noreferrer' : undefined}
+                            target={item.isExternal ? '_blank' : undefined}
+                            rel={item.isExternal ? 'noopener noreferrer' : undefined}
                             className="block mt-1 text-charcoal text-sm hover:text-ocean transition-colors"
                           >
                             {item.value}
@@ -114,7 +113,7 @@ export function ContactContent() {
                   >
                     <Button variant="secondary" size="lg" className="w-full">
                       <WhatsAppIcon className="w-4 h-4" />
-                      Chat on WhatsApp
+                      {t.contact.whatsapp}
                     </Button>
                   </a>
                 </div>
@@ -131,34 +130,33 @@ export function ContactContent() {
                         <Send className="w-7 h-7 text-ocean" />
                       </div>
                       <h3 className="font-heading font-bold text-charcoal text-xl">
-                        Message Sent
+                        {t.contact.sent}
                       </h3>
                       <p className="mt-2 text-muted">
-                        Thank you for reaching out. We will get back to you
-                        shortly.
+                        {t.contact.sentDesc}
                       </p>
                       <div className="mt-6">
                         <Button onClick={() => setSubmitted(false)} variant="ghost">
-                          Send Another Message
+                          {t.contact.sendAnother}
                         </Button>
                       </div>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                       <h2 className="font-heading font-bold text-charcoal text-xl mb-2">
-                        Send Us a Message
+                        {t.contact.formTitle}
                       </h2>
 
                       <div>
                         <label htmlFor="contact-name" className="block text-sm font-medium text-charcoal mb-1.5">
-                          Name
+                          {t.contact.name}
                         </label>
                         <input
                           id="contact-name"
                           type="text"
                           {...register('name')}
                           className="w-full px-4 py-3 rounded-lg border border-border bg-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                          placeholder="Your name"
+                          placeholder={t.contact.namePlaceholder}
                         />
                         {errors.name && (
                           <p className="mt-1 text-red-500 text-xs">{errors.name.message}</p>
@@ -168,14 +166,14 @@ export function ContactContent() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                           <label htmlFor="contact-phone" className="block text-sm font-medium text-charcoal mb-1.5">
-                            Phone
+                            {t.contact.phone}
                           </label>
                           <input
                             id="contact-phone"
                             type="tel"
                             {...register('phone')}
                             className="w-full px-4 py-3 rounded-lg border border-border bg-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                            placeholder="Your phone number"
+                            placeholder={t.contact.phonePlaceholder}
                           />
                           {errors.phone && (
                             <p className="mt-1 text-red-500 text-xs">{errors.phone.message}</p>
@@ -183,14 +181,14 @@ export function ContactContent() {
                         </div>
                         <div>
                           <label htmlFor="contact-email" className="block text-sm font-medium text-charcoal mb-1.5">
-                            Email
+                            {t.contact.email}
                           </label>
                           <input
                             id="contact-email"
                             type="email"
                             {...register('email')}
                             className="w-full px-4 py-3 rounded-lg border border-border bg-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
-                            placeholder="Your email"
+                            placeholder={t.contact.emailPlaceholder}
                           />
                           {errors.email && (
                             <p className="mt-1 text-red-500 text-xs">{errors.email.message}</p>
@@ -200,14 +198,14 @@ export function ContactContent() {
 
                       <div>
                         <label htmlFor="contact-service" className="block text-sm font-medium text-charcoal mb-1.5">
-                          Service
+                          {t.contact.service}
                         </label>
                         <select
                           id="contact-service"
                           {...register('service')}
                           className="w-full px-4 py-3 rounded-lg border border-border bg-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors"
                         >
-                          <option value="">Select a service</option>
+                          <option value="">{t.contact.servicePlaceholder}</option>
                           {serviceOptions.map((opt) => (
                             <option key={opt.value} value={opt.value}>
                               {opt.label}
@@ -221,14 +219,14 @@ export function ContactContent() {
 
                       <div>
                         <label htmlFor="contact-message" className="block text-sm font-medium text-charcoal mb-1.5">
-                          Message
+                          {t.contact.message}
                         </label>
                         <textarea
                           id="contact-message"
                           {...register('message')}
                           rows={5}
                           className="w-full px-4 py-3 rounded-lg border border-border bg-white text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-ocean/30 focus:border-ocean transition-colors resize-none"
-                          placeholder="Tell us about your project..."
+                          placeholder={t.contact.messagePlaceholder}
                         />
                         {errors.message && (
                           <p className="mt-1 text-red-500 text-xs">{errors.message.message}</p>
@@ -242,7 +240,7 @@ export function ContactContent() {
                         loading={isSubmitting}
                         className="w-full"
                       >
-                        Send Inquiry
+                        {t.contact.send}
                       </Button>
                     </form>
                   )}

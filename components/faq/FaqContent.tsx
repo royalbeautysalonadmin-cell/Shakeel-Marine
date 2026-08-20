@@ -5,8 +5,10 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { faqData } from '@/data/faq';
 import { ChevronRight } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function FaqContent() {
+  const { t } = useLang();
   return (
     <>
       {/* Hero */}
@@ -15,18 +17,16 @@ export function FaqContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <span className="text-ocean text-xs font-semibold uppercase tracking-[0.2em]">
-              FAQ
+              {t.faq.eyebrow}
             </span>
             <h1
               className="mt-4 text-white font-heading font-bold"
               style={{ fontSize: 'clamp(2.25rem, 5vw, 4.5rem)' }}
             >
-              Frequently Asked
-              <br />
-              Questions
+              {t.faq.title}
             </h1>
             <p className="mt-6 text-white/60 text-lg md:text-xl max-w-xl leading-relaxed">
-              Quick answers to common questions about our marine services.
+              {t.faq.description}
             </p>
           </ScrollReveal>
         </div>
@@ -63,17 +63,17 @@ export function FaqContent() {
         <div className="max-w-4xl mx-auto container-padding text-center">
           <ScrollReveal>
             <h2 className="font-heading font-bold text-charcoal" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
-              Still Have Questions?
+              {t.faq.stillQuestions}
             </h2>
             <p className="mt-4 text-muted text-lg">
-              Contact us directly and we will be happy to help.
+              {t.faq.stillQuestionsDesc}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button href="/contact" variant="primary" size="lg">
-                Contact Us
+                {t.nav.contact}
               </Button>
               <Button href="/request-a-quote" variant="outline" size="lg">
-                Request a Quote
+                {t.nav.quote}
               </Button>
             </div>
           </ScrollReveal>

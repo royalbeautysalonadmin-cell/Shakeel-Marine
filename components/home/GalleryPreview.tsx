@@ -8,8 +8,10 @@ import { Button } from '@/components/ui/Button';
 import { galleryImages } from '@/data/gallery';
 import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function GalleryPreview() {
+  const { t } = useLang();
   const previewImages = galleryImages.slice(0, 6);
 
   return (
@@ -17,9 +19,9 @@ export function GalleryPreview() {
       <div className="max-w-7xl mx-auto container-padding">
         <ScrollReveal>
           <SectionHeading
-            eyebrow="Our Work"
-            title="Gallery"
-            description="A look at our custom marine upholstery and cover projects."
+            eyebrow={t.gallery.eyebrow}
+            title={t.gallery.title}
+            description={t.gallery.description}
           />
         </ScrollReveal>
 
@@ -39,7 +41,7 @@ export function GalleryPreview() {
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-navy-deep/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <span className="text-white text-sm font-medium">
-                    View Project
+                    {t.gallery.viewProject}
                   </span>
                 </div>
               </div>
@@ -50,7 +52,7 @@ export function GalleryPreview() {
         <ScrollReveal>
           <div className="mt-12 text-center">
             <Button href="/gallery" variant="secondary" size="lg">
-              View Full Gallery
+              {t.gallery.viewFull}
               <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
           </div>

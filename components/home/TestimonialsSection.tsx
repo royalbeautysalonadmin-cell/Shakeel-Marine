@@ -3,15 +3,17 @@
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { MessageCircle } from 'lucide-react';
+import { useLang } from '@/components/shared/LangProvider';
 
 export function TestimonialsSection() {
+  const { t } = useLang();
   return (
     <section className="section-padding bg-off-white">
       <div className="max-w-7xl mx-auto container-padding">
         <ScrollReveal>
           <SectionHeading
-            eyebrow="Testimonials"
-            title="What Our Customers Say"
+            eyebrow={t.testimonials.eyebrow}
+            title={t.testimonials.title}
           />
         </ScrollReveal>
 
@@ -21,12 +23,10 @@ export function TestimonialsSection() {
               <MessageCircle className="w-7 h-7 text-ocean" />
             </div>
             <p className="text-muted text-lg leading-relaxed">
-              Customer testimonials will appear here once genuine reviews are
-              available. We never fabricate reviews or testimonials.
+              {t.testimonials.description}
             </p>
             <p className="mt-4 text-muted/60 text-sm">
-              Have you worked with us? We&apos;d love to hear about your
-              experience.
+              {t.testimonials.cta}
             </p>
           </div>
         </ScrollReveal>

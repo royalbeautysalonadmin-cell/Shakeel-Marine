@@ -8,11 +8,11 @@
     "quote": "Get a Quote"
   },
   "hero": {
-    "eyebrow": "Marine Upholstery \u2022 Kuwait",
+    "eyebrow": "Marine Upholstery • Kuwait",
     "title1": "Premium Marine",
     "title2": "Upholstery & Custom",
     "title3": "Covers",
-    "description": "Custom jet ski seats, boat & ship upholstery, marine seating and canopy covers \u2014 professionally crafted and installed in Kuwait.",
+    "description": "Custom jet ski seats, boat & ship upholstery, marine seating and canopy covers — professionally crafted and installed in Kuwait.",
     "cta1": "Request a Quote",
     "cta2": "Explore Our Services",
     "trust1": "Custom Made",
@@ -20,52 +20,267 @@
     "trust3": "Marine-Suitable Materials",
     "scroll": "Scroll"
   },
+  "trust": {
+    "customFit": "Custom Fit",
+    "customFitDesc": "Designed around your vessel",
+    "professionalInstall": "Professional Installation",
+    "professionalInstallDesc": "Careful fitting and finishing",
+    "marineFocused": "Marine-Focused",
+    "marineFocusedDesc": "Built for marine environments",
+    "kuwaitBased": "Kuwait-Based",
+    "kuwaitBasedDesc": "Local service and support"
+  },
   "services": {
     "eyebrow": "What We Do",
     "title": "Our Marine Services",
     "description": "Custom solutions designed around your vessel, your style and your needs.",
     "explore": "Explore"
   },
+  "jetSki": {
+    "eyebrow": "Jet Ski Seats",
+    "title": "Custom Jet Ski Seat Covers",
+    "description": "Every jet ski seat cover we produce is designed around your specific model. Choose your colors, stitching patterns and finishing style — we handle the rest from measurement to professional installation.",
+    "cta": "Get a Jet Ski Seat Quote",
+    "features": [
+      "Custom designs tailored to your jet ski",
+      "Your choice of colors and stitching",
+      "Marine-suitable materials",
+      "Professional measurement and fitting",
+      "Clean stitching and finishing",
+      "Complete installation service"
+    ]
+  },
+  "boatShip": {
+    "eyebrow": "Boat & Ship",
+    "title": "Made for Your Vessel",
+    "description": "We design and fabricate custom seating solutions for boats and ships. Whether you need new seats, replacement covers or reupholstery of existing marine seating — each project is tailored to your vessel and preferences.",
+    "cta": "Discuss Your Project",
+    "features": [
+      "Custom dimensions for your vessel",
+      "Choice of colors and materials",
+      "Custom stitching and patterns",
+      "Comfortable marine seating",
+      "Professional finishing",
+      "Reupholstery where applicable",
+      "Complete installation"
+    ]
+  },
+  "canopy": {
+    "eyebrow": "Canopy Covers",
+    "title": "Custom Ship Top & Canopy Covers",
+    "description": "Protect your vessel with custom-designed canopy and ship top covers. Each cover is measured, fabricated and installed to fit your specific vessel — with your choice of colors and materials.",
+    "cta": "Request a Canopy Quote",
+    "features": [
+      "Custom measurements for your vessel",
+      "Custom fitting and fabrication",
+      "Marine-suitable materials",
+      "Weather protection",
+      "UV resistance where supported",
+      "Custom color selection",
+      "Professional finishing and installation"
+    ]
+  },
+  "materials": {
+    "eyebrow": "Materials & Finishes",
+    "title": "Built to Last on the Water",
+    "description": "The materials and finishes we use are selected specifically for marine environments — comfort, durability and a clean finish.",
+    "popularFinishes": "Popular Finishes",
+    "cta": "Discuss Your Finish",
+    "items": [
+      { "title": "Marine-Grade Vinyl", "desc": "Water-resistant vinyl chosen for durability and comfort in marine conditions." },
+      { "title": "UV-Resistant Fabrics", "desc": "Cover and upholstery options designed to withstand strong marine sun." },
+      { "title": "Premium Stitching", "desc": "Clean, consistent stitching with marine-suitable thread for lasting finish." },
+      { "title": "Color & Finish Selection", "desc": "Choose from a range of colors, patterns and finishes to match your style." }
+    ],
+    "colors": ["Navy", "Ocean", "Sand", "Charcoal", "White", "Black"]
+  },
+  "why": {
+    "eyebrow": "Why Us",
+    "title": "Why Shakeel Marine",
+    "description": "We focus on delivering custom marine solutions with precision and care.",
+    "features": [
+      { "title": "Custom Fit", "desc": "Designed around your vessel." },
+      { "title": "Marine Focused", "desc": "Specialized marine applications." },
+      { "title": "Professional Installation", "desc": "Careful fitting and finishing." },
+      { "title": "Custom Design", "desc": "Choose colors, patterns and finishes." },
+      { "title": "Attention to Detail", "desc": "Clean stitching and professional finishing." },
+      { "title": "Kuwait Service", "desc": "Serving marine customers in Kuwait." }
+    ]
+  },
+  "process": {
+    "eyebrow": "Our Process",
+    "title": "How It Works",
+    "description": "A straightforward process from initial inquiry to professional installation.",
+    "steps": [
+      { "title": "Share Your Project", "desc": "Tell us about your jet ski, boat, ship or cover requirements." },
+      { "title": "Discuss the Design", "desc": "Choose preferred style, colors, materials and finish." },
+      { "title": "Custom Fabrication", "desc": "The project is prepared according to the required specifications." },
+      { "title": "Professional Installation", "desc": "The finished work is fitted and checked." }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Our Work",
+    "title": "Gallery",
+    "description": "A look at our custom marine upholstery and cover projects.",
+    "viewProject": "View Project",
+    "viewFull": "View Full Gallery",
+    "view": "View",
+    "noImages": "No images in this category yet."
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What Our Customers Say",
+    "description": "Customer testimonials will appear here once genuine reviews are available. We never fabricate reviews or testimonials.",
+    "cta": "Have you worked with us? We'd love to hear about your experience."
+  },
+  "faqPreview": {
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions",
+    "description": "Quick answers to common questions about our marine services.",
+    "viewAll": "View All Questions"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions",
+    "description": "Quick answers to common questions about our marine services.",
+    "stillQuestions": "Still Have Questions?",
+    "stillQuestionsDesc": "Contact us directly and we will be happy to help."
+  },
+  "coverage": {
+    "eyebrow": "Coverage",
+    "title": "Serving Marine Owners Across Kuwait",
+    "description": "Wherever your vessel is, our custom upholstery and cover solutions are within reach.",
+    "points": [
+      { "title": "Kuwait-Wide Service", "desc": "We serve marine customers across Kuwait, from jet ski riders to boat and ship owners." },
+      { "title": "On-Vessel Work", "desc": "Measurement and installation carried out at your vessel — at home, marina or dock." },
+      { "title": "Complete Support", "desc": "From first consultation to fitting and finishing, we manage your project end to end." }
+    ]
+  },
+  "finalCta": {
+    "eyebrow": "Ready to Start?",
+    "title": "Have a Marine Project in Mind?",
+    "description": "Tell us about your jet ski, boat, ship or cover project. We will prepare a custom quote tailored to your requirements.",
+    "cta1": "Request a Quote",
+    "cta2": "Contact Us"
+  },
   "contact": {
+    "eyebrow": "Contact",
     "title": "Let's Talk About Your Marine Project",
     "description": "Get in touch to discuss your requirements. We are happy to help with any marine upholstery or cover project.",
     "formTitle": "Send Us a Message",
     "name": "Name",
+    "namePlaceholder": "Your name",
     "phone": "Phone",
+    "phonePlaceholder": "Your phone number",
     "email": "Email",
+    "emailPlaceholder": "Your email",
     "service": "Service",
+    "servicePlaceholder": "Select a service",
     "message": "Message",
+    "messagePlaceholder": "Tell us about your project...",
     "send": "Send Inquiry",
     "sent": "Message Sent",
     "sentDesc": "Thank you for reaching out. We will get back to you shortly.",
     "sendAnother": "Send Another Message",
-    "whatsapp": "Chat on WhatsApp"
+    "whatsapp": "Chat on WhatsApp",
+    "getInTouch": "Get in Touch",
+    "phoneLabel": "Phone",
+    "phone2Label": "Phone 2",
+    "phone3Label": "Phone 3",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "hoursLabel": "Hours"
   },
   "quote": {
+    "eyebrow": "Quote",
     "title": "Request Your Custom Marine Quote",
     "description": "Share your project details and we will prepare a tailored quote for your marine upholstery or cover requirements.",
     "projectDetails": "Project Details",
     "projectDesc": "Fill in as much detail as possible to help us prepare an accurate quote.",
-    "fullName": "Full Name",
-    "phone": "Phone",
+    "fullName": "Full Name *",
+    "fullNamePlaceholder": "Your full name",
+    "phone": "Phone *",
+    "phonePlaceholder": "Your phone number",
     "whatsapp": "WhatsApp",
-    "email": "Email",
-    "service": "Service Needed",
-    "vesselType": "Vessel Type",
+    "whatsappPlaceholder": "WhatsApp number (optional)",
+    "email": "Email *",
+    "emailPlaceholder": "Your email",
+    "service": "Service Needed *",
+    "servicePlaceholder": "Select a service",
+    "vesselType": "Vessel Type *",
+    "vesselPlaceholder": "Select vessel type",
     "vesselDetails": "Vessel Details",
-    "vesselPlaceholder": "Make, model, year (optional)",
-    "projectDescription": "Project Description",
-    "projectPlaceholder": "Describe your project \u2014 what you need, any preferences...",
+    "vesselDetailsPlaceholder": "Make, model, year (optional)",
+    "projectDescription": "Project Description *",
+    "projectPlaceholder": "Describe your project — what you need, any preferences...",
     "color": "Preferred Color",
     "colorPlaceholder": "e.g. Navy blue, black (optional)",
     "design": "Preferred Design",
     "designPlaceholder": "e.g. Diamond stitch, plain (optional)",
-    "contactMethod": "Preferred Contact Method",
+    "contactMethod": "Preferred Contact Method *",
+    "contactPlaceholder": "How should we contact you?",
     "submit": "Submit Quote Request",
     "received": "Quote Request Received",
     "receivedDesc": "Thank you for your interest. We will review your project details and get back to you shortly.",
     "submitAnother": "Submit Another Quote",
     "alsoWhatsApp": "Also WhatsApp Us"
+  },
+  "about": {
+    "eyebrow": "About Us",
+    "title": "Crafted for the Water",
+    "description": "Marine upholstery and custom cover solutions tailored to your vessel.",
+    "whoWeAre": "Who We Are",
+    "specialists": "Marine Upholstery & Cover Specialists",
+    "whoDesc1": "Shakeel Marine is a Kuwait-based business specializing in custom marine upholstery and cover solutions. We work across jet skis, boats and ships — delivering tailored seating, covers and canopy solutions designed to fit each vessel.",
+    "whoDesc2": "Our focus is on quality craftsmanship, custom fitting and professional installation. Every project is approached with attention to detail and a commitment to delivering results that meet your requirements.",
+    "whatWeDo": "What We Do",
+    "ourServices": "Our Services",
+    "servicesDesc": "Comprehensive marine upholstery and cover solutions.",
+    "approach": "Our Approach",
+    "howWeWork": "How We Work",
+    "approachDesc": "A clear process from start to finish.",
+    "quality": "Quality & Craftsmanship",
+    "attention": "Attention to Every Detail",
+    "qualityDesc": "Every project receives careful attention — from precise measurement and custom design to clean stitching, professional finishing and thorough installation. We focus on delivering results that meet your exact requirements.",
+    "ctaTitle": "Have a Marine Project in Mind?",
+    "ctaDesc": "Tell us about your requirements. We will prepare a custom solution.",
+    "cta": "Request a Quote",
+    "approachSteps": [
+      { "title": "Measure", "desc": "We take precise measurements of your vessel or seating." },
+      { "title": "Design", "desc": "We plan the design, colors and materials with you." },
+      { "title": "Fabricate", "desc": "Your project is custom-built to the agreed specifications." },
+      { "title": "Install", "desc": "Professional fitting and finishing on your vessel." }
+    ],
+    "serviceCards": [
+      { "title": "Jet Ski Seats", "desc": "Custom seat covers, design and installation for jet skis." },
+      { "title": "Boat Seats", "desc": "Custom boat seating, covers and reupholstery." },
+      { "title": "Ship Seats", "desc": "Ship seating fabrication, covers and restoration." },
+      { "title": "Marine Upholstery", "desc": "Full upholstery services across all marine vessels." },
+      { "title": "Canopy Covers", "desc": "Custom canopy and ship top cover solutions." },
+      { "title": "Custom Marine Covers", "desc": "Bespoke cover solutions for various marine applications." }
+    ]
+  },
+  "servicesPage": {
+    "eyebrow": "Services",
+    "title": "Our Marine Services",
+    "description": "Custom upholstery and cover solutions for jet skis, boats and ships.",
+    "learnMore": "Learn More",
+    "notSure": "Not Sure Which Service You Need?",
+    "notSureDesc": "Contact us with your project details and we will guide you to the right solution."
+  },
+  "serviceDetail": {
+    "overview": "Overview",
+    "inKuwait": "in Kuwait",
+    "features": "Features",
+    "whatsIncluded": "What's Included",
+    "benefits": "Benefits",
+    "whyChoose": "Why Choose This Service",
+    "process": "Process",
+    "howItWorks": "How It Works",
+    "faq": "FAQ",
+    "commonQuestions": "Common Questions",
+    "whatsappUs": "WhatsApp Us"
   },
   "footer": {
     "description": "Custom marine upholstery and covers for jet skis, boats and ships in Kuwait.",
@@ -85,6 +300,7 @@
   "common": {
     "loading": "Loading...",
     "viewAll": "View All",
-    "back": "Back"
+    "back": "Back",
+    "failedSubmit": "Failed to submit. Please try again."
   }
 }
