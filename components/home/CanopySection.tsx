@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 import { useLang } from '@/components/shared/LangProvider';
+import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 
 export function CanopySection() {
   const { t } = useLang();
@@ -59,10 +60,11 @@ export function CanopySection() {
                 ))}
               </ul>
 
-              <div className="mt-10">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
                 <Button href="/request-a-quote" variant="primary" size="lg">
                   {t.canopy.cta}
                 </Button>
+                <WhatsAppCTA context="canopy" />
               </div>
             </div>
           </ScrollReveal>

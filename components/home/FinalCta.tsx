@@ -3,6 +3,7 @@
 import { ScrollReveal } from '@/components/shared/ScrollReveal';
 import { Button } from '@/components/ui/Button';
 import { useLang } from '@/components/shared/LangProvider';
+import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 
 export function FinalCta() {
   const { t } = useLang();
@@ -33,6 +34,7 @@ export function FinalCta() {
             <Button href="/contact" variant="outline" size="lg">
               {t.finalCta.cta2}
             </Button>
+            <WhatsAppCTA context="general" />
           </div>
         </ScrollReveal>
       </div>

@@ -11,16 +11,16 @@ export const siteConfig = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '96599225170',
   email: process.env.NEXT_PUBLIC_EMAIL || 'info@shakeelmarine.com',
 
-  address: process.env.NEXT_PUBLIC_ADDRESS || 'Kuwait',
+  address: process.env.NEXT_PUBLIC_ADDRESS || 'Shop 3, Street 22, Shuwaikh Industrial 2, Capital Governorate, Kuwait',
   city: 'Kuwait',
   country: 'Kuwait',
   countryCode: 'KW',
   postalCode: process.env.NEXT_PUBLIC_POSTAL_CODE || '',
-  latitude: process.env.NEXT_PUBLIC_LATITUDE || '29.3759',
-  longitude: process.env.NEXT_PUBLIC_LONGITUDE || '47.9774',
+  latitude: process.env.NEXT_PUBLIC_LATITUDE || '29.3214496',
+  longitude: process.env.NEXT_PUBLIC_LONGITUDE || '47.941014',
 
-  mapUrl: process.env.NEXT_PUBLIC_MAP_URL || 'https://www.google.com/maps?q=Kuwait',
-  mapEmbed: process.env.NEXT_PUBLIC_MAP_EMBED || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d222867.2!2d47.9!3d29.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9c0e!2sKuwait!5e0!3m2!1sen!2s!4v1',
+  mapUrl: process.env.NEXT_PUBLIC_MAP_URL || 'https://www.google.com/maps/place/ Shakeel Marine',
+  mapEmbed: process.env.NEXT_PUBLIC_MAP_EMBED || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3478.6667484395475!2d47.941013999999996!3d29.3214496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9bac44785dd7%3A0xc2fda717dfcd9ac9!2z2LTZg9mK2YQg2YXZhtis2K8g2LfYsdin2K8!5e0!3m2!1sen!2s!4v1787435815131!5m2!1sen!2s',
 
   hours: process.env.NEXT_PUBLIC_HOURS || 'Saturday – Thursday: 8:00 AM – 6:00 PM',
   openingHours: ['Sat-Thu 08:00-18:00'],

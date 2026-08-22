@@ -8,6 +8,7 @@ import { siteConfig } from '@/lib/site-config';
 import { SHIMMER } from '@/lib/utils';
 import { Ruler, Scissors, Wrench, Paintbrush } from 'lucide-react';
 import { useLang } from '@/components/shared/LangProvider';
+import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 
 const approachIcons = [Ruler, Paintbrush, Scissors, Wrench];
 
@@ -166,10 +167,11 @@ export function AboutContent() {
             <p className="mt-4 text-muted text-lg">
               {t.about.ctaDesc}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button href="/request-a-quote" variant="primary" size="lg">
                 {t.about.cta}
               </Button>
+              <WhatsAppCTA context="general" />
             </div>
           </ScrollReveal>
         </div>

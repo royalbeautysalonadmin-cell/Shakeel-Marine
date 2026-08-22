@@ -9,6 +9,7 @@ import { services } from '@/data/services';
 import { SHIMMER } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { useLang } from '@/components/shared/LangProvider';
+import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 
 export function ServicesContent() {
   const { t } = useLang();
@@ -95,6 +96,7 @@ export function ServicesContent() {
               <Button href="/contact" variant="outline" size="lg">
                 {t.finalCta.cta2}
               </Button>
+              <WhatsAppCTA context="general" />
             </div>
           </ScrollReveal>
         </div>

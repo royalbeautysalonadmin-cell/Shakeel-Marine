@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { faqData } from '@/data/faq';
 import { ChevronRight } from 'lucide-react';
 import { useLang } from '@/components/shared/LangProvider';
+import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
 
 export function FaqContent() {
   const { t } = useLang();
@@ -75,6 +76,7 @@ export function FaqContent() {
               <Button href="/request-a-quote" variant="outline" size="lg">
                 {t.nav.quote}
               </Button>
+              <WhatsAppCTA context="general" />
             </div>
           </ScrollReveal>
         </div>
