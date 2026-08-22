@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/home/HeroSection';
 import { TrustSection } from '@/components/home/TrustSection';
 import { generatePageMetadata, getOrganizationSchema, getWebSiteSchema, getLocalBusinessSchema } from '@/lib/seo';
 
+const StatsSection = dynamic(() => import('@/components/home/StatsSection').then(m => ({ default: m.StatsSection })));
 const ServicesSection = dynamic(() => import('@/components/home/ServicesSection').then(m => ({ default: m.ServicesSection })));
 const JetSkiShowcase = dynamic(() => import('@/components/home/JetSkiShowcase').then(m => ({ default: m.JetSkiShowcase })));
 const BoatShipSection = dynamic(() => import('@/components/home/BoatShipSection').then(m => ({ default: m.BoatShipSection })));
@@ -35,6 +36,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localSchema) }} />
       <HeroSection />
       <TrustSection />
+      <StatsSection />
       <ServicesSection />
       <JetSkiShowcase />
       <BoatShipSection />

@@ -82,8 +82,8 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/40">&copy; {new Date().getFullYear()} Shakeel Marine. {t.footer.copyright}</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-white/30">&copy; {new Date().getFullYear()} Shakeel Marine. {t.footer.copyright}</p>
           <div className="flex items-center gap-6 text-xs text-white/40">
             <Link href="/privacy-policy" className="hover:text-white/60 transition-colors">{t.footer.privacy}</Link>
             <Link href="/terms" className="hover:text-white/60 transition-colors">{t.footer.terms}</Link>
@@ -91,23 +91,36 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-center gap-2">
-          <span className="text-xs text-white/30">Developed by</span>
+      <div className="border-t border-white/5 bg-navy/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <a
             href="https://www.orbitrixsolutions.com"
             target="_blank"
             rel="noopener noreferrer dofollow"
-            className="inline-flex items-center gap-1.5 group"
-            title="Orbitrix Solutions — Web Design & Development"
+            className="group flex items-center gap-3"
+            title="Website designed and developed by Orbitrix Solutions — Web Design & Development in Kuwait"
           >
-            <svg className="w-4 h-4 text-ocean/60 group-hover:text-ocean transition-colors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M8 12l3 3 5-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="text-xs font-semibold text-ocean/60 group-hover:text-ocean transition-colors">
-              Orbitrix Solutions
-            </span>
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-ocean/10 border border-ocean/20 group-hover:bg-ocean/20 group-hover:border-ocean/40 transition-all">
+              <svg className="w-5 h-5 text-ocean" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M8 12l3 3 5-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <div>
+              <span className="text-[10px] text-white/30 uppercase tracking-wider block">Website by</span>
+              <span className="text-sm font-bold text-ocean group-hover:text-ocean-light transition-colors">
+                Orbitrix Solutions
+              </span>
+              <span className="text-[10px] text-white/25 block">Web Design & Development</span>
+            </div>
+          </a>
+          <a
+            href="https://www.orbitrixsolutions.com"
+            target="_blank"
+            rel="noopener noreferrer dofollow"
+            className="px-4 py-2 rounded-lg border border-ocean/20 text-xs font-medium text-ocean/60 hover:text-ocean hover:bg-ocean/10 hover:border-ocean/40 transition-all"
+          >
+            Get Your Website →
           </a>
         </div>
       </div>
