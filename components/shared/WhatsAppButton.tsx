@@ -16,7 +16,7 @@ export function WhatsAppFloating({
       href={getWhatsAppUrl(whatsappMessages[context])}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-20 lg:bottom-8 right-4 lg:right-8 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white shadow-lg shadow-green-500/30 hover:bg-green-600 hover:scale-110 transition-all duration-300 group"
+      className="fixed bottom-6 lg:bottom-6 right-4 lg:right-6 z-40 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white shadow-lg shadow-green-500/30 hover:bg-green-600 hover:scale-110 transition-all duration-300 group"
       aria-label="Contact us on WhatsApp"
     >
       <WhatsAppIcon className="w-6 h-6" />

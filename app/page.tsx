@@ -5,6 +5,7 @@ import { TrustSection } from '@/components/home/TrustSection';
 import { generatePageMetadata, getOrganizationSchema, getWebSiteSchema, getLocalBusinessSchema } from '@/lib/seo';
 
 const StatsSection = dynamic(() => import('@/components/home/StatsSection').then(m => ({ default: m.StatsSection })));
+const TrustBadges = dynamic(() => import('@/components/home/TrustBadges').then(m => ({ default: m.TrustBadges })));
 const ServicesSection = dynamic(() => import('@/components/home/ServicesSection').then(m => ({ default: m.ServicesSection })));
 const JetSkiShowcase = dynamic(() => import('@/components/home/JetSkiShowcase').then(m => ({ default: m.JetSkiShowcase })));
 const BoatShipSection = dynamic(() => import('@/components/home/BoatShipSection').then(m => ({ default: m.BoatShipSection })));
@@ -12,6 +13,7 @@ const CanopySection = dynamic(() => import('@/components/home/CanopySection').th
 const MaterialsSection = dynamic(() => import('@/components/home/MaterialsSection').then(m => ({ default: m.MaterialsSection })));
 const WhySection = dynamic(() => import('@/components/home/WhySection').then(m => ({ default: m.WhySection })));
 const ProcessSection = dynamic(() => import('@/components/home/ProcessSection').then(m => ({ default: m.ProcessSection })));
+const BeforeAfterSection = dynamic(() => import('@/components/home/BeforeAfterSection').then(m => ({ default: m.BeforeAfterSection })));
 const GalleryPreview = dynamic(() => import('@/components/home/GalleryPreview').then(m => ({ default: m.GalleryPreview })));
 const TestimonialsSection = dynamic(() => import('@/components/home/TestimonialsSection').then(m => ({ default: m.TestimonialsSection })));
 const FaqPreview = dynamic(() => import('@/components/home/FaqPreview').then(m => ({ default: m.FaqPreview })));
@@ -37,6 +39,7 @@ export default function HomePage() {
       <HeroSection />
       <TrustSection />
       <StatsSection />
+      <TrustBadges />
       <ServicesSection />
       <JetSkiShowcase />
       <BoatShipSection />
@@ -44,6 +47,7 @@ export default function HomePage() {
       <MaterialsSection />
       <WhySection />
       <ProcessSection />
+      <BeforeAfterSection />
       <GalleryPreview />
       <TestimonialsSection />
       <FaqPreview />
