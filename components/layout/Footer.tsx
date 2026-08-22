@@ -92,18 +92,23 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center">
-          <p className="text-xs text-white/30">
-            Developed by{' '}
-            <a
-              href="https://www.orbitrixsolutions.com"
-              target="_blank"
-              rel="noopener noreferrer dofollow"
-              className="text-ocean/60 hover:text-ocean transition-colors"
-            >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-center gap-2">
+          <span className="text-xs text-white/30">Developed by</span>
+          <a
+            href="https://www.orbitrixsolutions.com"
+            target="_blank"
+            rel="noopener noreferrer dofollow"
+            className="inline-flex items-center gap-1.5 group"
+            title="Orbitrix Solutions — Web Design & Development"
+          >
+            <svg className="w-4 h-4 text-ocean/60 group-hover:text-ocean transition-colors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M8 12l3 3 5-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="text-xs font-semibold text-ocean/60 group-hover:text-ocean transition-colors">
               Orbitrix Solutions
-            </a>
-          </p>
+            </span>
+          </a>
         </div>
       </div>
     </footer>
