@@ -6,13 +6,11 @@ import { ServiceDetail } from '@/components/services/ServiceDetail';
 
 const service = getServiceBySlug('boat-ship-seats');
 
-export const metadata: Metadata = service
-  ? generatePageMetadata({
-      title: service.seo.title,
-      description: service.seo.description,
-      path: `/services/${service.slug}`,
-    })
-  : {};
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Boat & Ship Seats in Kuwait | Shakeel Marine',
+  description: 'Custom boat and ship seats in Kuwait. Professional marine upholstery, seat covers and reupholstery by Shakeel Marine.',
+  path: '/services/boat-ship-seats',
+});
 
 export default function BoatShipSeatsPage() {
   if (!service) return notFound();

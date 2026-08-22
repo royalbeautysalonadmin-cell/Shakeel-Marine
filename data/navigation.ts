@@ -15,6 +15,7 @@ export const mainNavigation: NavItem[] = [
       { label: 'Boat & Ship Seats', href: '/services/boat-ship-seats' },
       { label: 'Marine Upholstery', href: '/services/marine-upholstery' },
       { label: 'Canopy Covers', href: '/services/canopy-covers' },
+      { label: 'Commercial Marine', href: '/commercial-marine-services' },
     ],
   },
   { label: 'Gallery', href: '/gallery' },
@@ -36,4 +37,5 @@ export const footerServiceLinks = [
   { label: 'Boat & Ship Seats', href: '/services/boat-ship-seats' },
   { label: 'Marine Upholstery', href: '/services/marine-upholstery' },
   { label: 'Canopy Covers', href: '/services/canopy-covers' },
+  { label: 'Commercial Marine', href: '/commercial-marine-services' },
 ];

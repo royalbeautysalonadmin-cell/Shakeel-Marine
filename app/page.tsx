@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { HeroSection } from '@/components/home/HeroSection';
 import { TrustSection } from '@/components/home/TrustSection';
-import { generatePageMetadata, getOrganizationSchema, getWebSiteSchema } from '@/lib/seo';
+import { generatePageMetadata, getOrganizationSchema, getWebSiteSchema, getLocalBusinessSchema } from '@/lib/seo';
 
 const ServicesSection = dynamic(() => import('@/components/home/ServicesSection').then(m => ({ default: m.ServicesSection })));
 const JetSkiShowcase = dynamic(() => import('@/components/home/JetSkiShowcase').then(m => ({ default: m.JetSkiShowcase })));
@@ -19,25 +19,20 @@ const FinalCta = dynamic(() => import('@/components/home/FinalCta').then(m => ({
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Shakeel Marine | Marine Upholstery & Custom Covers in Kuwait',
-  description:
-    'Custom marine upholstery and covers for jet skis, boats and ships in Kuwait. Professional craftsmanship, custom design and installation by Shakeel Marine.',
+  description: 'Shakeel Marine provides custom jet ski seat covers, boat and ship seats, marine upholstery and canopy covers in Kuwait. Request a custom quote today.',
   path: '/',
 });
 
 export default function HomePage() {
   const orgSchema = getOrganizationSchema();
   const siteSchema = getWebSiteSchema();
+  const localSchema = getLocalBusinessSchema();
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localSchema) }} />
       <HeroSection />
       <TrustSection />
       <ServicesSection />

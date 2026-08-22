@@ -6,13 +6,11 @@ import { ServiceDetail } from '@/components/services/ServiceDetail';
 
 const service = getServiceBySlug('jet-ski-seat-covers');
 
-export const metadata: Metadata = service
-  ? generatePageMetadata({
-      title: service.seo.title,
-      description: service.seo.description,
-      path: `/services/${service.slug}`,
-    })
-  : {};
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Jet Ski Seat Covers in Kuwait | Shakeel Marine',
+  description: 'Custom jet ski seat covers in Kuwait. Marine-grade materials, custom colors and professional installation by Shakeel Marine. Request a quote today.',
+  path: '/services/jet-ski-seat-covers',
+});
 
 export default function JetSkiSeatCoversPage() {
   if (!service) return notFound();

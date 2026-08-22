@@ -3,9 +3,8 @@ import { generatePageMetadata, getBreadcrumbSchema } from '@/lib/seo';
 import { GalleryContent } from '@/components/gallery/GalleryContent';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Gallery | Shakeel Marine — Marine Upholstery Projects in Kuwait',
-  description:
-    'View our custom marine upholstery and cover projects — jet ski seats, boat seats, ship upholstery, canopy covers and installation work by Shakeel Marine.',
+  title: 'Marine Upholstery Gallery | Shakeel Marine Kuwait',
+  description: 'View our portfolio of custom marine upholstery projects in Kuwait. Jet ski seats, boat upholstery, ship seating and canopy covers.',
   path: '/gallery',
 });
 

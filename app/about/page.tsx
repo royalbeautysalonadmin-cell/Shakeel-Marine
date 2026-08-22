@@ -4,9 +4,8 @@ import { AboutContent } from '@/components/about/AboutContent';
 import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'About Shakeel Marine | Marine Upholstery in Kuwait',
-  description:
-    'Learn about Shakeel Marine — a Kuwait-focused marine upholstery and custom cover business. Jet ski seats, boat seats, ship upholstery and canopy covers.',
+  title: 'About Shakeel Marine | Marine Upholstery Specialists in Kuwait',
+  description: 'Learn about Shakeel Marine — Kuwait-based marine upholstery specialists. Custom jet ski seats, boat upholstery, ship seating and canopy covers.',
   path: '/about',
 });
 

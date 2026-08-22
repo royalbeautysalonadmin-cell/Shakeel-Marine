@@ -3,9 +3,8 @@ import { generatePageMetadata, getBreadcrumbSchema } from '@/lib/seo';
 import { QuoteContent } from '@/components/quote/QuoteContent';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Request a Quote | Shakeel Marine — Custom Marine Services Kuwait',
-  description:
-    'Request a custom quote for marine upholstery, jet ski seat covers, boat seats, ship seats or canopy covers from Shakeel Marine in Kuwait.',
+  title: 'Request a Quote | Marine Upholstery Kuwait | Shakeel Marine',
+  description: 'Request a custom quote for marine upholstery in Kuwait. Jet ski seats, boat seats, ship upholstery and canopy covers.',
   path: '/request-a-quote',
 });
 

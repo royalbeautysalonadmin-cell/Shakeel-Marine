@@ -4,9 +4,8 @@ import { FaqContent } from '@/components/faq/FaqContent';
 import { faqData } from '@/data/faq';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'FAQ | Shakeel Marine — Marine Services Kuwait',
-  description:
-    'Frequently asked questions about Shakeel Marine services — jet ski seats, boat and ship upholstery, marine covers and canopy solutions in Kuwait.',
+  title: 'FAQ | Marine Upholstery Questions | Shakeel Marine Kuwait',
+  description: 'Frequently asked questions about marine upholstery services in Kuwait. Answers about jet ski seats, boat upholstery, canopies and quotes.',
   path: '/faq',
 });
 

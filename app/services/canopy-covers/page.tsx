@@ -6,13 +6,11 @@ import { ServiceDetail } from '@/components/services/ServiceDetail';
 
 const service = getServiceBySlug('canopy-covers');
 
-export const metadata: Metadata = service
-  ? generatePageMetadata({
-      title: service.seo.title,
-      description: service.seo.description,
-      path: `/services/${service.slug}`,
-    })
-  : {};
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Marine Canopy & Boat Covers in Kuwait | Shakeel Marine',
+  description: 'Custom marine canopy and boat covers in Kuwait. Ship top covers, weather protection and professional installation by Shakeel Marine.',
+  path: '/services/canopy-covers',
+});
 
 export default function CanopyCoversPage() {
   if (!service) return notFound();
