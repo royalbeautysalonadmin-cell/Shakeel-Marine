@@ -23,103 +23,35 @@ export const galleryCategories: { value: GalleryCategory; label: string }[] = [
   { value: 'installation', label: 'Installation' },
 ];
 
-/**
- * Gallery images configuration.
- *
- * INSTRUCTIONS FOR ADDING REAL IMAGES:
- * 1. Place images in /public/images/gallery/
- * 2. Use descriptive filenames: jet-ski-seat-cover-red-01.webp
- * 3. Update the src path, alt text, category and dimensions below
- * 4. Recommended image size: 800–1200px wide, optimized WebP format
- */
 export const galleryImages: GalleryImage[] = [
-  // -- Jet Ski --
-  {
-    src: '/images/gallery/jet-ski-01.jpg',
-    alt: 'Custom jet ski seat cover — front view',
-    category: 'jet-ski',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: '/images/gallery/jet-ski-02.jpg',
-    alt: 'Custom jet ski seat cover — detail stitching',
-    category: 'jet-ski',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: '/images/gallery/jet-ski-03.jpg',
-    alt: 'Jet ski seat cover installation complete',
-    category: 'jet-ski',
-    width: 800,
-    height: 600,
-  },
-  // -- Boat & Ship --
-  {
-    src: '/images/gallery/boat-01.jpg',
-    alt: 'Custom boat seat upholstery',
-    category: 'boat-ship',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: '/images/gallery/boat-02.jpg',
-    alt: 'Ship seating — custom marine seats',
-    category: 'boat-ship',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: '/images/gallery/boat-03.jpg',
-    alt: 'Boat bench seating — custom design',
-    category: 'boat-ship',
-    width: 800,
-    height: 600,
-  },
-  // -- Upholstery --
-  {
-    src: '/images/gallery/upholstery-01.jpg',
-    alt: 'Marine upholstery — custom stitching detail',
-    category: 'upholstery',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: '/images/gallery/upholstery-02.jpg',
-    alt: 'Custom marine upholstery — color selection',
-    category: 'upholstery',
-    width: 800,
-    height: 600,
-  },
-  // -- Canopy --
-  {
-    src: '/images/gallery/canopy-01.jpg',
-    alt: 'Custom ship top canopy cover',
-    category: 'canopy',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: '/images/gallery/canopy-02.jpg',
-    alt: 'Marine canopy cover — installed on vessel',
-    category: 'canopy',
-    width: 800,
-    height: 600,
-  },
-  // -- Installation --
-  {
-    src: '/images/gallery/install-01.jpg',
-    alt: 'Professional seat cover installation',
-    category: 'installation',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: '/images/gallery/install-02.jpg',
-    alt: 'Canopy cover installation on boat',
-    category: 'installation',
-    width: 800,
-    height: 600,
-  },
+  { src: '/images/gallery/cover-01.jpg', alt: 'Custom marine ship cover — Shakeel Marine Kuwait', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-02.jpg', alt: 'Custom boat cover — professional marine upholstery', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-03.jpg', alt: 'Marine canopy cover installation', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-04.jpg', alt: 'Ship top cover — custom fitted', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-05.jpg', alt: 'Boat seat cover — marine grade materials', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-06.jpg', alt: 'Custom jet ski seat cover', category: 'jet-ski', width: 800, height: 600 },
+  { src: '/images/gallery/cover-07.jpg', alt: 'Marine upholstery — detail stitching', category: 'upholstery', width: 800, height: 600 },
+  { src: '/images/gallery/cover-08.jpg', alt: 'Canopy cover — weather protection', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-09.jpg', alt: 'Ship seating — custom marine covers', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-10.jpg', alt: 'Professional cover installation', category: 'installation', width: 800, height: 600 },
+  { src: '/images/gallery/cover-11.jpg', alt: 'Marine cover — premium finish', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-12.jpg', alt: 'Boat canopy cover — custom design', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-13.jpg', alt: 'Jet ski seat — custom colors', category: 'jet-ski', width: 800, height: 600 },
+  { src: '/images/gallery/cover-14.jpg', alt: 'Ship cover — marine grade vinyl', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-15.jpg', alt: 'Custom upholstery — premium stitching', category: 'upholstery', width: 800, height: 600 },
+  { src: '/images/gallery/cover-16.jpg', alt: 'Marine canopy — UV resistant', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-17.jpg', alt: 'Boat seat cover installation', category: 'installation', width: 800, height: 600 },
+  { src: '/images/gallery/cover-18.jpg', alt: 'Custom ship cover — tailored fit', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-19.jpg', alt: 'Marine upholstery — color selection', category: 'upholstery', width: 800, height: 600 },
+  { src: '/images/gallery/cover-20.jpg', alt: 'Canopy cover — professional finishing', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-21.jpg', alt: 'Jet ski cover — custom fitted', category: 'jet-ski', width: 800, height: 600 },
+  { src: '/images/gallery/cover-22.jpg', alt: 'Ship top canopy — weatherproof', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-23.jpg', alt: 'Boat upholstery — marine quality', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-24.jpg', alt: 'Cover installation on vessel', category: 'installation', width: 800, height: 600 },
+  { src: '/images/gallery/cover-25.jpg', alt: 'Custom marine cover — Shakeel Marine', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-26.jpg', alt: 'Ship seating cover — premium', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-27.jpg', alt: 'Marine canopy — professional install', category: 'canopy', width: 800, height: 600 },
+  { src: '/images/gallery/cover-28.jpg', alt: 'Boat cover — custom colors', category: 'boat-ship', width: 800, height: 600 },
+  { src: '/images/gallery/cover-29.jpg', alt: 'Jet ski seat cover — detail view', category: 'jet-ski', width: 800, height: 600 },
+  { src: '/images/gallery/cover-30.jpg', alt: 'Marine cover — full installation', category: 'installation', width: 800, height: 600 },
 ];
