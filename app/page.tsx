@@ -8,8 +8,10 @@ const StatsSection = dynamic(() => import('@/components/home/StatsSection').then
 const TrustBadges = dynamic(() => import('@/components/home/TrustBadges').then(m => ({ default: m.TrustBadges })));
 const ServicesSection = dynamic(() => import('@/components/home/ServicesSection').then(m => ({ default: m.ServicesSection })));
 const JetSkiShowcase = dynamic(() => import('@/components/home/JetSkiShowcase').then(m => ({ default: m.JetSkiShowcase })));
+const JetskiCustomSeat = dynamic(() => import('@/components/home/JetskiCustomSeat').then(m => ({ default: m.JetskiCustomSeat })));
 const BoatShipSection = dynamic(() => import('@/components/home/BoatShipSection').then(m => ({ default: m.BoatShipSection })));
 const CanopySection = dynamic(() => import('@/components/home/CanopySection').then(m => ({ default: m.CanopySection })));
+const FloorMatSection = dynamic(() => import('@/components/home/FloorMatSection').then(m => ({ default: m.FloorMatSection })));
 const MaterialsSection = dynamic(() => import('@/components/home/MaterialsSection').then(m => ({ default: m.MaterialsSection })));
 const WhySection = dynamic(() => import('@/components/home/WhySection').then(m => ({ default: m.WhySection })));
 const ProcessSection = dynamic(() => import('@/components/home/ProcessSection').then(m => ({ default: m.ProcessSection })));
@@ -42,8 +44,10 @@ export default function HomePage() {
       <TrustBadges />
       <ServicesSection />
       <JetSkiShowcase />
+      <JetskiCustomSeat />
       <BoatShipSection />
       <CanopySection />
+      <FloorMatSection />
       <MaterialsSection />
       <WhySection />
       <ProcessSection />

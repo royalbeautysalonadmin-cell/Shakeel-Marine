@@ -5,7 +5,8 @@ export type GalleryCategory =
   | 'upholstery'
   | 'canopy'
   | 'installation'
-  | 'floor-mat';
+  | 'floor-mat'
+  | 'custom-seat';
 
 export interface GalleryImage {
   src: string;
@@ -23,6 +24,7 @@ export const galleryCategories: { value: GalleryCategory; label: string }[] = [
   { value: 'canopy', label: 'Canopy' },
   { value: 'installation', label: 'Installation' },
   { value: 'floor-mat', label: 'Super Jet Floor Mat Kit' },
+  { value: 'custom-seat', label: 'Jet Ski Custom Seats' },
 ];
 
 export const galleryImages: GalleryImage[] = [
@@ -79,4 +81,13 @@ export const galleryImages: GalleryImage[] = [
   { src: '/images/super-jet-floor-mat/jetkeifloorcover21.jpg', alt: 'Super Jet Floor Mat Kit — full coverage', category: 'floor-mat', width: 800, height: 600 },
   { src: '/images/super-jet-floor-mat/jetkeifloorcover22.jpg', alt: 'Super Jet Floor Mat Kit — custom pattern', category: 'floor-mat', width: 800, height: 600 },
   { src: '/images/super-jet-floor-mat/jetkeifloorcover23.jpg', alt: 'Super Jet Floor Mat Kit — Shakeel Marine quality', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat1.jpg', alt: 'Jet Ski Custom Seat — Shakeel Marine Kuwait', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat2.jpg', alt: 'Jet Ski Custom Seat — marine upholstery', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat3.jpg', alt: 'Jet Ski Custom Seat — professional fitting', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat4.jpg', alt: 'Jet Ski Custom Seat — color selection', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat5.jpg', alt: 'Jet Ski Custom Seat — premium stitching', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat6.jpg', alt: 'Jet Ski Custom Seat — marine grade materials', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat7.jpg', alt: 'Jet Ski Custom Seat — custom design', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat8.jpg', alt: 'Jet Ski Custom Seat — detail view', category: 'custom-seat', width: 800, height: 600 },
+  { src: '/images/jetski-custom-seat/jetski custom seat9.jpg', alt: 'Jet Ski Custom Seat — Shakeel Marine quality', category: 'custom-seat', width: 800, height: 600 },
 ];

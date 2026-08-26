@@ -58,6 +58,7 @@ export const whatsappMessages = {
   boatShip: 'Hello Shakeel Marine, I am interested in custom boat/ship seating. I would like to request a quote.',
   upholstery: 'Hello Shakeel Marine, I am interested in custom marine upholstery. I would like to request a quote.',
   canopy: 'Hello Shakeel Marine, I am interested in a custom marine canopy/ship top cover. I would like to request a quote.',
+  floorMat: 'Hello Shakeel Marine, I am interested in a Super Jet Floor Mat Kit for my jet ski. I would like to request a quote.',
   quote: 'Hello Shakeel Marine, I would like to request a quote for a custom marine project.',
   commercial: 'Hello Shakeel Marine, I am interested in commercial marine upholstery services for our fleet. I would like to discuss our requirements.',
 } as const;

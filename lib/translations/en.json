@@ -50,6 +50,20 @@
       "Complete installation service"
     ]
   },
+  "jetskiCustomSeat": {
+    "eyebrow": "Custom Seats",
+    "title": "Jet Ski Custom Seats in Kuwait",
+    "description": "Shakeel Marine crafts custom jet ski seats with precision fit and premium marine materials. Each seat is designed to match your style with professional stitching, color selection and flawless installation.",
+    "cta": "Get a Custom Seat Quote",
+    "features": [
+      { "title": "Custom Fit", "desc": "Precisely measured and cut to fit your specific jet ski model." },
+      { "title": "Premium Materials", "desc": "Marine-grade vinyl and fabrics selected for durability and comfort." },
+      { "title": "Color Selection", "desc": "Choose from a wide range of colors to match your style." },
+      { "title": "Professional Stitching", "desc": "Clean, consistent stitching with marine-suitable thread." },
+      { "title": "UV & Water Resistant", "desc": "Materials designed to withstand marine sun and water exposure." },
+      { "title": "Expert Installation", "desc": "Professional fitting and finishing by our experienced team." }
+    ]
+  },
   "boatShip": {
     "eyebrow": "Boat & Ship",
     "title": "Custom Boat & Ship Seats in Kuwait",
@@ -78,6 +92,20 @@
       "UV resistance where supported",
       "Custom color selection",
       "Professional finishing and installation"
+    ]
+  },
+  "floorMat": {
+    "eyebrow": "Floor Mat Kit",
+    "title": "Super Jet Floor Mat Kit",
+    "description": "Shakeel Marine provides custom Super Jet Floor Mat Kits designed for jet skis in Kuwait. Each mat is precision-cut and fitted to your specific jet ski model — offering durability, grip and a clean finish that protects your jet ski floor.",
+    "cta": "Get a Floor Mat Quote",
+    "features": [
+      "Custom fit for your specific jet ski model",
+      "Durable marine-grade materials",
+      "Non-slip surface for safety",
+      "UV and water resistant",
+      "Precision cut and clean finish",
+      "Professional installation included"
     ]
   },
   "materials": {

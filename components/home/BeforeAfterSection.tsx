@@ -9,28 +9,28 @@ import { ArrowRight } from 'lucide-react';
 
 const projects = [
   {
-    before: '/images/gallery/cover-01.jpg',
-    after: '/images/gallery/cover-02.jpg',
+    before: '/images/before-after/damaged-canopy-01.jpg',
+    after: '/images/before-after/clean-cover-01.jpg',
+    titleEn: 'Canopy Cover Replacement',
+    titleAr: 'استبدال غطاء المظلة',
+    descEn: 'Damaged and torn canopy replaced with a custom-fitted marine cover',
+    descAr: 'مظلة تالفة وممزقة تم استبدالها بغطاء بحري مُخصص',
+  },
+  {
+    before: '/images/before-after/exposed-boat-01.jpg',
+    after: '/images/before-after/covered-boat-01.jpg',
+    titleEn: 'Boat Protection',
+    titleAr: 'حماية القارب',
+    descEn: 'Exposed boat now protected with a durable custom cover',
+    descAr: 'قارب مكشوف الآن محمي بغطاء مُخصص متين',
+  },
+  {
+    before: '/images/before-after/worn-seat-01.jpg',
+    after: '/images/before-after/old-jetski-01.jpg',
     titleEn: 'Jet Ski Seat Restoration',
     titleAr: 'إصلاح مقعد جيت سكي',
     descEn: 'Old worn seat transformed into a custom marine-grade seat',
     descAr: 'مقعد قديم تم تحويله إلى مقعد بحري مُخصص',
-  },
-  {
-    before: '/images/gallery/cover-03.jpg',
-    after: '/images/gallery/cover-04.jpg',
-    titleEn: 'Boat Canopy Replacement',
-    titleAr: 'استبدال مظلة القارب',
-    descEn: 'Damaged canopy replaced with a custom-fitted marine cover',
-    descAr: 'مظلة تالفة تم استبدالها بغطاء بحري مُخصص',
-  },
-  {
-    before: '/images/gallery/cover-05.jpg',
-    after: '/images/gallery/cover-06.jpg',
-    titleEn: 'Marine Upholstery Refresh',
-    titleAr: 'تجديد التأثيث البحري',
-    descEn: 'Complete interior refresh with premium marine materials',
-    descAr: 'تجديد داخلي كامل بمواد بحرية ممتازة',
   },
 ];
 
