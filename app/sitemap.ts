@@ -3,6 +3,8 @@ import { siteConfig } from '@/lib/site-config';
 import { products } from '@/data/products';
 import { blogPosts } from '@/data/blog';
 import { areas } from '@/data/areas';
+import { serviceAreas } from '@/data/service-areas';
+import { resources } from '@/data/resources';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -28,6 +30,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const serviceAreaPages = serviceAreas.map((sa) => ({
+    url: `${base}/services/${sa.serviceSlug}/${sa.areaSlug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  const resourcePages = resources.map((r) => ({
+    url: `${base}/resources/${r.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
   return [
     { url: base, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
@@ -37,6 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/services/marine-upholstery`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/services/canopy-covers`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/commercial-marine-services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    ...serviceAreaPages,
     { url: `${base}/products`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     ...productPages,
     { url: `${base}/gallery`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
@@ -47,6 +64,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogPages,
     { url: `${base}/areas`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     ...areaPages,
+    { url: `${base}/resources`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    ...resourcePages,
     { url: `${base}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/request-a-quote`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
