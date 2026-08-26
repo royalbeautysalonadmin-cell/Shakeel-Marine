@@ -3,8 +3,13 @@ export interface Product {
   name: string;
   tagline: string;
   description: string;
+  longDescription?: string;
   features: { title: string; desc: string }[];
+  specs?: { label: string; value: string }[];
+  gallery?: { src: string; alt: string }[];
   images: { src: string; alt: string }[];
+  relatedService?: string;
+  relatedServiceSlug?: string;
   whatsappMessage: string;
   seo: {
     title: string;
@@ -452,6 +457,60 @@ export const products: Product[] = [
     seo: {
       title: 'Marine Embroidery Designs in Kuwait | Shakeel Marine',
       description: 'Custom marine embroidery in Kuwait. Computer-controlled precision, UV-stable thread and custom logo designs by Shakeel Marine.',
+    },
+  },
+  {
+    slug: 'ship-covers',
+    name: 'Ship Covers',
+    tagline: 'Heavy-duty custom ship covers engineered for full vessel protection.',
+    description:
+      'Shakeel Marine designs and fabricates custom ship covers that protect your vessel from sun, salt, rain and debris during storage and docking. Each cover is precision-measured for your specific ship model and constructed from industrial-grade marine canvas with reinforced stress points.',
+    longDescription:
+      'Our ship covers are the ultimate protection solution for yacht owners, commercial vessel operators and ship managers in Kuwait. Built from the heaviest marine-grade canvas available, these covers shield your entire vessel from the harsh Gulf climate — intense UV radiation, sandstorms, salt spray and occasional rain.\n\nEvery ship cover begins with a detailed measurement session where our team captures the exact dimensions of your vessel. We account for radar arches, masts, antennas, railings and any custom fittings. The result is a cover that fits like a second skin, preventing wind damage, water pooling and debris accumulation.\n\nOur covers feature double-stitched seams at all stress points, marine-grade webbing straps, adjustable buckles and integrated ventilation panels. The breathable design allows air circulation while keeping water out, preventing mold and mildew growth during extended storage periods.\n\nWe offer covers in multiple fabric grades — from standard marine canvas for casual storage to heavy-duty expedition-grade material for vessels exposed to extreme conditions. Color options include classic navy, charcoal, tan and white to match your vessel\'s aesthetic.',
+    features: [
+      { title: 'Precision Measured', desc: 'Each cover is measured and cut to match your ship\'s exact dimensions including all fittings.' },
+      { title: 'Industrial-Grade Canvas', desc: 'Heavy-duty marine canvas rated for extreme UV, salt and weather exposure.' },
+      { title: 'Reinforced Stress Points', desc: 'Double-stitched seams and webbing reinforcement at all high-tension areas.' },
+      { title: 'Breathable Design', desc: 'Integrated ventilation panels prevent moisture build-up and mildew growth.' },
+      { title: 'Secure Fastening System', desc: 'Adjustable straps, buckles and drawstrings keep the cover tight in strong winds.' },
+      { title: 'Custom Cutouts', desc: 'Precise openings for antennas, radar, masts and other vessel fittings.' },
+      { title: 'UV & Sand Protection', desc: 'Blocks harmful rays and prevents sand abrasion on gelcoat and paint.' },
+      { title: 'Easy Handling', desc: 'Lightweight design relative to coverage area for manageable installation and removal.' },
+    ],
+    specs: [
+      { label: 'Material', value: 'Marine-grade canvas (16oz / 22oz options)' },
+      { label: 'UV Resistance', value: 'UPF 50+ rating' },
+      { label: 'Water Resistance', value: 'Sealed seams, waterproof coating' },
+      { label: 'Breathability', value: 'Integrated vent panels' },
+      { label: 'Seam Strength', value: 'Double-stitched, bonded nylon thread' },
+      { label: 'Fastening', value: 'Adjustable straps with marine-grade buckles' },
+      { label: 'Color Options', value: 'Navy, Charcoal, Tan, White, Custom' },
+      { label: 'Warranty', value: '3-year fabric warranty' },
+      { label: 'Installation', value: 'Professional measurement and fitting included' },
+      { label: 'Delivery Time', value: '5-10 business days after measurement' },
+    ],
+    gallery: [
+      { src: '/images/gallery/cover-01.jpg', alt: 'Ship Cover — full vessel protection' },
+      { src: '/images/gallery/cover-03.jpg', alt: 'Ship Cover — seam detail' },
+      { src: '/images/gallery/cover-04.jpg', alt: 'Ship Cover — fastening system' },
+      { src: '/images/gallery/cover-08.jpg', alt: 'Ship Cover — ventilation panel' },
+      { src: '/images/gallery/cover-10.jpg', alt: 'Ship Cover — custom cutout for antenna' },
+      { src: '/images/gallery/cover-11.jpg', alt: 'Ship Cover — on yacht' },
+      { src: '/images/gallery/cover-16.jpg', alt: 'Ship Cover — color options' },
+      { src: '/images/gallery/cover-20.jpg', alt: 'Ship Cover — docked vessel' },
+    ],
+    images: [
+      { src: '/images/gallery/cover-01.jpg', alt: 'Ship Cover — full view' },
+      { src: '/images/gallery/cover-03.jpg', alt: 'Ship Cover — detail' },
+      { src: '/images/gallery/cover-04.jpg', alt: 'Ship Cover — installed' },
+      { src: '/images/gallery/cover-08.jpg', alt: 'Ship Cover — fastening' },
+    ],
+    relatedService: 'Canopy Covers',
+    relatedServiceSlug: 'canopy-covers',
+    whatsappMessage: 'Hello Shakeel Marine, I am interested in a custom Ship Cover for my vessel. I would like to request a quote.',
+    seo: {
+      title: 'Custom Ship Covers in Kuwait | Shakeel Marine',
+      description: 'Custom ship covers in Kuwait. Heavy-duty marine canvas, precision-measured, reinforced seams and breathable design by Shakeel Marine.',
     },
   },
 ];
