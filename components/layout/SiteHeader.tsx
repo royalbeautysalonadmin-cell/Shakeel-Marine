@@ -14,7 +14,7 @@ export function SiteHeader() {
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   useEffect(() => {
@@ -97,12 +97,13 @@ export function SiteHeader() {
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
             {mainNavigation.map((item) => {
               const navKey = item.href === '/' ? 'home' : item.href === '/services' ? 'services' : item.href === '/gallery' ? 'gallery' : item.href === '/about' ? 'about' : item.href === '/contact' ? 'contact' : null;
+              const isOpen = activeDropdown === item.href;
               return (
               <div
                 key={item.href}
                 className="relative"
-                onMouseEnter={() => item.children && setServicesOpen(true)}
-                onMouseLeave={() => item.children && setServicesOpen(false)}
+                onMouseEnter={() => item.children && setActiveDropdown(item.href)}
+                onMouseLeave={() => item.children && setActiveDropdown(null)}
               >
                 <Link
                   href={item.href}
@@ -113,7 +114,7 @@ export function SiteHeader() {
                     <ChevronDown
                       className={cn(
                         'w-3.5 h-3.5 transition-transform duration-200',
-                        servicesOpen && 'rotate-180'
+                        isOpen && 'rotate-180'
                       )}
                     />
                   )}
@@ -121,7 +122,7 @@ export function SiteHeader() {
 
                 {item.children && (
                   <AnimatePresence>
-                    {servicesOpen && (
+                    {isOpen && (
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -134,7 +135,7 @@ export function SiteHeader() {
                             <Link
                               key={child.href}
                               href={child.href}
-                              className="block px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                              className="block px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap"
                             >
                               {child.label}
                             </Link>
