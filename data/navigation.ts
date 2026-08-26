@@ -14,10 +14,7 @@ export const mainNavigation: NavItem[] = [
       { label: 'Case Studies', href: '/case-studies' },
       { label: 'FAQ', href: '/faq' },
       { label: 'Jet Ski Seat Covers', href: '/services/jet-ski-seat-covers' },
-      { label: 'Boat & Ship Seats', href: '/services/boat-ship-seats' },
-      { label: 'Marine Upholstery', href: '/services/marine-upholstery' },
       { label: 'Canopy Covers', href: '/services/canopy-covers' },
-      { label: 'Commercial Marine', href: '/commercial-marine-services' },
     ],
   },
   {
@@ -60,10 +57,7 @@ export const footerQuickLinks = [
 
 export const footerServiceLinks = [
   { label: 'Jet Ski Seat Covers', href: '/services/jet-ski-seat-covers' },
-  { label: 'Boat & Ship Seats', href: '/services/boat-ship-seats' },
-  { label: 'Marine Upholstery', href: '/services/marine-upholstery' },
   { label: 'Canopy Covers', href: '/services/canopy-covers' },
-  { label: 'Commercial Marine', href: '/commercial-marine-services' },
 ];
 
 export const footerAreaLinks = [

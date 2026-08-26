@@ -122,223 +122,21 @@ export const services: ServiceData[] = [
       whatsappMessage:
         'Hello Shakeel Marine, I am interested in a custom jet ski seat cover. I would like to request a quote.',
     },
-    image: '/images/services/jet-ski-seat-cover.jpg',
+    image: '/images/jetski-custom-seat/jetski custom seat1.jpg',
     imageAlt: 'Custom jet ski seat cover by Shakeel Marine in Kuwait',
   },
   {
-    slug: 'boat-ship-seats',
-    title: 'Boat & Ship Seats',
-    shortTitle: 'Boat & Ship',
-    tagline: 'Custom marine seating, upholstery and seat covers for boats and ships.',
-    heroHeading: 'Custom Boat & Ship Seats',
-    heroDescription:
-      'Custom-made seating, seat covers and reupholstery for boats and ships. Designed to your specifications with professional installation.',
-    description:
-      'We design and fabricate custom seating solutions for boats and ships. Whether you need new seats, replacement seat covers or reupholstery of existing marine seating, each project is tailored to your vessel and preferences.',
-    features: [
-      'Custom boat seats and bench seating',
-      'Ship seat fabrication',
-      'Boat and ship seat covers',
-      'Reupholstery of existing marine seats',
-      'Custom color and material selection',
-      'Professional fitting and installation',
-    ],
-    benefits: [
-      {
-        title: 'Custom Dimensions',
-        description:
-          'Seating designed to fit the specific dimensions of your vessel.',
-      },
-      {
-        title: 'Material Selection',
-        description:
-          'Choose from a range of colors and materials suited for marine use.',
-      },
-      {
-        title: 'Reupholstery',
-        description:
-          'Restore existing seats with fresh upholstery and finishing where applicable.',
-      },
-      {
-        title: 'Complete Service',
-        description:
-          'From measurement to installation, we handle the entire project.',
-      },
-    ],
-    process: [
-      {
-        step: 'Consultation',
-        description:
-          'Discuss your seating requirements and vessel details.',
-      },
-      {
-        step: 'Design & Materials',
-        description:
-          'Select preferred colors, materials and design style.',
-      },
-      {
-        step: 'Fabrication',
-        description:
-          'Seats are custom-built or reupholstered to your specifications.',
-      },
-      {
-        step: 'Installation',
-        description:
-          'Professional fitting and finishing on your vessel.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'Do you make seats for both boats and ships?',
-        answer:
-          'Yes, we create custom seating for boats and ships of various sizes.',
-      },
-      {
-        question: 'Can you reupholster existing boat seats?',
-        answer:
-          'Yes, we offer reupholstery services to restore and refresh existing marine seating where applicable.',
-      },
-      {
-        question: 'Can I choose the material and color?',
-        answer:
-          'Absolutely. You can select from available colors and materials to match your vessel and style.',
-      },
-      {
-        question: 'Do you handle installation?',
-        answer:
-          'Yes, we provide professional installation as part of the service.',
-      },
-    ],
-    seo: {
-      title: 'Custom Boat & Ship Seats in Kuwait | Shakeel Marine',
-      description:
-        'Custom boat and ship seats, seat covers and reupholstery in Kuwait. Professional marine seating solutions by Shakeel Marine.',
-    },
-    cta: {
-      heading: 'Need Custom Marine Seating?',
-      description:
-        'Tell us about your vessel and seating requirements. We will prepare a tailored quote.',
-      buttonText: 'Discuss Your Project',
-      whatsappMessage:
-        'Hello Shakeel Marine, I am interested in custom boat/ship seating. I would like to request a quote.',
-    },
-    image: '/images/services/boat-ship-seats.jpg',
-    imageAlt: 'Custom boat and ship seats by Shakeel Marine in Kuwait',
-  },
-  {
-    slug: 'marine-upholstery',
-    title: 'Custom Marine Upholstery',
-    shortTitle: 'Upholstery',
-    tagline: 'Custom upholstery designed around your preferred style, color and finish.',
-    heroHeading: 'Custom Marine Upholstery in Kuwait',
-    heroDescription:
-      'Full custom marine upholstery services — from jet ski seats and boat interiors to ship seating. Designed around your vision, crafted to fit your vessel.',
-    description:
-      'Shakeel Marine provides comprehensive custom marine upholstery services. We work across jet skis, boats and ships — creating custom seating, restoring existing upholstery and designing interiors that match your preferred style and color.',
-    features: [
-      'Custom marine seating upholstery',
-      'Boat interior upholstery',
-      'Jet ski seat upholstery',
-      'Ship seating upholstery',
-      'Restoration and reupholstery',
-      'Custom color and design selection',
-      'Professional finishing',
-    ],
-    benefits: [
-      {
-        title: 'Full Customization',
-        description:
-          'Every project is designed around your style, color and finishing preferences.',
-      },
-      {
-        title: 'Versatile Applications',
-        description:
-          'From jet ski seats to boat interiors and ship seating.',
-      },
-      {
-        title: 'Restoration',
-        description:
-          'Breathe new life into worn or damaged marine upholstery.',
-      },
-      {
-        title: 'Attention to Detail',
-        description:
-          'Clean stitching, precise fitting and professional finishing on every project.',
-      },
-    ],
-    process: [
-      {
-        step: 'Project Discussion',
-        description:
-          'Share your upholstery needs, style preferences and vessel details.',
-      },
-      {
-        step: 'Design Planning',
-        description:
-          'We plan the design, materials and color scheme with you.',
-      },
-      {
-        step: 'Custom Fabrication',
-        description:
-          'Your upholstery is crafted to the agreed specifications.',
-      },
-      {
-        step: 'Fitting & Finishing',
-        description:
-          'Professional installation and quality finishing.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'What types of marine upholstery do you offer?',
-        answer:
-          'We provide custom upholstery for jet ski seats, boat seats, boat interiors, ship seats and general marine seating applications.',
-      },
-      {
-        question: 'Can you reupholster old marine seats?',
-        answer:
-          'Yes, we offer restoration and reupholstery for existing marine seating where the project is feasible.',
-      },
-      {
-        question: 'Do I need to bring my vessel?',
-        answer:
-          'Contact us to discuss the best approach for your specific project — it depends on the scope of work.',
-      },
-      {
-        question: 'Can I choose the exact colors and design?',
-        answer:
-          'Yes. Full customization of colors, patterns, stitching and design is available.',
-      },
-    ],
-    seo: {
-      title: 'Marine Upholstery in Kuwait | Shakeel Marine',
-      description:
-        'Custom marine upholstery in Kuwait for jet skis, boats and ships. Professional design, fabrication and installation by Shakeel Marine.',
-    },
-    cta: {
-      heading: 'Start Your Upholstery Project',
-      description:
-        'Share your vision and vessel details. We will work with you to create a custom marine upholstery solution.',
-      buttonText: 'Request a Quote',
-      whatsappMessage:
-        'Hello Shakeel Marine, I am interested in custom marine upholstery. I would like to request a quote.',
-    },
-    image: '/images/services/marine-upholstery.jpg',
-    imageAlt: 'Custom marine upholstery by Shakeel Marine in Kuwait',
-  },
-  {
     slug: 'canopy-covers',
-    title: 'Ship Top & Canopy Covers',
+    title: 'Canopy Covers',
     shortTitle: 'Canopy Covers',
-    tagline: 'Custom canopy and ship-top cover solutions designed around your vessel.',
-    heroHeading: 'Custom Marine Canopy & Ship Top Covers',
+    tagline: 'Custom canopy cover solutions designed to protect your vessel from the elements.',
+    heroHeading: 'Custom Marine Canopy Covers in Kuwait',
     heroDescription:
-      'Custom-designed canopy and ship top covers, measured and fabricated to fit your vessel. Professional installation included.',
+      'Custom-designed canopy covers, measured and fabricated to fit your vessel. Professional installation included.',
     description:
-      'Our custom canopy and ship top covers are designed to protect your vessel from the elements. Each cover is measured and fabricated to fit your specific vessel, with your choice of colors and materials. Professional installation ensures a clean, secure fit.',
+      'Our custom canopy covers are designed to protect your vessel from the elements. Each cover is measured and fabricated to fit your specific vessel, with your choice of colors and materials. Professional installation ensures a clean, secure fit.',
     features: [
-      'Custom ship top covers',
-      'Boat canopy covers',
+      'Custom boat canopy covers',
       'Marine canopy fabrication',
       'Custom sizing and fitting',
       'Weather and UV protection',
@@ -381,7 +179,7 @@ export const services: ServiceData[] = [
       {
         step: 'Custom Fabrication',
         description:
-          'Your canopy or ship top cover is fabricated to fit.',
+          'Your canopy cover is fabricated to fit.',
       },
       {
         step: 'Installation',
@@ -412,19 +210,19 @@ export const services: ServiceData[] = [
       },
     ],
     seo: {
-      title: 'Marine Canopy & Ship Top Covers in Kuwait | Shakeel Marine',
+      title: 'Marine Canopy Covers in Kuwait | Shakeel Marine',
       description:
-        'Custom marine canopy and ship top covers in Kuwait. Measured, fabricated and professionally installed by Shakeel Marine.',
+        'Custom marine canopy covers in Kuwait. Measured, fabricated and professionally installed by Shakeel Marine.',
     },
     cta: {
-      heading: 'Need a Custom Canopy or Ship Top Cover?',
+      heading: 'Need a Custom Canopy Cover?',
       description:
         'Share your vessel details and cover requirements. We will design a solution that fits.',
       buttonText: 'Request a Canopy Quote',
       whatsappMessage:
-        'Hello Shakeel Marine, I am interested in a custom marine canopy/ship top cover. I would like to request a quote.',
+        'Hello Shakeel Marine, I am interested in a custom marine canopy cover. I would like to request a quote.',
     },
-    image: '/images/services/canopy-covers.jpg',
+    image: '/images/before-after/canopy-cover-after.png',
     imageAlt: 'Custom marine canopy cover by Shakeel Marine in Kuwait',
   },
 ];
