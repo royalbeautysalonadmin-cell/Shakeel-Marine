@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'Shakeel Marine',
   legalName: 'Shakeel Marine',
   tagline: 'Marine Upholstery & Custom Covers',
-  description: 'Shakeel Marine provides custom jet ski seat covers, boat and ship seats, marine upholstery and canopy covers in Kuwait. Professional craftsmanship, custom design and installation.',
+  description: 'Shakeel Marine is Kuwait\'s #1 marine upholstery specialist. Custom jet ski seat covers, boat covers, canopy covers, ship covers, marine accessories and floor mat kits. 30+ years experience. Professional installation. Free consultation. Serving Kuwait City, Hawalli, Salmiya, Farwaniya, Jahra and all areas across Kuwait.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://shakeelmarine.com',
 
   phone: process.env.NEXT_PUBLIC_PHONE || '+965 9922 5170',

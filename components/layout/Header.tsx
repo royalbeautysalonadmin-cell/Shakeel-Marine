@@ -26,23 +26,32 @@ export function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  // Close dropdown on escape or click outside
+  // Close dropdown on click outside
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpenDropdown(null);
-    };
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest('[data-dropdown]')) {
+      if (!target.closest('[data-nav-item]')) {
         setOpenDropdown(null);
       }
     };
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('click', handleClickOutside);
+    if (openDropdown) {
+      document.addEventListener('click', handleClick);
+      return () => document.removeEventListener('click', handleClick);
+    }
+  }, [openDropdown]);
+
+  // Close dropdown on escape
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenDropdown(null);
     };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, []);
+
+  const handleNavClick = useCallback(() => {
+    setOpenDropdown(null);
+    setMobileOpen(false);
   }, []);
 
   return (
@@ -54,7 +63,7 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="relative z-10 flex items-center gap-2 group" onClick={() => { setMobileOpen(false); setOpenDropdown(null); }}>
+        <Link href="/" className="relative z-10 flex items-center gap-2" onClick={handleNavClick}>
           <div className="flex flex-col">
             <span className="text-white font-heading font-bold text-lg sm:text-xl tracking-wide">SHAKEEL</span>
             <span className="text-ocean text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase -mt-1">MARINE</span>
@@ -70,34 +79,42 @@ export function Header() {
             return (
               <div
                 key={item.href}
-                data-dropdown
+                data-nav-item
                 className="relative"
-                onMouseEnter={() => hasDropdown && setOpenDropdown(item.label)}
-                onMouseLeave={() => hasDropdown && setOpenDropdown(null)}
               >
-                <Link
-                  href={item.href}
-                  className={cn(
-                    'flex items-center gap-1 px-4 py-2 text-sm transition-colors font-medium',
-                    isOpen ? 'text-white' : 'text-white/80 hover:text-white'
-                  )}
-                  onClick={() => setOpenDropdown(null)}
-                >
-                  {item.label}
-                  {hasDropdown && (
+                {hasDropdown ? (
+                  <button
+                    onClick={() => setOpenDropdown(isOpen ? null : item.label)}
+                    className={cn(
+                      'flex items-center gap-1 px-4 py-2 text-sm transition-colors font-medium',
+                      isOpen ? 'text-white' : 'text-white/80 hover:text-white'
+                    )}
+                  >
+                    {item.label}
                     <ChevronDown className={cn('w-3.5 h-3.5 transition-transform duration-200', isOpen && 'rotate-180')} />
-                  )}
-                </Link>
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={handleNavClick}
+                    className="flex items-center gap-1 px-4 py-2 text-sm text-white/80 hover:text-white transition-colors font-medium"
+                  >
+                    {item.label}
+                  </Link>
+                )}
 
                 {hasDropdown && isOpen && item.children && (
-                  <div className="absolute top-full left-0 pt-2 z-50">
-                    <div className="bg-navy-deep/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/40 py-2 min-w-[240px]">
+                  <div
+                    className="absolute top-full left-0 pt-1 z-50"
+                    onMouseEnter={() => setOpenDropdown(item.label)}
+                  >
+                    <div className="bg-navy-deep/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/40 py-2 min-w-[220px]">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          onClick={() => setOpenDropdown(null)}
-                          className="block px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                          onClick={handleNavClick}
+                          className="block px-5 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all"
                         >
                           {child.label}
                         </Link>
@@ -110,12 +127,11 @@ export function Header() {
           })}
         </nav>
 
-        {/* Desktop Right Side — Language + CTA */}
+        {/* Desktop Right Side */}
         <div className="hidden lg:flex items-center gap-3">
           <button
             onClick={toggle}
             className="flex items-center gap-1.5 px-3 py-2 text-sm text-white/70 hover:text-white transition-colors font-medium rounded-lg hover:bg-white/5"
-            aria-label="Toggle language"
           >
             <Globe className="w-4 h-4" />
             {isArabic ? 'English' : 'عربي'}
@@ -130,7 +146,6 @@ export function Header() {
           className="lg:hidden relative z-10 p-2 text-white"
           onClick={() => { setMobileOpen(!mobileOpen); setOpenDropdown(null); }}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -138,7 +153,7 @@ export function Header() {
         {/* Mobile Menu */}
         {mobileOpen && (
           <div className="fixed inset-0 bg-navy-deep z-40 lg:hidden overflow-y-auto">
-            <nav className="flex flex-col pt-24 px-8 pb-8 gap-1" aria-label="Mobile navigation">
+            <nav className="flex flex-col pt-24 px-8 pb-8" aria-label="Mobile navigation">
               {mainNavigation.map((item) => (
                 <div key={item.href}>
                   {item.children ? (
@@ -156,7 +171,7 @@ export function Header() {
                             <Link
                               key={child.href}
                               href={child.href}
-                              onClick={() => setMobileOpen(false)}
+                              onClick={handleNavClick}
                               className="block py-3 text-base text-white/60 hover:text-white transition-colors"
                             >
                               {child.label}
@@ -168,7 +183,7 @@ export function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      onClick={() => setMobileOpen(false)}
+                      onClick={handleNavClick}
                       className="block py-4 text-lg text-white/90 font-medium border-b border-white/5 hover:text-white transition-colors"
                     >
                       {item.label}

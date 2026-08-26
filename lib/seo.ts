@@ -6,6 +6,7 @@ interface PageSEOProps {
   description: string;
   path: string;
   ogImage?: string;
+  keywords?: string[];
 }
 
 export function generatePageMetadata({
@@ -13,11 +14,30 @@ export function generatePageMetadata({
   description,
   path,
   ogImage = siteConfig.ogImage,
+  keywords = [],
 }: PageSEOProps): Metadata {
   const url = `${siteConfig.url}${path}`;
+  const defaultKeywords = [
+    'marine upholstery kuwait',
+    'jet ski seat covers kuwait',
+    'boat covers kuwait',
+    'canopy covers kuwait',
+    'marine seats kuwait',
+    'jet ski custom seats',
+    'ship covers kuwait',
+    'marine upholstery services',
+    'custom boat seats',
+    'jet ski floor mat kit',
+    'marine upholstery near me',
+    'best marine upholstery kuwait',
+    'custom jet ski covers',
+    'boat canopy installation',
+    'marine fabric kuwait',
+  ];
   return {
     title,
     description,
+    keywords: [...defaultKeywords, ...keywords],
     alternates: { canonical: url },
     openGraph: {
       title,
@@ -80,17 +100,19 @@ export function getLocalBusinessSchema() {
     geo: { '@type': 'GeoCoordinates', latitude: parseFloat(siteConfig.latitude), longitude: parseFloat(siteConfig.longitude) },
     areaServed: { '@type': 'Country', name: 'Kuwait' },
     openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '08:00', closes: '18:00' },
+    priceRange: '$$',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Marine Upholstery Services',
+      name: 'Marine Upholstery Services in Kuwait',
       itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Jet Ski Seat Covers in Kuwait' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Boat & Ship Seats in Kuwait' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Marine Upholstery in Kuwait' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Marine Canopy Covers in Kuwait' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Commercial Marine Upholstery in Kuwait' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Jet Ski Seat Covers in Kuwait', description: 'Custom jet seat covers, design and installation' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Canopy Covers in Kuwait', description: 'Custom marine canopy and boat covers' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Ship Covers in Kuwait', description: 'Heavy-duty custom ship covers' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Jet Ski Custom Seats in Kuwait', description: 'Custom-designed jet ski seats' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Super Jet Floor Mat Kit in Kuwait', description: 'Precision-cut marine floor mats' } },
       ],
     },
+    sameAs: Object.values(siteConfig.social).filter(Boolean),
   };
 }
 

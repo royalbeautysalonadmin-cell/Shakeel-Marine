@@ -23,9 +23,31 @@ const CoverageSection = dynamic(() => import('@/components/home/CoverageSection'
 const FinalCta = dynamic(() => import('@/components/home/FinalCta').then(m => ({ default: m.FinalCta })));
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Shakeel Marine | Marine Upholstery & Custom Covers in Kuwait',
-  description: 'Shakeel Marine provides custom jet ski seat covers, boat and ship seats, marine upholstery and canopy covers in Kuwait. Request a custom quote today.',
+  title: 'Shakeel Marine | #1 Marine Upholstery, Jet Ski Seats & Canopy Covers in Kuwait',
+  description: 'Shakeel Marine is Kuwait\'s leading marine upholstery specialist. Custom jet ski seat covers, boat covers, canopy covers, ship covers and marine accessories. 30+ years experience. Free consultation. Get a quote today!',
   path: '/',
+  keywords: [
+    'marine upholstery kuwait',
+    'jet ski seat covers kuwait city',
+    'best marine upholstery company kuwait',
+    'custom boat covers kuwait',
+    'canopy covers kuwait',
+    'jet ski custom seats kuwait',
+    'ship covers kuwait',
+    'marine upholstery services near me',
+    'jet ski floor mat kit kuwait',
+    'boat seat covers kuwait',
+    'custom marine covers kuwait',
+    'jet ski upholstery kuwait',
+    'boat canopy installation kuwait',
+    'marine fabric kuwait',
+    'custom jet ski accessories kuwait',
+    'boat interior upholstery kuwait',
+    'marine seat covers kuwait',
+    'jet ski seat repair kuwait',
+    'boat cover installation kuwait',
+    'marine upholstery specialist kuwait',
+  ],
 });
 
 export default function HomePage() {
