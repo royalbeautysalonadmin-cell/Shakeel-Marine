@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { mainNavigation } from '@/data/navigation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useLang } from '@/components/shared/LangProvider';
 
 export function Header() {
@@ -15,7 +14,6 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -24,22 +22,28 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  const handleMouseEnter = (label: string) => {
-    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
-    setOpenDropdown(label);
-  };
-
-  const handleMouseLeave = () => {
-    hoverTimeout.current = setTimeout(() => setOpenDropdown(null), 150);
-  };
+  // Close dropdown on escape or click outside
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpenDropdown(null);
+    };
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest('[data-dropdown]')) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header
@@ -50,7 +54,7 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="relative z-10 flex items-center gap-2 group" onClick={() => setMobileOpen(false)}>
+        <Link href="/" className="relative z-10 flex items-center gap-2 group" onClick={() => { setMobileOpen(false); setOpenDropdown(null); }}>
           <div className="flex flex-col">
             <span className="text-white font-heading font-bold text-lg sm:text-xl tracking-wide">SHAKEEL</span>
             <span className="text-ocean text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase -mt-1">MARINE</span>
@@ -59,52 +63,51 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
-          {mainNavigation.map((item) => (
-            <div
-              key={item.href}
-              className="relative"
-              onMouseEnter={() => item.children && handleMouseEnter(item.label)}
-              onMouseLeave={() => item.children && handleMouseLeave()}
-            >
-              <Link
-                href={item.href}
-                className="flex items-center gap-1 px-4 py-2 text-sm text-white/80 hover:text-white transition-colors font-medium"
-              >
-                {item.label}
-                {item.children && (
-                  <ChevronDown className={cn('w-3.5 h-3.5 transition-transform duration-200', openDropdown === item.label && 'rotate-180')} />
-                )}
-              </Link>
+          {mainNavigation.map((item) => {
+            const hasDropdown = !!item.children;
+            const isOpen = openDropdown === item.label;
 
-              {item.children && (
-                <AnimatePresence>
-                  {openDropdown === item.label && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 pt-2"
-                      onMouseEnter={() => handleMouseEnter(item.label)}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      <div className="bg-navy-deep/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/40 py-2 min-w-[240px]">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="block px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
+            return (
+              <div
+                key={item.href}
+                data-dropdown
+                className="relative"
+                onMouseEnter={() => hasDropdown && setOpenDropdown(item.label)}
+                onMouseLeave={() => hasDropdown && setOpenDropdown(null)}
+              >
+                <Link
+                  href={item.href}
+                  className={cn(
+                    'flex items-center gap-1 px-4 py-2 text-sm transition-colors font-medium',
+                    isOpen ? 'text-white' : 'text-white/80 hover:text-white'
                   )}
-                </AnimatePresence>
-              )}
-            </div>
-          ))}
+                  onClick={() => setOpenDropdown(null)}
+                >
+                  {item.label}
+                  {hasDropdown && (
+                    <ChevronDown className={cn('w-3.5 h-3.5 transition-transform duration-200', isOpen && 'rotate-180')} />
+                  )}
+                </Link>
+
+                {hasDropdown && isOpen && item.children && (
+                  <div className="absolute top-full left-0 pt-2 z-50">
+                    <div className="bg-navy-deep/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl shadow-black/40 py-2 min-w-[240px]">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => setOpenDropdown(null)}
+                          className="block px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         {/* Desktop Right Side — Language + CTA */}
@@ -125,7 +128,7 @@ export function Header() {
         {/* Mobile Menu Button */}
         <button
           className="lg:hidden relative z-10 p-2 text-white"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={() => { setMobileOpen(!mobileOpen); setOpenDropdown(null); }}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
         >
@@ -133,80 +136,62 @@ export function Header() {
         </button>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-navy-deep z-40 lg:hidden overflow-y-auto"
-            >
-              <nav className="flex flex-col pt-24 px-8 pb-8 gap-1" aria-label="Mobile navigation">
-                {mainNavigation.map((item) => (
-                  <div key={item.href}>
-                    {item.children ? (
-                      <>
-                        <button
-                          onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                          className="flex items-center justify-between w-full py-4 text-lg text-white/90 font-medium border-b border-white/5"
-                        >
-                          {item.label}
-                          <ChevronDown className={cn('w-5 h-5 transition-transform', mobileExpanded === item.label && 'rotate-180')} />
-                        </button>
-                        <AnimatePresence>
-                          {mobileExpanded === item.label && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.25 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="pl-4 py-2">
-                                {item.children.map((child) => (
-                                  <Link
-                                    key={child.href}
-                                    href={child.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className="block py-3 text-base text-white/60 hover:text-white transition-colors"
-                                  >
-                                    {child.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="block py-4 text-lg text-white/90 font-medium border-b border-white/5 hover:text-white transition-colors"
+        {mobileOpen && (
+          <div className="fixed inset-0 bg-navy-deep z-40 lg:hidden overflow-y-auto">
+            <nav className="flex flex-col pt-24 px-8 pb-8 gap-1" aria-label="Mobile navigation">
+              {mainNavigation.map((item) => (
+                <div key={item.href}>
+                  {item.children ? (
+                    <>
+                      <button
+                        onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                        className="flex items-center justify-between w-full py-4 text-lg text-white/90 font-medium border-b border-white/5"
                       >
                         {item.label}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-
-                <div className="mt-6 flex flex-col gap-3">
-                  <button
-                    onClick={() => { toggle(); setMobileOpen(false); }}
-                    className="flex items-center justify-center gap-2 py-3 text-lg text-white/80 font-medium border border-white/10 rounded-lg hover:bg-white/5 transition-all"
-                  >
-                    <Globe className="w-5 h-5" />
-                    {isArabic ? 'English' : 'عربي'}
-                  </button>
-                  <Button href="/request-a-quote" size="lg" variant="primary" className="w-full">
-                    {isArabic ? 'احصل على عرض' : 'Get a Quote'}
-                  </Button>
+                        <ChevronDown className={cn('w-5 h-5 transition-transform', mobileExpanded === item.label && 'rotate-180')} />
+                      </button>
+                      {mobileExpanded === item.label && (
+                        <div className="pl-4 py-2">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="block py-3 text-base text-white/60 hover:text-white transition-colors"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block py-4 text-lg text-white/90 font-medium border-b border-white/5 hover:text-white transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </div>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              ))}
+
+              <div className="mt-6 flex flex-col gap-3">
+                <button
+                  onClick={() => { toggle(); setMobileOpen(false); }}
+                  className="flex items-center justify-center gap-2 py-3 text-lg text-white/80 font-medium border border-white/10 rounded-lg hover:bg-white/5 transition-all"
+                >
+                  <Globe className="w-5 h-5" />
+                  {isArabic ? 'English' : 'عربي'}
+                </button>
+                <Button href="/request-a-quote" size="lg" variant="primary" className="w-full">
+                  {isArabic ? 'احصل على عرض' : 'Get a Quote'}
+                </Button>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
