@@ -22,6 +22,8 @@ export const mainNavigation: NavItem[] = [
   { label: 'Gallery', href: '/gallery' },
   { label: 'Blog', href: '/blog' },
   { label: 'Resources', href: '/resources' },
+  { label: 'Videos', href: '/video-gallery' },
+  { label: 'Case Studies', href: '/case-studies' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -34,6 +36,8 @@ export const footerQuickLinks = [
   { label: 'Gallery', href: '/gallery' },
   { label: 'Blog', href: '/blog' },
   { label: 'Resources', href: '/resources' },
+  { label: 'Videos', href: '/video-gallery' },
+  { label: 'Case Studies', href: '/case-studies' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
 ];
