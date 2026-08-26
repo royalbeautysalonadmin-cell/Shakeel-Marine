@@ -4,7 +4,8 @@ export type GalleryCategory =
   | 'boat-ship'
   | 'upholstery'
   | 'canopy'
-  | 'installation';
+  | 'installation'
+  | 'floor-mat';
 
 export interface GalleryImage {
   src: string;
@@ -21,6 +22,7 @@ export const galleryCategories: { value: GalleryCategory; label: string }[] = [
   { value: 'upholstery', label: 'Upholstery' },
   { value: 'canopy', label: 'Canopy' },
   { value: 'installation', label: 'Installation' },
+  { value: 'floor-mat', label: 'Super Jet Floor Mat Kit' },
 ];
 
 export const galleryImages: GalleryImage[] = [
@@ -54,4 +56,27 @@ export const galleryImages: GalleryImage[] = [
   { src: '/images/gallery/cover-28.jpg', alt: 'Boat cover — custom colors', category: 'boat-ship', width: 800, height: 600 },
   { src: '/images/gallery/cover-29.jpg', alt: 'Jet ski seat cover — detail view', category: 'jet-ski', width: 800, height: 600 },
   { src: '/images/gallery/cover-30.jpg', alt: 'Marine cover — full installation', category: 'installation', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover1.jpg', alt: 'Super Jet Floor Mat Kit — Shakeel Marine Kuwait', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover2.jpg', alt: 'Super Jet Floor Mat Kit — detail view', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover3.jpg', alt: 'Super Jet Floor Mat Kit — custom fit', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover4.jpg', alt: 'Super Jet Floor Mat Kit — marine grade', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover5.jpg', alt: 'Super Jet Floor Mat Kit — precision cut', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover6.jpg', alt: 'Super Jet Floor Mat Kit — installation', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover7.jpg', alt: 'Super Jet Floor Mat Kit — premium finish', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover8.jpg', alt: 'Super Jet Floor Mat Kit — custom colors', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover9.jpg', alt: 'Super Jet Floor Mat Kit — detail stitching', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover10.jpg', alt: 'Super Jet Floor Mat Kit — professional fitting', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover11.jpg', alt: 'Super Jet Floor Mat Kit — quality materials', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover12.jpg', alt: 'Super Jet Floor Mat Kit — marine durability', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover13.jpg', alt: 'Super Jet Floor Mat Kit — custom design', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover14.jpg', alt: 'Super Jet Floor Mat Kit — precision fit', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover15.jpg', alt: 'Super Jet Floor Mat Kit — waterproof', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover16.jpg', alt: 'Super Jet Floor Mat Kit — UV resistant', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover17.jpg', alt: 'Super Jet Floor Mat Kit — non-slip surface', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover18.jpg', alt: 'Super Jet Floor Mat Kit — clean finish', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover19.jpg', alt: 'Super Jet Floor Mat Kit — jet ski application', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover20.jpg', alt: 'Super Jet Floor Mat Kit — marine environment', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover21.jpg', alt: 'Super Jet Floor Mat Kit — full coverage', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover22.jpg', alt: 'Super Jet Floor Mat Kit — custom pattern', category: 'floor-mat', width: 800, height: 600 },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover23.jpg', alt: 'Super Jet Floor Mat Kit — Shakeel Marine quality', category: 'floor-mat', width: 800, height: 600 },
 ];
