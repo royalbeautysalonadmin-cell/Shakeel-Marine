@@ -66,7 +66,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...areaPages,
     { url: `${base}/resources`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     ...resourcePages,
-    { url: `${base}/video-gallery`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/case-studies`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/appointment`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/search`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },

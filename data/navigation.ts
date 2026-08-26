@@ -11,6 +11,8 @@ export const mainNavigation: NavItem[] = [
     label: 'Services',
     href: '/services',
     children: [
+      { label: 'Case Studies', href: '/case-studies' },
+      { label: 'FAQ', href: '/faq' },
       { label: 'Jet Ski Seat Covers', href: '/services/jet-ski-seat-covers' },
       { label: 'Boat & Ship Seats', href: '/services/boat-ship-seats' },
       { label: 'Marine Upholstery', href: '/services/marine-upholstery' },
@@ -18,13 +20,28 @@ export const mainNavigation: NavItem[] = [
       { label: 'Commercial Marine', href: '/commercial-marine-services' },
     ],
   },
-  { label: 'Products', href: '/products' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Resources', href: '/resources' },
-  { label: 'Videos', href: '/video-gallery' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'FAQ', href: '/faq' },
+  {
+    label: 'Products',
+    href: '/products',
+    children: [
+      { label: 'Gallery', href: '/gallery' },
+      { label: 'Before & After', href: '/before-after' },
+      { label: 'Super Jet Floor Mat Kit', href: '/products/super-jet-floor-mat-kit' },
+      { label: 'Jet Ski Custom Seats', href: '/products/jetski-custom-seats' },
+      { label: 'Ship Covers', href: '/products/ship-covers' },
+    ],
+  },
+  {
+    label: 'Resources',
+    href: '/resources',
+    children: [
+      { label: 'Blog', href: '/blog' },
+      { label: 'Material Guide', href: '/resources/material-comparison-guide' },
+      { label: 'Color Guide', href: '/resources/color-selection-guide' },
+      { label: 'Glossary', href: '/resources/marine-upholstery-glossary' },
+      { label: 'Maintenance', href: '/resources/care-maintenance-schedule' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -36,7 +53,6 @@ export const footerQuickLinks = [
   { label: 'Gallery', href: '/gallery' },
   { label: 'Blog', href: '/blog' },
   { label: 'Resources', href: '/resources' },
-  { label: 'Videos', href: '/video-gallery' },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },

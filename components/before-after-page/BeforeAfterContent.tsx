@@ -12,8 +12,8 @@ import { ArrowRight } from 'lucide-react';
 
 const projects = [
   {
-    before: '/images/before-after/canopy-before-01.jpg',
-    after: '/images/before-after/canopy-after-01.jpg',
+    before: '/images/before-after/canopy-cover-before.png',
+    after: '/images/before-after/canopy-cover-after.png',
     titleEn: 'Canopy Cover Replacement',
     titleAr: 'استبدال غطاء المظلة',
     descEn: 'Damaged and torn canopy replaced with a custom-fitted marine cover',
@@ -21,8 +21,8 @@ const projects = [
     category: 'canopy',
   },
   {
-    before: '/images/before-after/boat-before-01.jpg',
-    after: '/images/before-after/boat-after-01.jpg',
+    before: '/images/before-after/boat-interior-before.png',
+    after: '/images/before-after/boat-cover-after.png',
     titleEn: 'Boat Protection',
     titleAr: 'حماية القارب',
     descEn: 'Exposed boat now protected with a durable custom cover',
@@ -30,8 +30,8 @@ const projects = [
     category: 'boat',
   },
   {
-    before: '/images/before-after/jetski-before-01.jpg',
-    after: '/images/before-after/jetski-after-01.jpg',
+    before: '/images/before-after/jet-ski-seat-before.png',
+    after: '/images/before-after/jet-ski-seat-after.png',
     titleEn: 'Jet Ski Seat Restoration',
     titleAr: 'إصلاح مقعد جيت سكي',
     descEn: 'Old worn seat transformed into a custom marine-grade seat',
