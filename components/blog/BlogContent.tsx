@@ -58,7 +58,7 @@ export function BlogContent() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
             {filtered.map((post, i) => (
               <ScrollReveal key={post.slug} delay={i * 0.1}>
                 <Link

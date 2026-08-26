@@ -28,19 +28,19 @@ export function GalleryPreview() {
         <div className="mt-16 masonry-grid">
           {previewImages.map((image, i) => (
             <ScrollReveal key={i} delay={i * 0.08} className="masonry-item">
-              <div className="group relative rounded-lg overflow-hidden bg-navy-deep aspect-[4/3]">
+              <div className="group relative rounded-lg overflow-hidden bg-navy-deep aspect-[4/3] cursor-pointer">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                   placeholder="blur"
                   blurDataURL={SHIMMER}
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-navy-deep/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">
+                <div className="absolute inset-0 bg-navy-deep/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-white text-sm font-medium px-4 py-2 border border-white/30 rounded-lg group-hover:border-white/60 transition-all">
                     {t.gallery.viewProject}
                   </span>
                 </div>

@@ -33,7 +33,7 @@ export function CaseStudiesContent() {
 
       <section className="section-padding bg-off-white">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-8">
             {caseStudies.map((study, i) => (
               <ScrollReveal key={study.slug} delay={i * 0.15}>
                 <Link

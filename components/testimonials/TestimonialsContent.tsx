@@ -31,7 +31,7 @@ export function TestimonialsContent() {
 
       <section className="section-padding bg-off-white">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {testimonials.map((testimonial, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div className="bg-white rounded-xl p-8 border border-border hover:border-ocean/30 hover:shadow-lg hover:shadow-ocean/5 transition-all duration-300 h-full flex flex-col">

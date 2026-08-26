@@ -271,7 +271,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               title={isArabic ? 'منتجات أخرى قد تهمك' : 'Other Products You May Like'}
             />
           </ScrollReveal>
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {relatedProducts.map((rp, i) => (
               <ScrollReveal key={rp.slug} delay={i * 0.1}>
                 <Link

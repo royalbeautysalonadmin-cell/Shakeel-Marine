@@ -278,28 +278,91 @@ h3 {
 
 /* Gallery masonry */
 .masonry-grid {
-  columns: 1;
-  column-gap: 1rem;
+  columns: 2;
+  column-gap: 0.75rem;
 }
 
 @media (min-width: 640px) {
   .masonry-grid {
     columns: 2;
+    column-gap: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .masonry-grid {
     columns: 3;
+    column-gap: 1.25rem;
   }
 }
 
 .masonry-item {
   break-inside: avoid;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-item {
+    margin-bottom: 1rem;
+  }
 }
 
 /* Safe area padding for notched mobile devices */
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+
+/* Smooth card hover animations */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(14, 116, 144, 0.12);
+}
+
+/* Image zoom on hover */
+.img-zoom {
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.group:hover .img-zoom {
+  transform: scale(1.08);
+}
+
+/* Gradient border animation */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(14, 116, 144, 0.2); }
+  50% { border-color: rgba(14, 116, 144, 0.5); }
+}
+
+/* Pulse animation for CTA */
+@keyframes pulse-ocean {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14, 116, 144, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(14, 116, 144, 0); }
+}
+
+.pulse-cta:hover {
+  animation: pulse-ocean 1.5s infinite;
+}
+
+/* Slide up animation */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  animation: slide-up 0.5s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
