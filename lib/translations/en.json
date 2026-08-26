@@ -315,10 +315,49 @@
     "craftsmanship": "Marine Craftsmanship",
     "quickLinks": "Quick Links",
     "services": "Services",
+    "areas": "Areas We Serve",
     "contact": "Contact",
     "copyright": "All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions"
+  },
+  "products": {
+    "eyebrow": "Our Products",
+    "title": "Products",
+    "description": "Explore our range of custom marine products designed for jet skis and boats.",
+    "viewDetails": "View Details",
+    "home": "Home",
+    "features": "Features",
+    "sendInquiry": "Send Inquiry",
+    "relatedProducts": "Related Products"
+  },
+  "howItWorks": {
+    "eyebrow": "Our Process",
+    "title": "How It Works",
+    "description": "A straightforward process from initial inquiry to professional installation.",
+    "steps": [
+      { "title": "Share Your Project", "desc": "Tell us about your jet ski, boat, ship or cover requirements." },
+      { "title": "Discuss the Design", "desc": "Choose preferred style, colors, materials and finish." },
+      { "title": "Custom Fabrication", "desc": "The project is prepared according to the required specifications." },
+      { "title": "Professional Installation", "desc": "The finished work is fitted and checked." }
+    ],
+    "ctaEyebrow": "Ready to Start?",
+    "ctaTitle": "Have a Marine Project in Mind?",
+    "ctaDesc": "Tell us about your requirements. We will prepare a custom quote.",
+    "ctaBtn": "Request a Quote"
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Marine Tips & Guides",
+    "description": "Expert advice on jet ski seats, boat covers, marine upholstery and care tips.",
+    "readMore": "Read More",
+    "home": "Home",
+    "getInTouch": "Get in Touch"
+  },
+  "areasPage": {
+    "eyebrow": "Service Areas",
+    "title": "Areas We Serve",
+    "description": "We bring custom marine services to your location across Kuwait."
   },
   "mobile": {
     "whatsapp": "WhatsApp",

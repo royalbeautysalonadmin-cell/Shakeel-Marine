@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Anchor, Mail, MapPin, Phone } from 'lucide-react';
 import { siteConfig, getWhatsAppUrl, whatsappMessages, phoneNumbers } from '@/lib/site-config';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
-import { footerQuickLinks, footerServiceLinks } from '@/data/navigation';
+import { footerQuickLinks, footerServiceLinks, footerAreaLinks } from '@/data/navigation';
 import { useLang } from '@/components/shared/LangProvider';
 
 export function Footer() {
@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer className="bg-navy-deep text-white/70" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex flex-col mb-5">
               <span className="text-white font-heading font-bold text-xl tracking-wide">SHAKEEL</span>
@@ -40,6 +40,17 @@ export function Footer() {
             <h3 className="text-white text-sm font-semibold uppercase tracking-wider mb-5">{t.footer.services}</h3>
             <ul className="space-y-3">
               {footerServiceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm hover:text-white transition-colors duration-200">{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-white text-sm font-semibold uppercase tracking-wider mb-5">{t.footer.areas}</h3>
+            <ul className="space-y-3">
+              {footerAreaLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm hover:text-white transition-colors duration-200">{link.label}</Link>
                 </li>
