@@ -7,7 +7,7 @@ import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 import { useLang } from '@/components/shared/LangProvider';
 import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
-import { customSeatProjectImages } from '@/data/project-images';
+import { floorMatProjectImages } from '@/data/project-images';
 
 export function JetskiCustomSeat() {
   const { t } = useLang();
@@ -30,8 +30,8 @@ export function JetskiCustomSeat() {
 
         {/* Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          {customSeatProjectImages.map((image, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
+          {floorMatProjectImages.map((image, i) => (
+            <ScrollReveal key={i} delay={Math.min(i * 0.1, 0.4)}>
               <div className="group relative aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep cursor-pointer">
                 <Image
                   src={image.src}
