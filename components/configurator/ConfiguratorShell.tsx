@@ -12,6 +12,7 @@ import { DesignSelector } from '@/components/configurator/DesignSelector';
 import { ProductSelector } from '@/components/configurator/ProductSelector';
 import { ConfigurationSummary } from '@/components/configurator/ConfigurationSummary';
 import { InquiryForm } from '@/components/configurator/InquiryForm';
+import { PhotoUpload } from '@/components/configurator/PhotoUpload';
 import { getWhatsAppUrl } from '@/lib/site-config';
 import { getConfigurationSummary } from '@/components/configurator/configuration';
 
@@ -142,6 +143,18 @@ export function ConfiguratorShell({ vehicle: vehicleSlug }: ConfiguratorShellPro
                   products={vehicle.products}
                   selected={config.product}
                   onChange={(id) => updateConfig('product', id as VehicleConfiguration['product'])}
+                />
+              </div>
+
+              {/* Photo Upload */}
+              <div className="rounded-2xl border border-white/10 bg-navy-deep p-5">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-ocean mb-4">Your Vessel Photo</h3>
+                <p className="mb-3 text-[11px] leading-relaxed text-white/40">
+                  Upload a photo of your vessel to see it mapped onto the 3D model with your custom design.
+                </p>
+                <PhotoUpload
+                  photo={config.userPhoto}
+                  onPhotoChange={(photo) => updateConfig('userPhoto', photo)}
                 />
               </div>
 

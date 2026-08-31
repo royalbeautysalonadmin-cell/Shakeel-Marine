@@ -31,5 +31,6 @@ export function getConfigurationSummary(config: VehicleConfiguration, vehicle: V
     `Material: ${getMaterialLabel(config.material)}`,
     `Design: ${getDesignLabel(config.design)}`,
     `Stitching: ${getColorLabel(config.stitchingColor, config.customStitchingColor)}`,
+    `Vessel photo: ${config.userPhoto ? 'Attached' : 'Not provided'}`,
   ];
 }

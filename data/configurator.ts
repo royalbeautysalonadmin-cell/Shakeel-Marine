@@ -62,6 +62,7 @@ export interface VehicleConfiguration {
   material: string;
   design: string;
   stitchingColor: string;
+  userPhoto: string | null;
 }
 
 export const vehicles: VehicleDefinition[] = [
@@ -192,5 +193,6 @@ export function getDefaultConfiguration(vehicle: VehicleDefinition): VehicleConf
     material: 'marine-vinyl',
     design: 'classic',
     stitchingColor: 'white',
+    userPhoto: null,
   };
 }

@@ -2,7 +2,7 @@
 
 import { Component, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Environment, ContactShadows } from '@react-three/drei';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import type { CameraPreset, VehicleConfiguration } from '@/data/configurator';
 import { VehicleModel } from '@/components/configurator/VehicleModels';
@@ -38,13 +38,14 @@ function CameraRig({ preset, controlsRef }: { preset: CameraPreset; controlsRef:
 
 function ViewerGround() {
   return (
-    <>
-      <mesh position={[0, -1.08, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[24, 24]} />
-        <meshStandardMaterial color="#081b27" roughness={0.9} metalness={0.05} />
-      </mesh>
-      <gridHelper args={[18, 18, '#17485b', '#0b2938']} position={[0, -1.07, 0]} />
-    </>
+    <ContactShadows
+      position={[0, -1.07, 0]}
+      opacity={0.55}
+      scale={18}
+      blur={2.2}
+      far={6}
+      color="#02131c"
+    />
   );
 }
 
@@ -110,28 +111,38 @@ export function ModelViewer({ config, cameraPreset }: ModelViewerProps) {
           camera={{ position: cameraPositions.perspective, fov: 38, near: 0.1, far: 100 }}
           dpr={quality.pixelRatio}
           frameloop="demand"
-          gl={{ antialias: quality.antialias, powerPreference: 'high-performance' }}
+          gl={{ antialias: quality.antialias, powerPreference: 'high-performance', toneMapping: 4, toneMappingExposure: 1.1 }}
+          shadows={quality.tier !== 'low'}
         >
           <color attach="background" args={['#071b27']} />
-          <fog attach="fog" args={['#071b27', 12, 28]} />
-          <ambientLight intensity={1.8} />
-          <directionalLight position={[5, 9, 6]} intensity={3.2} color="#fff8e9" />
-          <directionalLight position={[-6, 3, -4]} intensity={1.6} color="#4aa9bf" />
+          <fog attach="fog" args={['#071b27', 14, 32]} />
+
+          {/* Lighting */}
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[6, 10, 6]} intensity={3.8} color="#fff8e9" castShadow shadow-mapSize-width={1024} shadow-mapSize-height={1024} />
+          <directionalLight position={[-5, 6, -4]} intensity={2.0} color="#68c8e0" />
+          <pointLight position={[0, 3, 4]} intensity={1.5} color="#ffd9a0" distance={12} decay={2} />
+          <pointLight position={[0, 2, -4]} intensity={0.8} color="#60b0c8" distance={10} decay={2} />
+
           <Suspense fallback={null}>
             <CameraRig preset={cameraPreset} controlsRef={controlsRef} />
             <VehicleModel config={config} />
             <ViewerGround />
+            <Environment preset="city" environmentIntensity={0.8} backgroundBlurriness={1} />
           </Suspense>
+
           <OrbitControls
             ref={controlsRef}
             makeDefault
             enableDamping
             dampingFactor={0.08}
             enablePan={false}
-            minDistance={4}
+            minDistance={3.5}
             maxDistance={18}
             rotateSpeed={0.65}
             zoomSpeed={0.8}
+            minPolarAngle={0.3}
+            maxPolarAngle={Math.PI / 2 - 0.05}
           />
         </Canvas>
       </ViewerErrorBoundary>
