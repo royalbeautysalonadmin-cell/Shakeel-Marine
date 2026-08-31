@@ -34,13 +34,15 @@ export function ProductDetail({ product }: ProductDetailProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(14,116,144,0.15),transparent_60%)]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
-            <div className="flex items-center gap-2 text-white/40 text-sm mb-6">
-              <Link href="/" className="hover:text-ocean transition-colors">{isArabic ? 'الرئيسية' : 'Home'}</Link>
-              <span>/</span>
-              <Link href="/products" className="hover:text-ocean transition-colors">{isArabic ? 'المنتجات' : 'Products'}</Link>
-              <span>/</span>
-              <span className="text-white/60">{product.name}</span>
-            </div>
+            <nav aria-label="Breadcrumb" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-2 text-white/40 text-sm min-w-0">
+                <li><Link href="/" className="hover:text-ocean transition-colors">{isArabic ? 'الرئيسية' : 'Home'}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link href="/products" className="hover:text-ocean transition-colors">{isArabic ? 'المنتجات' : 'Products'}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li className="text-white/60 min-w-0 break-words">{product.name}</li>
+              </ol>
+            </nav>
             <h1 className="text-white font-heading font-bold" style={{ fontSize: 'clamp(2.25rem, 5vw, 4rem)' }}>
               {product.name}
             </h1>
@@ -160,6 +162,15 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 {longDesc.split('\n\n').map((paragraph, i) => (
                   <p key={i} className="text-muted leading-relaxed mb-4">{paragraph}</p>
                 ))}
+                {product.caseStudySlug && (
+                  <Link
+                    href={`/case-studies/${product.caseStudySlug}`}
+                    className="inline-flex items-center gap-2 text-ocean font-semibold text-sm hover:text-ocean-light transition-colors"
+                  >
+                    {isArabic ? 'اقرأ دراسة حالة هذا المنتج' : 'Read this product case study'}
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                )}
               </div>
             </ScrollReveal>
 
@@ -271,7 +282,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               title={isArabic ? 'منتجات أخرى قد تهمك' : 'Other Products You May Like'}
             />
           </ScrollReveal>
-          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {relatedProducts.map((rp, i) => (
               <ScrollReveal key={rp.slug} delay={i * 0.1}>
                 <Link

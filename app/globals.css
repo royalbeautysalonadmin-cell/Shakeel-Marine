@@ -108,6 +108,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
+  overflow-x: hidden;
 }
 
 body {
@@ -116,6 +117,11 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 /* Performance: GPU-accelerate static layers */
@@ -278,7 +284,7 @@ h3 {
 
 /* Gallery masonry */
 .masonry-grid {
-  columns: 2;
+  columns: 1;
   column-gap: 0.75rem;
 }
 

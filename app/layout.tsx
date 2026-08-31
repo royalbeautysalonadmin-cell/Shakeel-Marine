@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     default: `${siteConfig.name} | #1 Marine Upholstery, Jet Ski Seats & Canopy Covers in Kuwait`,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s`,
   },
   description: 'Shakeel Marine is Kuwait\'s leading marine upholstery specialist. Custom jet ski seat covers, boat covers, canopy covers, ship covers and marine accessories. 30+ years experience. Free consultation.',
   keywords: [
@@ -56,11 +56,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} | #1 Marine Upholstery, Jet Ski Seats & Canopy Covers in Kuwait`,
     description: 'Shakeel Marine is Kuwait\'s leading marine upholstery specialist. Custom jet ski seat covers, boat covers, canopy covers, ship covers and marine accessories.',
+    images: [{ url: `${siteConfig.url}${siteConfig.ogImage}`, width: 1200, height: 630, alt: `${siteConfig.name} marine upholstery in Kuwait` }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${siteConfig.name} | #1 Marine Upholstery, Jet Ski Seats & Canopy Covers in Kuwait`,
     description: 'Shakeel Marine is Kuwait\'s leading marine upholstery specialist. Custom jet ski seat covers, boat covers, canopy covers, ship covers.',
+    images: [`${siteConfig.url}${siteConfig.ogImage}`],
   },
   robots: {
     index: true,

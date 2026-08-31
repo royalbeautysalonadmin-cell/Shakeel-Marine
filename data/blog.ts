@@ -233,7 +233,7 @@ export const blogPosts: BlogPost[] = [
       <p>Disconnect the battery and store it in a cool, dry place. Charge it every few months to maintain its lifespan. A dead battery is one of the most common winter storage issues.</p>
     `,
     category: 'jet-ski',
-    image: '/images/sections/about-01.jpg',
+    image: '/images/sections/jetski-showcase.jpg',
     imageAlt: 'Jet ski winter storage tips',
     date: '2025-04-08',
     readTime: '5 min read',
@@ -283,7 +283,7 @@ export const blogPosts: BlogPost[] = [
       <p>Schedule a full inspection with a certified marine technician every year. They can identify hidden wear, perform advanced diagnostics and ensure your jet ski meets safety standards.</p>
     `,
     category: 'jet-ski',
-    image: '/images/sections/services-01.jpg',
+    image: '/images/sections/jetski-showcase.jpg',
     imageAlt: 'Jet ski maintenance schedule',
     date: '2025-06-10',
     readTime: '5 min read',
@@ -383,7 +383,7 @@ export const blogPosts: BlogPost[] = [
       <p>A fitted cover costs a fraction of what you would spend on repairs. It takes seconds to put on and provides all-day protection. There is no reason to leave your jet ski exposed.</p>
     `,
     category: 'jet-ski',
-    image: '/images/sections/hero-01.jpg',
+    image: '/images/sections/jetski-showcase.jpg',
     imageAlt: 'Jet ski cover vs no cover comparison',
     date: '2025-08-05',
     readTime: '4 min read',
@@ -408,7 +408,7 @@ export const blogPosts: BlogPost[] = [
       <p>EVA foam is used for seat padding and flooring. It is lightweight, non-slip and provides excellent cushioning. It resists water and UV damage, making it ideal for marine environments.</p>
     `,
     category: 'boat',
-    image: '/images/sections/about-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Boat seat materials complete guide',
     date: '2025-02-22',
     readTime: '5 min read',
@@ -483,7 +483,7 @@ export const blogPosts: BlogPost[] = [
       <p>Salt and dust accelerate sun damage. Rinse your boat with fresh water after each use and clean surfaces regularly. This removes harmful residue that intensifies UV effects.</p>
     `,
     category: 'boat',
-    image: '/images/sections/hero-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Protecting your boat from Kuwait sun',
     date: '2025-05-15',
     readTime: '5 min read',
@@ -508,7 +508,7 @@ export const blogPosts: BlogPost[] = [
       <p>Custom storage compartments, organizers and nets keep the interior tidy. Built-in cup holders, phone mounts and tackle storage add functionality without sacrificing style.</p>
     `,
     category: 'boat',
-    image: '/images/before-after/boat-after-02.jpg',
+    image: '/images/before-after/boat-after-01.jpg',
     imageAlt: 'Boat interior design ideas',
     date: '2025-06-02',
     readTime: '5 min read',
@@ -533,7 +533,7 @@ export const blogPosts: BlogPost[] = [
       <p>Fix small tears and loose seams immediately. Use marine-grade patch kits for temporary repairs and schedule professional repair for larger damage. Prompt repairs prevent small problems from growing.</p>
     `,
     category: 'boat',
-    image: '/images/sections/services-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Boat cover maintenance tips',
     date: '2025-06-18',
     readTime: '4 min read',
@@ -583,7 +583,7 @@ export const blogPosts: BlogPost[] = [
       <p>Rotted or badly damaged wood should be replaced immediately. Rot can spread quickly and affect surrounding structures. Use marine-grade wood like teak or mahogany for replacements.</p>
     `,
     category: 'boat',
-    image: '/images/sections/about-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Boat wood trim maintenance',
     date: '2025-08-01',
     readTime: '5 min read',
@@ -608,7 +608,7 @@ export const blogPosts: BlogPost[] = [
       <p>Wash and wax the hull. Inspect and repair any damage. Drain all water from the bilge and livewells. Remove the drain plug and store it separately.</p>
     `,
     category: 'boat',
-    image: '/images/sections/services-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Boat winterization checklist',
     date: '2025-08-15',
     readTime: '5 min read',
@@ -633,7 +633,7 @@ export const blogPosts: BlogPost[] = [
       <p>Replace expired flares and fire extinguishers. Check life jackets for proper fit and condition. Ensure first aid kit is stocked and throwable flotation device is accessible.</p>
     `,
     category: 'boat',
-    image: '/images/sections/hero-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Summer boat preparation guide',
     date: '2025-03-28',
     readTime: '5 min read',
@@ -758,7 +758,7 @@ export const blogPosts: BlogPost[] = [
       <p>Good airflow prevents salt air from settling on surfaces. Open hatches and compartments when docked. Use dehumidifiers in enclosed spaces to reduce salt-laden moisture.</p>
     `,
     category: 'tips',
-    image: '/images/sections/services-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Salt damage prevention for boats',
     date: '2025-06-05',
     readTime: '5 min read',
@@ -808,7 +808,7 @@ export const blogPosts: BlogPost[] = [
       <p>DIY works well for simple projects like cushion covers, temporary repairs or learning the craft. For primary seat covers and high-visibility areas, professional work is the better investment.</p>
     `,
     category: 'tips',
-    image: '/images/sections/about-01.jpg',
+    image: '/images/services/marine-upholstery.jpg',
     imageAlt: 'Professional vs DIY marine upholstery',
     date: '2025-07-10',
     readTime: '5 min read',
@@ -833,7 +833,7 @@ export const blogPosts: BlogPost[] = [
       <p>Look for companies that offer warranties on their work. This shows confidence in their craftsmanship. Ask about their process for handling any issues that arise after installation.</p>
     `,
     category: 'tips',
-    image: '/images/sections/services-01.jpg',
+    image: '/images/services/marine-upholstery.jpg',
     imageAlt: 'How to choose a marine upholstery company',
     date: '2025-07-28',
     readTime: '5 min read',
@@ -883,7 +883,7 @@ export const blogPosts: BlogPost[] = [
       <p>Prepare for winterization. Schedule professional service, deep clean the entire vessel and address any damage before storage. Apply protective coatings to all surfaces before covering.</p>
     `,
     category: 'tips',
-    image: '/images/sections/hero-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Complete marine care calendar',
     date: '2025-08-20',
     readTime: '5 min read',
@@ -908,7 +908,7 @@ export const blogPosts: BlogPost[] = [
       <p>The marine sector continues to grow with new services and technologies. Custom upholstery, marine electronics and performance upgrades are in high demand. The industry adapts to meet the needs of modern boat owners.</p>
     `,
     category: 'general',
-    image: '/images/sections/about-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Kuwait marine industry overview',
     date: '2025-02-05',
     readTime: '5 min read',
@@ -933,7 +933,7 @@ export const blogPosts: BlogPost[] = [
       <p>Many marine enthusiasts own both a jet ski and a boat. Each serves a different purpose. If you can only choose one, let your primary use case guide the decision.</p>
     `,
     category: 'general',
-    image: '/images/sections/hero-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Jet ski vs boat comparison',
     date: '2025-04-01',
     readTime: '5 min read',
@@ -958,7 +958,7 @@ export const blogPosts: BlogPost[] = [
       <p>A well-stocked marine first aid kit handles common injuries. Include bandages, antiseptic, pain relief and any personal medications. Review and restock the kit regularly.</p>
     `,
     category: 'general',
-    image: '/images/sections/services-01.jpg',
+    image: '/images/sections/boat-ship.jpg',
     imageAlt: 'Marine safety essentials for Kuwait',
     date: '2025-05-28',
     readTime: '5 min read',
@@ -1008,7 +1008,7 @@ export const blogPosts: BlogPost[] = [
       <p>Salt deposits dull fiberglass gel coat and dry out wood trim. Regular waxing and sealing protect these surfaces. Clean salt residue promptly to prevent permanent staining and deterioration.</p>
     `,
     category: 'general',
-    image: '/images/before-after/boat-after-02.jpg',
+    image: '/images/before-after/boat-after-01.jpg',
     imageAlt: 'How salt air affects your boat',
     date: '2025-07-05',
     readTime: '5 min read',
@@ -1033,7 +1033,7 @@ export const blogPosts: BlogPost[] = [
       <p>Consider adding ventilation channels, mesh panels or moisture-wicking layers. These features improve comfort in hot weather. Some materials are designed to stay cool even in direct sunlight.</p>
     `,
     category: 'general',
-    image: '/images/sections/hero-01.jpg',
+    image: '/images/services/marine-upholstery.jpg',
     imageAlt: 'Marine upholstery for hot climates',
     date: '2025-08-08',
     readTime: '5 min read',

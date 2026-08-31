@@ -22,7 +22,7 @@ export function ServicesSection() {
           />
         </ScrollReveal>
 
-        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {services.map((service, i) => (
             <ScrollReveal key={service.slug} delay={i * 0.1}>
               <Link
@@ -35,7 +35,7 @@ export function ServicesSection() {
                     src={service.image}
                     alt={service.imageAlt}
                     fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     placeholder="blur"
                     blurDataURL={SHIMMER}
                     className="object-cover group-hover:scale-110 transition-transform duration-700"

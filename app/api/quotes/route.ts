@@ -6,14 +6,14 @@ export async function POST(request: NextRequest) {
   try {
     await connectDB();
     const body = await request.json();
-    const { fullName, phone, whatsapp, email, service, vesselType, vesselDetails, projectDescription, preferredColor, preferredDesign, preferredContactMethod } = body;
+    const { fullName, phone, whatsapp, email, country, service, vesselType, vesselDetails, projectDescription, preferredColor, preferredDesign, preferredContactMethod } = body;
 
     if (!fullName || !phone || !email || !service || !vesselType || !projectDescription || !preferredContactMethod) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     const quote = await Quote.create({
-      fullName, phone, whatsapp, email, service, vesselType, vesselDetails,
+      fullName, phone, whatsapp, email, country, service, vesselType, vesselDetails,
       projectDescription, preferredColor, preferredDesign, preferredContactMethod,
     });
 

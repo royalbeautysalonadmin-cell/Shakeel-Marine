@@ -7,6 +7,7 @@ import { SHIMMER } from '@/lib/utils';
 import { Check } from 'lucide-react';
 import { useLang } from '@/components/shared/LangProvider';
 import { WhatsAppCTA } from '@/components/ui/WhatsAppCTA';
+import { customSeatProjectImages } from '@/data/project-images';
 
 export function JetskiCustomSeat() {
   const { t } = useLang();
@@ -28,22 +29,15 @@ export function JetskiCustomSeat() {
         </ScrollReveal>
 
         {/* Image Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          {[
-            { src: '/images/jetski-custom-seat/jetski custom seat1.jpg', alt: 'Custom jet ski seat — Shakeel Marine Kuwait' },
-            { src: '/images/jetski-custom-seat/jetski custom seat2.jpg', alt: 'Jet ski seat custom design — marine upholstery' },
-            { src: '/images/jetski-custom-seat/jetski custom seat3.jpg', alt: 'Jet ski seat — professional fitting' },
-            { src: '/images/jetski-custom-seat/jetski custom seat4.jpg', alt: 'Custom jet ski seat — color selection' },
-            { src: '/images/jetski-custom-seat/jetski custom seat5.jpg', alt: 'Jet ski seat — premium stitching' },
-            { src: '/images/jetski-custom-seat/jetski custom seat6.jpg', alt: 'Jet ski seat cover — marine grade materials' },
-          ].map((image, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          {customSeatProjectImages.map((image, i) => (
             <ScrollReveal key={i} delay={i * 0.1}>
               <div className="group relative aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep cursor-pointer">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   placeholder="blur"
                   blurDataURL={SHIMMER}
                   className="object-cover group-hover:scale-110 transition-transform duration-700"

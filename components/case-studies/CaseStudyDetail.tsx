@@ -22,13 +22,15 @@ export function CaseStudyDetail({ study }: CaseStudyDetailProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(14,116,144,0.15),transparent_60%)]" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
-            <div className="flex items-center gap-2 text-white/40 text-sm mb-6">
-              <Link href="/" className="hover:text-ocean transition-colors">{isArabic ? 'الرئيسية' : 'Home'}</Link>
-              <span>/</span>
-              <Link href="/case-studies" className="hover:text-ocean transition-colors">{isArabic ? 'دراسات الحالة' : 'Case Studies'}</Link>
-              <span>/</span>
-              <span className="text-white/60">{isArabic ? study.titleAr : study.title}</span>
-            </div>
+            <nav aria-label="Breadcrumb" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-2 text-white/40 text-sm min-w-0">
+                <li><Link href="/" className="hover:text-ocean transition-colors">{isArabic ? 'الرئيسية' : 'Home'}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link href="/case-studies" className="hover:text-ocean transition-colors">{isArabic ? 'دراسات الحالة' : 'Case Studies'}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li className="text-white/60 min-w-0 break-words">{isArabic ? study.titleAr : study.title}</li>
+              </ol>
+            </nav>
             <div className="flex items-center gap-4 text-sm text-white/40 mb-4">
               <span className="flex items-center gap-1"><User className="w-4 h-4" /> {isArabic ? study.clientAr : study.client}</span>
               <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {study.duration}</span>
@@ -48,7 +50,7 @@ export function CaseStudyDetail({ study }: CaseStudyDetailProps) {
             {study.images.map((img, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div className="aspect-square rounded-xl overflow-hidden bg-navy-deep relative">
-                  <Image src={img.src} alt={img.alt} fill sizes="(max-width: 640px) 50vw, 25vw" placeholder="blur" blurDataURL={SHIMMER} className="object-cover" />
+                   <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 50vw, 25vw" placeholder="blur" blurDataURL={SHIMMER} className="object-cover" />
                 </div>
               </ScrollReveal>
             ))}

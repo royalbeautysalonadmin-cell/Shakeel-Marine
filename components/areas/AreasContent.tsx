@@ -31,12 +31,12 @@ export function AreasContent() {
 
       <section className="section-padding bg-off-white">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {areas.map((area, i) => (
               <ScrollReveal key={area.slug} delay={i * 0.1}>
                 <Link
                   href={`/areas/${area.slug}`}
-                  className="group block bg-white rounded-xl p-8 border border-border hover:border-ocean/30 hover:shadow-lg hover:shadow-ocean/5 transition-all duration-300 h-full"
+                  className="group block bg-white rounded-xl p-5 sm:p-8 border border-border hover:border-ocean/30 hover:shadow-lg hover:shadow-ocean/5 transition-all duration-300 h-full min-w-0"
                 >
                   <div className="w-12 h-12 rounded-full bg-ocean/10 flex items-center justify-center mb-5">
                     <MapPin className="w-5 h-5 text-ocean" />

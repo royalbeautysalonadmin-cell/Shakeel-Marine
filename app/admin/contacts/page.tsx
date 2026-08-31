@@ -38,6 +38,8 @@ export default function AdminContactsPage() {
     setLoading(false);
   }, [page, status, search]);
 
+  // This effect synchronizes the view with the current server-side filters.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchContacts(); }, [fetchContacts]);
 
   const updateStatus = async (id: string, newStatus: string) => {

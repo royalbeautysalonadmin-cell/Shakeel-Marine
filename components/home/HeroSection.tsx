@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
@@ -54,6 +54,22 @@ function pseudoRandom(seed: number) {
   return x - Math.floor(x);
 }
 
+const mobileMediaQuery = '(max-width: 768px)';
+
+function subscribeToMobileQuery(onStoreChange: () => void) {
+  const mediaQuery = window.matchMedia(mobileMediaQuery);
+  mediaQuery.addEventListener('change', onStoreChange);
+  return () => mediaQuery.removeEventListener('change', onStoreChange);
+}
+
+function getMobileQuerySnapshot() {
+  return window.matchMedia(mobileMediaQuery).matches;
+}
+
+function getMobileQueryServerSnapshot() {
+  return false;
+}
+
 function FloatingParticles() {
   return (
     <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
@@ -80,8 +96,12 @@ export function HeroSection() {
   const ref = useRef(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const isMobile = useSyncExternalStore(
+    subscribeToMobileQuery,
+    getMobileQuerySnapshot,
+    getMobileQueryServerSnapshot
+  );
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -90,14 +110,6 @@ export function HeroSection() {
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
 
   useEffect(() => {
     if (!isMobile) {

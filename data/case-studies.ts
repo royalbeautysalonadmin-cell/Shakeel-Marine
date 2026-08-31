@@ -1,3 +1,5 @@
+import { customSeatProjectImages, floorMatProjectImages } from '@/data/project-images';
+
 export interface CaseStudy {
   slug: string;
   title: string;
@@ -154,6 +156,70 @@ export const caseStudies: CaseStudy[] = [
     seo: {
       title: 'Marina Canopy Cover Case Study | Shakeel Marine',
       description: 'Case study: Custom canopy covers for 30 boat berths at Kuwait Marina by Shakeel Marine.',
+    },
+  },
+  {
+    slug: 'super-jet-floor-mat-kit-project',
+    title: 'Super Jet Floor Mat Kit Installation in Kuwait',
+    titleAr: 'تركيب طقم أرضية سوبر جيت في الكويت',
+    client: 'Private Jet Ski Owner',
+    clientAr: 'مالك جت سكي خاص',
+    service: 'Super Jet Floor Mat Kit',
+    serviceAr: 'طقم أرضية سوبر جيت',
+    description:
+      'A custom Super Jet Floor Mat Kit project designed to refresh a personal watercraft with model-specific, non-slip floor protection.',
+    descriptionAr:
+      'مشروع طقم أرضية سوبر جيت مخصص لتجديد دراجة مائية بحماية أرضية غير زلقة ومقاسة حسب الطراز.',
+    challenge:
+      'The jet ski needed durable floor coverage across the footwell, side panels and rider standing area. The new surface also needed clean cutouts around fittings and a finish that matched the shape of the hull.',
+    challengeAr:
+      'احتاج الجت سكي إلى تغطية أرضية متينة لمنطقة القدم والجوانب ومنطقة وقوف الراكب، مع فتحات دقيقة حول التجهيزات وتشطيب يناسب شكل الهيكل.',
+    solution:
+      'We measured the available surfaces, prepared the mat layout around the existing hardware and fitted textured marine flooring with carefully finished edges. The owner selected a custom color and pattern for a cohesive look.',
+    solutionAr:
+      'قمنا بقياس الأسطح وتجهيز توزيع القطع حول التجهيزات الموجودة وتركيب أرضية بحرية مزخرفة بحواف دقيقة. اختار المالك لوناً ونمطاً مخصصين لمظهر متناسق.',
+    result:
+      'The completed Super Jet Floor Mat Kit gives the watercraft a refreshed appearance, dependable footing and fitted protection across the main rider areas.',
+    resultAr:
+      'منح طقم أرضية سوبر جيت المكتمل الدراجة المائية مظهراً متجدداً وثباتاً أفضل وحماية مناسبة لمناطق وقوف الراكب الرئيسية.',
+    duration: 'Custom project',
+    images: floorMatProjectImages.slice(0, 8),
+    seo: {
+      title: 'Super Jet Floor Mat Kit Case Study | Shakeel Marine',
+      description:
+        'See a custom Super Jet Floor Mat Kit installation in Kuwait, including precision fitting, non-slip marine flooring and clean finished edges.',
+    },
+  },
+  {
+    slug: 'jet-ski-custom-seats-project',
+    title: 'Jet Ski Custom Seats Design Project in Kuwait',
+    titleAr: 'مشروع تصميم مقاعد جت سكي مخصصة في الكويت',
+    client: 'Private Watercraft Owner',
+    clientAr: 'مالك دراجة مائية خاص',
+    service: 'Jet Ski Custom Seats',
+    serviceAr: 'مقاعد جت سكي مخصصة',
+    description:
+      'A bespoke jet ski seat upholstery project combining custom colors, marine-grade materials and detailed stitching for a renewed riding experience.',
+    descriptionAr:
+      'مشروع تنجيد مقاعد جت سكي مخصص يجمع بين الألوان الخاصة والمواد البحرية والخياطة الدقيقة لتجربة قيادة متجددة.',
+    challenge:
+      'The owner wanted to replace a tired seat finish and create a more distinctive look without compromising comfort or the fit around the original seat shape.',
+    challengeAr:
+      'أراد المالك استبدال تشطيب المقعد القديم وإنشاء مظهر مميز مع الحفاظ على الراحة ودقة الملاءمة لشكل المقعد الأصلي.',
+    solution:
+      'We planned the color layout, shaped the upholstery to the existing seat and finished the cover with marine-suitable material, contrast piping and consistent stitching. The work was checked on the watercraft before completion.',
+    solutionAr:
+      'خططنا توزيع الألوان وشكلنا التنجيد حسب المقعد الموجود وأنهينا الغطاء بمواد مناسبة للبيئة البحرية وحواف متباينة وخياطة متناسقة. تم فحص العمل على الدراجة المائية قبل التسليم.',
+    result:
+      'The finished custom seat delivers a cleaner fit, renewed comfort and a personalized appearance that complements the watercraft design.',
+    resultAr:
+      'يوفر المقعد المخصص المكتمل ملاءمة أنظف وراحة متجددة ومظهراً شخصياً ينسجم مع تصميم الدراجة المائية.',
+    duration: 'Custom project',
+    images: customSeatProjectImages,
+    seo: {
+      title: 'Jet Ski Custom Seats Case Study | Shakeel Marine',
+      description:
+        'Explore a Kuwait jet ski custom seats project with tailored marine upholstery, custom color design, contrast piping and professional fitting.',
     },
   },
 ];

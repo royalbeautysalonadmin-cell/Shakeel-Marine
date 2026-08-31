@@ -33,7 +33,7 @@ export function CaseStudiesContent() {
 
       <section className="section-padding bg-off-white">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-2 gap-3 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8">
             {caseStudies.map((study, i) => (
               <ScrollReveal key={study.slug} delay={i * 0.15}>
                 <Link
@@ -43,9 +43,9 @@ export function CaseStudiesContent() {
                   <div className="aspect-[16/9] bg-navy-deep relative overflow-hidden">
                     <Image
                       src={study.images[0]?.src || '/images/gallery/cover-01.jpg'}
-                      alt={study.title}
+                      alt={study.images[0]?.alt || study.title}
                       fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                       placeholder="blur"
                       blurDataURL={SHIMMER}
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -54,14 +54,14 @@ export function CaseStudiesContent() {
                       {isArabic ? study.serviceAr : study.service}
                     </div>
                   </div>
-                  <div className="p-8">
+                  <div className="p-4 sm:p-8 min-w-0">
                     <h2 className="font-heading font-bold text-charcoal text-xl group-hover:text-ocean transition-colors">
                       {isArabic ? study.titleAr : study.title}
                     </h2>
                     <p className="mt-3 text-muted text-sm leading-relaxed line-clamp-3">
                       {isArabic ? study.descriptionAr : study.description}
                     </p>
-                    <div className="mt-4 flex items-center gap-4 text-xs text-muted">
+                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted">
                       <span className="flex items-center gap-1">
                         <User className="w-3.5 h-3.5" />
                         {isArabic ? study.clientAr : study.client}

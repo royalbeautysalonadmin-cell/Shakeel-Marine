@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { generatePageMetadata, getBreadcrumbSchema } from '@/lib/seo';
+import { generatePageMetadata, getBreadcrumbSchema, getCaseStudySchema } from '@/lib/seo';
 import { getCaseStudyBySlug } from '@/data/case-studies';
 import { CaseStudyDetail } from '@/components/case-studies/CaseStudyDetail';
 
@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: study.seo.title,
     description: study.seo.description,
     path: `/case-studies/${slug}`,
+    ogImage: study.images[0]?.src,
   });
 }
 
@@ -29,10 +30,12 @@ export default async function CaseStudyPage({ params }: Props) {
     { name: 'Case Studies', url: '/case-studies' },
     { name: study.title, url: `/case-studies/${slug}` },
   ]);
+  const caseStudySchema = getCaseStudySchema(study);
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }} />
       <CaseStudyDetail study={study} />
     </>
   );

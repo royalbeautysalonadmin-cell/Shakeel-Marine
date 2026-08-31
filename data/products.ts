@@ -1,3 +1,5 @@
+import { customSeatProjectImages, floorMatProjectImages } from '@/data/project-images';
+
 export interface Product {
   slug: string;
   name: string;
@@ -10,12 +12,31 @@ export interface Product {
   images: { src: string; alt: string }[];
   relatedService?: string;
   relatedServiceSlug?: string;
+  caseStudySlug?: string;
   whatsappMessage: string;
   seo: {
     title: string;
     description: string;
   };
 }
+
+const legacyFloorMatImages = [
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover1.jpg', alt: 'Super Jet Floor Mat Kit — full view' },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover2.jpg', alt: 'Super Jet Floor Mat Kit — detail' },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover3.jpg', alt: 'Super Jet Floor Mat Kit — installation' },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover4.jpg', alt: 'Super Jet Floor Mat Kit — finish' },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover5.jpg', alt: 'Super Jet Floor Mat Kit — grip surface' },
+  { src: '/images/super-jet-floor-mat/jetkeifloorcover6.jpg', alt: 'Super Jet Floor Mat Kit — custom fit' },
+];
+
+const legacyCustomSeatImages = [
+  { src: '/images/jetski-custom-seat/jetski custom seat1.jpg', alt: 'Jet Ski Custom Seat — design' },
+  { src: '/images/jetski-custom-seat/jetski custom seat2.jpg', alt: 'Jet Ski Custom Seat — stitching' },
+  { src: '/images/jetski-custom-seat/jetski custom seat3.jpg', alt: 'Jet Ski Custom Seat — fitting' },
+  { src: '/images/jetski-custom-seat/jetski custom seat4.jpg', alt: 'Jet Ski Custom Seat — colors' },
+  { src: '/images/jetski-custom-seat/jetski custom seat5.jpg', alt: 'Jet Ski Custom Seat — detail' },
+  { src: '/images/jetski-custom-seat/jetski custom seat6.jpg', alt: 'Jet Ski Custom Seat — finish' },
+];
 
 export const products: Product[] = [
   {
@@ -32,14 +53,9 @@ export const products: Product[] = [
       { title: 'Easy Installation', desc: 'Simple peel-and-stick application with professional finish.' },
       { title: 'Clean Finish', desc: 'Professional edges and finishing for a factory-look result.' },
     ],
-    images: [
-      { src: '/images/super-jet-floor-mat/jetkeifloorcover1.jpg', alt: 'Super Jet Floor Mat Kit — full view' },
-      { src: '/images/super-jet-floor-mat/jetkeifloorcover2.jpg', alt: 'Super Jet Floor Mat Kit — detail' },
-      { src: '/images/super-jet-floor-mat/jetkeifloorcover3.jpg', alt: 'Super Jet Floor Mat Kit — installation' },
-      { src: '/images/super-jet-floor-mat/jetkeifloorcover4.jpg', alt: 'Super Jet Floor Mat Kit — finish' },
-      { src: '/images/super-jet-floor-mat/jetkeifloorcover5.jpg', alt: 'Super Jet Floor Mat Kit — grip surface' },
-      { src: '/images/super-jet-floor-mat/jetkeifloorcover6.jpg', alt: 'Super Jet Floor Mat Kit — custom fit' },
-    ],
+    images: [...floorMatProjectImages, ...legacyFloorMatImages],
+    gallery: [...floorMatProjectImages, ...legacyFloorMatImages],
+    caseStudySlug: 'super-jet-floor-mat-kit-project',
     whatsappMessage: 'Hello Shakeel Marine, I am interested in the Super Jet Floor Mat Kit. I would like to request a quote.',
     seo: {
       title: 'Super Jet Floor Mat Kit in Kuwait | Shakeel Marine',
@@ -60,14 +76,9 @@ export const products: Product[] = [
       { title: 'Professional Stitching', desc: 'Clean, consistent stitching with marine-suitable thread.' },
       { title: 'Expert Installation', desc: 'Professional fitting and finishing by our experienced team.' },
     ],
-    images: [
-      { src: '/images/jetski-custom-seat/jetski custom seat1.jpg', alt: 'Jet Ski Custom Seat — design' },
-      { src: '/images/jetski-custom-seat/jetski custom seat2.jpg', alt: 'Jet Ski Custom Seat — stitching' },
-      { src: '/images/jetski-custom-seat/jetski custom seat3.jpg', alt: 'Jet Ski Custom Seat — fitting' },
-      { src: '/images/jetski-custom-seat/jetski custom seat4.jpg', alt: 'Jet Ski Custom Seat — colors' },
-      { src: '/images/jetski-custom-seat/jetski custom seat5.jpg', alt: 'Jet Ski Custom Seat — detail' },
-      { src: '/images/jetski-custom-seat/jetski custom seat6.jpg', alt: 'Jet Ski Custom Seat — finish' },
-    ],
+    images: [...customSeatProjectImages, ...legacyCustomSeatImages],
+    gallery: [...customSeatProjectImages, ...legacyCustomSeatImages],
+    caseStudySlug: 'jet-ski-custom-seats-project',
     whatsappMessage: 'Hello Shakeel Marine, I am interested in Jet Ski Custom Seats. I would like to request a quote.',
     seo: {
       title: 'Jet Ski Custom Seats in Kuwait | Shakeel Marine',

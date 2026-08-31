@@ -1,3 +1,9 @@
+import { products } from '@/data/products';
+import { services } from '@/data/services';
+import { blogPosts } from '@/data/blog';
+import { areas } from '@/data/areas';
+import { resources } from '@/data/resources';
+
 export interface SearchResult {
   type: 'product' | 'service' | 'blog' | 'area' | 'resource';
   title: string;
@@ -15,7 +21,6 @@ export function searchContent(query: string): SearchResult[] {
   const results: SearchResult[] = [];
 
   // Search products
-  const { products } = require('@/data/products');
   products.forEach((p: { slug: string; name: string; tagline: string; description: string; images: { src: string }[] }) => {
     if (p.name.toLowerCase().includes(q) || p.tagline.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)) {
       results.push({
@@ -31,7 +36,6 @@ export function searchContent(query: string): SearchResult[] {
   });
 
   // Search services
-  const { services } = require('@/data/services');
   services.forEach((s: { slug: string; title: string; tagline: string; description: string; image: string }) => {
     if (s.title.toLowerCase().includes(q) || s.tagline.toLowerCase().includes(q) || s.description.toLowerCase().includes(q)) {
       results.push({
@@ -47,7 +51,6 @@ export function searchContent(query: string): SearchResult[] {
   });
 
   // Search blog posts
-  const { blogPosts } = require('@/data/blog');
   blogPosts.forEach((p: { slug: string; title: string; excerpt: string; image: string }) => {
     if (p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q)) {
       results.push({
@@ -63,7 +66,6 @@ export function searchContent(query: string): SearchResult[] {
   });
 
   // Search areas
-  const { areas } = require('@/data/areas');
   areas.forEach((a: { slug: string; name: string; nameAr: string; description: string; descriptionAr: string }) => {
     if (a.name.toLowerCase().includes(q) || a.nameAr.includes(q) || a.description.toLowerCase().includes(q)) {
       results.push({
@@ -78,7 +80,6 @@ export function searchContent(query: string): SearchResult[] {
   });
 
   // Search resources
-  const { resources } = require('@/data/resources');
   resources.forEach((r: { slug: string; title: string; titleAr: string; description: string; descriptionAr: string }) => {
     if (r.title.toLowerCase().includes(q) || r.description.toLowerCase().includes(q)) {
       results.push({

@@ -1,5 +1,9 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { siteConfig } from './site-config';
+
+function absoluteUrl(path: string): string {
+  return path.startsWith('http') ? path : `${siteConfig.url}${path}`;
+}
 
 interface PageSEOProps {
   title: string;
@@ -37,7 +41,7 @@ export function generatePageMetadata({
   return {
     title,
     description,
-    keywords: [...defaultKeywords, ...keywords],
+    keywords: [...new Set([...defaultKeywords, ...keywords])],
     alternates: { canonical: url },
     openGraph: {
       title,
@@ -66,11 +70,24 @@ export function getOrganizationSchema() {
     url: siteConfig.url,
     logo: `${siteConfig.url}${siteConfig.logo}`,
     description: siteConfig.description,
-    address: { '@type': 'PostalAddress', addressLocality: siteConfig.city, addressCountry: siteConfig.countryCode },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.address,
+      addressLocality: siteConfig.city,
+      addressCountry: siteConfig.countryCode,
+      ...(siteConfig.postalCode ? { postalCode: siteConfig.postalCode } : {}),
+    },
     telephone: siteConfig.phone,
     email: siteConfig.email,
     areaServed: { '@type': 'Country', name: 'Kuwait' },
     sameAs: Object.values(siteConfig.social).filter(Boolean),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: siteConfig.phone,
+      contactType: 'customer service',
+      areaServed: 'KW',
+      availableLanguage: ['English', 'Arabic'],
+    },
   };
 }
 
@@ -96,10 +113,22 @@ export function getLocalBusinessSchema() {
     image: `${siteConfig.url}${siteConfig.ogImage}`,
     telephone: siteConfig.phone,
     email: siteConfig.email,
-    address: { '@type': 'PostalAddress', addressLocality: siteConfig.city, addressCountry: siteConfig.countryCode },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.address,
+      addressLocality: siteConfig.city,
+      addressCountry: siteConfig.countryCode,
+      ...(siteConfig.postalCode ? { postalCode: siteConfig.postalCode } : {}),
+    },
     geo: { '@type': 'GeoCoordinates', latitude: parseFloat(siteConfig.latitude), longitude: parseFloat(siteConfig.longitude) },
     areaServed: { '@type': 'Country', name: 'Kuwait' },
-    openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], opens: '08:00', closes: '18:00' },
+    openingHours: siteConfig.openingHours,
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
     priceRange: '$$',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -138,6 +167,95 @@ export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>)
       name: item.name,
       item: `${siteConfig.url}${item.url}`,
     })),
+  };
+}
+
+export function getItemListSchema(
+  name: string,
+  items: Array<{ name: string; url: string; image?: string }>
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(item.url),
+      ...(item.image ? { image: absoluteUrl(item.image) } : {}),
+    })),
+  };
+}
+
+export function getGallerySchema(images: Array<{ src: string; alt: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Marine Upholstery Gallery',
+    description: 'Custom marine upholstery, jet ski seat and marine cover projects by Shakeel Marine in Kuwait.',
+    url: absoluteUrl('/gallery'),
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: images.map((image, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'ImageObject',
+          name: image.alt,
+          caption: image.alt,
+          contentUrl: absoluteUrl(image.src),
+          url: absoluteUrl(image.src),
+        },
+      })),
+    },
+  };
+}
+
+export function getProductSchema(product: {
+  name: string;
+  description: string;
+  slug: string;
+  images: Array<{ src: string }>;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: product.images.map((image) => absoluteUrl(image.src)),
+    url: absoluteUrl(`/products/${product.slug}`),
+    category: 'Marine accessories',
+    brand: { '@type': 'Brand', name: siteConfig.name },
+    manufacturer: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
+  };
+}
+
+export function getCaseStudySchema(study: {
+  title: string;
+  description: string;
+  slug: string;
+  service: string;
+  images: Array<{ src: string }>;
+}) {
+  const url = absoluteUrl(`/case-studies/${study.slug}`);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: study.title,
+    description: study.description,
+    image: study.images.map((image) => absoluteUrl(image.src)),
+    url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    articleSection: 'Marine upholstery case study',
+    about: { '@type': 'Service', name: study.service, provider: { '@type': 'LocalBusiness', name: siteConfig.name } },
+    author: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: { '@type': 'ImageObject', url: absoluteUrl(siteConfig.logo) },
+    },
   };
 }
 

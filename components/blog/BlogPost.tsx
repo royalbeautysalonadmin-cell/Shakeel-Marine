@@ -21,13 +21,15 @@ export function BlogPost({ post }: BlogPostProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(14,116,144,0.15),transparent_60%)]" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
-            <div className="flex items-center gap-2 text-white/40 text-sm mb-6">
-              <Link href="/" className="hover:text-ocean transition-colors">{t.blog.home}</Link>
-              <span>/</span>
-              <Link href="/blog" className="hover:text-ocean transition-colors">{t.blog.title}</Link>
-              <span>/</span>
-              <span className="text-white/60">{post.title}</span>
-            </div>
+            <nav aria-label="Breadcrumb" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-2 text-white/40 text-sm min-w-0">
+                <li><Link href="/" className="hover:text-ocean transition-colors">{t.blog.home}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li><Link href="/blog" className="hover:text-ocean transition-colors">{t.blog.title}</Link></li>
+                <li aria-hidden="true">/</li>
+                <li className="text-white/60 min-w-0 break-words">{post.title}</li>
+              </ol>
+            </nav>
             <div className="flex items-center gap-3 text-sm text-white/40 mb-4">
               <span>{post.date}</span>
               <span>•</span>

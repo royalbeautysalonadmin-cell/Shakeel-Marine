@@ -19,7 +19,7 @@ export function FloorMatSection() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-navy-deep relative">
                 <Image
-                  src="/images/super-jet-floor-mat/jetkeifloorcover1.jpg"
+                  src="/images/projects/super-jet-floor-mat-kit/floor-mat-01.jpeg"
                   alt="Super Jet Floor Mat Kit by Shakeel Marine"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

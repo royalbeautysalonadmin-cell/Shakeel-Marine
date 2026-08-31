@@ -58,7 +58,7 @@ export function BlogContent() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
             {filtered.map((post, i) => (
               <ScrollReveal key={post.slug} delay={i * 0.1}>
                 <Link
@@ -76,7 +76,7 @@ export function BlogContent() {
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6 min-w-0">
                     <div className="flex items-center gap-3 text-xs text-muted mb-3">
                       <span>{post.date}</span>
                       <span>•</span>

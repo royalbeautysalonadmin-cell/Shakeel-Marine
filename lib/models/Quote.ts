@@ -5,6 +5,7 @@ export interface IQuote extends Document {
   phone: string;
   whatsapp?: string;
   email: string;
+  country?: string;
   service: string;
   vesselType: string;
   vesselDetails?: string;
@@ -24,6 +25,7 @@ const QuoteSchema = new Schema<IQuote>(
     phone: { type: String, required: true, trim: true },
     whatsapp: { type: String, trim: true },
     email: { type: String, required: true, trim: true, lowercase: true },
+    country: { type: String, trim: true },
     service: { type: String, required: true },
     vesselType: { type: String, required: true },
     vesselDetails: { type: String, trim: true },

@@ -33,7 +33,7 @@ export function ProductsContent() {
 
       <section className="section-padding bg-off-white">
         <div className="max-w-7xl mx-auto container-padding">
-          <div className="grid grid-cols-2 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
             {products.map((product, i) => (
               <ScrollReveal key={product.slug} delay={i * 0.15}>
                 <Link
@@ -45,7 +45,7 @@ export function ProductsContent() {
                       src={product.images[0].src}
                       alt={product.images[0].alt}
                       fill
-                      sizes="(max-width: 640px) 50vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       placeholder="blur"
                       blurDataURL={SHIMMER}
                       className="object-cover group-hover:scale-110 transition-transform duration-700"

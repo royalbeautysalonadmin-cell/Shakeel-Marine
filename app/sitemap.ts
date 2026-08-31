@@ -5,6 +5,8 @@ import { blogPosts } from '@/data/blog';
 import { areas } from '@/data/areas';
 import { serviceAreas } from '@/data/service-areas';
 import { resources } from '@/data/resources';
+import { caseStudies } from '@/data/case-studies';
+import { galleryImages } from '@/data/gallery';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -14,6 +16,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
+    images: p.images.map((image) => `${base}${image.src}`),
+  }));
+
+  const caseStudyPages = caseStudies.map((study) => ({
+    url: `${base}/case-studies/${study.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+    images: study.images.map((image) => `${base}${image.src}`),
   }));
 
   const blogPages = blogPosts.map((p) => ({
@@ -56,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...serviceAreaPages,
     { url: `${base}/products`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     ...productPages,
-    { url: `${base}/gallery`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/gallery`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7, images: galleryImages.map((image) => `${base}${image.src}`) },
     { url: `${base}/before-after`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/how-it-works`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/testimonials`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
@@ -67,6 +78,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/resources`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     ...resourcePages,
     { url: `${base}/case-studies`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    ...caseStudyPages,
     { url: `${base}/appointment`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${base}/search`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${base}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },

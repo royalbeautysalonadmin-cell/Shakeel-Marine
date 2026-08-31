@@ -21,13 +21,14 @@ export const mainNavigation: NavItem[] = [
     label: 'Products',
     href: '/products',
     children: [
-      { label: 'Gallery', href: '/gallery' },
       { label: 'Before & After', href: '/before-after' },
       { label: 'Super Jet Floor Mat Kit', href: '/products/super-jet-floor-mat-kit' },
       { label: 'Jet Ski Custom Seats', href: '/products/jetski-custom-seats' },
       { label: 'Ship Covers', href: '/products/ship-covers' },
     ],
   },
+  { label: 'Design Your Vehicle', href: '/design-your-vehicle' },
+  { label: 'Gallery', href: '/gallery' },
   {
     label: 'Resources',
     href: '/resources',

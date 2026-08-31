@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const cloudinary = require('cloudinary').v2;
 const path = require('path');
 const fs = require('fs');

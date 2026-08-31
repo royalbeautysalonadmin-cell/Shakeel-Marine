@@ -96,7 +96,7 @@ export function SiteHeader() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
             {mainNavigation.map((item) => {
-              const navKey = item.href === '/' ? 'home' : item.href === '/services' ? 'services' : item.href === '/gallery' ? 'gallery' : item.href === '/about' ? 'about' : item.href === '/contact' ? 'contact' : null;
+              const navKey = item.href === '/' ? 'home' : item.href === '/services' ? 'services' : item.href === '/gallery' ? 'gallery' : item.href === '/about' ? 'about' : item.href === '/contact' ? 'contact' : item.href === '/design-your-vehicle' ? 'design' : null;
               const isOpen = activeDropdown === item.href;
               return (
               <div
@@ -107,7 +107,10 @@ export function SiteHeader() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 px-4 py-2 text-sm text-white/80 hover:text-white transition-colors font-medium"
+                  className={cn(
+                    'flex items-center gap-1 px-4 py-2 text-sm text-white/80 hover:text-white transition-colors font-medium',
+                    item.href === '/design-your-vehicle' && 'text-sand hover:text-sand bg-white/5 rounded-full'
+                  )}
                 >
                   {navKey ? t.nav[navKey] : item.label}
                   {item.children && (
@@ -194,7 +197,7 @@ export function SiteHeader() {
                   aria-label="Mobile navigation"
                 >
                   {mainNavigation.map((item) => {
-                    const navKey = item.href === '/' ? 'home' : item.href === '/services' ? 'services' : item.href === '/gallery' ? 'gallery' : item.href === '/about' ? 'about' : item.href === '/contact' ? 'contact' : null;
+                    const navKey = item.href === '/' ? 'home' : item.href === '/services' ? 'services' : item.href === '/gallery' ? 'gallery' : item.href === '/about' ? 'about' : item.href === '/contact' ? 'contact' : item.href === '/design-your-vehicle' ? 'design' : null;
                     return (
                     <div key={item.href}>
                       {item.children ? (
@@ -242,7 +245,10 @@ export function SiteHeader() {
                         <Link
                           href={item.href}
                           onClick={() => setMobileOpen(false)}
-                          className="block py-4 text-lg text-white/90 font-medium border-b border-white/5 hover:text-white transition-colors"
+                          className={cn(
+                            'block py-4 text-lg text-white/90 font-medium border-b border-white/5 hover:text-white transition-colors',
+                            item.href === '/design-your-vehicle' && 'text-sand'
+                          )}
                         >
                           {navKey ? t.nav[navKey] : item.label}
                         </Link>

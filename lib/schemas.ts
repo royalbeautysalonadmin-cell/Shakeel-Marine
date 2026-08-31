@@ -23,6 +23,7 @@ export const quoteFormSchema = z.object({
   phone: z.string().min(6, 'Please enter a valid phone number'),
   whatsapp: z.string().optional(),
   email: z.string().email('Please enter a valid email address'),
+  country: z.string().optional(),
   service: z.string().min(1, 'Please select a service'),
   vesselType: z.string().min(1, 'Please select a vessel type'),
   vesselDetails: z.string().optional(),
