@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useMemo } from 'react';
 import * as THREE from 'three';
 import type { VehicleConfiguration } from '@/data/configurator';
 import { colorOptions, designOptions, materialOptions } from '@/data/configurator';
@@ -12,117 +12,116 @@ function getColor(id: string, customColor: string, fallback: string) {
   return colorOptions.find((color) => color.id === id)?.hex ?? fallback;
 }
 
-function getMaterialProps(id: string) {
+function getMatProps(id: string) {
   const mat = materialOptions.find((m) => m.id === id) ?? materialOptions[0];
   return { roughness: mat.roughness, metalness: mat.metalness };
 }
 
 function getPattern(id: string) {
-  return designOptions.find((design) => design.id === id)?.pattern ?? 'plain';
+  return designOptions.find((d) => d.id === id)?.pattern ?? 'plain';
 }
 
-function PhotoTexture({ url }: { url: string }) {
-  const texture = useMemo(() => {
-    const tex = new THREE.TextureLoader().load(url);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    tex.wrapS = THREE.RepeatWrapping;
-    tex.wrapT = THREE.RepeatWrapping;
-    return tex;
+function PhotoTex({ url }: { url: string }) {
+  const tex = useMemo(() => {
+    const t = new THREE.TextureLoader().load(url);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.wrapS = THREE.RepeatWrapping;
+    t.wrapT = THREE.RepeatWrapping;
+    return t;
   }, [url]);
-  return <primitive attach="map" object={texture} />;
+  return <primitive attach="map" object={tex} />;
 }
 
-function PhysicalSurface({ color, config, photoUrl }: { color: string; config: VehicleConfiguration; photoUrl?: string | null }) {
-  const mat = getMaterialProps(config.material);
+function Upholstery({ color, config, photo }: { color: string; config: VehicleConfiguration; photo?: string | null }) {
+  const m = getMatProps(config.material);
   return (
     <meshPhysicalMaterial
       color={color}
-      roughness={mat.roughness}
-      metalness={mat.metalness}
-      clearcoat={0.15}
+      roughness={m.roughness}
+      metalness={m.metalness}
+      clearcoat={0.12}
       clearcoatRoughness={0.4}
-      sheen={0.2}
+      sheen={0.25}
       sheenRoughness={0.5}
       sheenColor={color}
     >
-      {photoUrl && <PhotoTexture url={photoUrl} />}
+      {photo && <PhotoTex url={photo} />}
     </meshPhysicalMaterial>
   );
 }
 
-function BodyShell({ color, metalness = 0.32 }: { color: string; metalness?: number }) {
+function Paint({ color, clearcoat = 0.75, metalness = 0.4 }: { color: string; clearcoat?: number; metalness?: number }) {
   return (
     <meshPhysicalMaterial
       color={color}
-      roughness={0.22}
+      roughness={0.18}
       metalness={metalness}
-      clearcoat={0.8}
-      clearcoatRoughness={0.12}
-      envMapIntensity={1.2}
-    />
-  );
-}
-
-function GlassSurface() {
-  return (
-    <meshPhysicalMaterial
-      color="#7ec8d8"
-      roughness={0.05}
-      metalness={0.1}
-      transmission={0.6}
-      thickness={0.5}
-      clearcoat={1}
-      clearcoatRoughness={0.05}
-      ior={1.52}
-      envMapIntensity={1.5}
-    />
-  );
-}
-
-function ChromeSurface({ color = '#c0c8cc' }: { color?: string }) {
-  return (
-    <meshPhysicalMaterial
-      color={color}
-      roughness={0.08}
-      metalness={0.95}
-      clearcoat={0.5}
+      clearcoat={clearcoat}
       clearcoatRoughness={0.1}
-      envMapIntensity={2}
+      envMapIntensity={1.4}
     />
   );
 }
 
-function RubberSurface() {
+function Glass() {
   return (
     <meshPhysicalMaterial
-      color="#111820"
-      roughness={0.88}
-      metalness={0.02}
-      clearcoat={0.05}
+      color="#6ec4d8"
+      roughness={0.02}
+      metalness={0.05}
+      transmission={0.7}
+      thickness={0.4}
+      clearcoat={1}
+      clearcoatRoughness={0.03}
+      ior={1.52}
+      envMapIntensity={1.8}
     />
   );
 }
 
-function AccentDetails({ config, position = [0, 0, 0] as [number, number, number], scale = [1, 1, 1] as [number, number, number] }: { config: VehicleConfiguration; position?: [number, number, number]; scale?: [number, number, number] }) {
+function Chrome({ tint }: { tint?: string }) {
+  return (
+    <meshPhysicalMaterial
+      color={tint || '#c0c8cc'}
+      roughness={0.06}
+      metalness={0.96}
+      clearcoat={0.6}
+      clearcoatRoughness={0.08}
+      envMapIntensity={2.2}
+    />
+  );
+}
+
+function Rubber() {
+  return (
+    <meshPhysicalMaterial color="#10161a" roughness={0.92} metalness={0.01} clearcoat={0.03} />
+  );
+}
+
+/* ─── Accent Details ──────────────────────────────────── */
+
+function Stitching({
+  config,
+  position = [0, 0, 0] as [number, number, number],
+  scale = [1, 1, 1] as [number, number, number],
+}: {
+  config: VehicleConfiguration;
+  position?: [number, number, number];
+  scale?: [number, number, number];
+}) {
   const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
-  const stitching = getColor(config.stitchingColor, config.customStitchingColor, '#f5f7f8');
+  const stitch = getColor(config.stitchingColor, config.customStitchingColor, '#f5f7f8');
   const pattern = getPattern(config.design);
 
   if (pattern === 'stripe') {
     return (
       <group position={position} scale={scale}>
-        <mesh position={[-0.38, 0.03, 0]} rotation={[0, 0, -0.22]}>
-          <boxGeometry args={[0.08, 0.04, 1.35]} />
-          <meshPhysicalMaterial color={accent} roughness={0.35} metalness={0.12} clearcoat={0.3} clearcoatRoughness={0.2} />
-        </mesh>
-        <mesh position={[0, 0.035, 0]} rotation={[0, 0, -0.22]}>
-          <boxGeometry args={[0.08, 0.04, 1.35]} />
-          <meshPhysicalMaterial color={stitching} roughness={0.55} metalness={0.05} />
-        </mesh>
-        <mesh position={[0.38, 0.03, 0]} rotation={[0, 0, -0.22]}>
-          <boxGeometry args={[0.08, 0.04, 1.35]} />
-          <meshPhysicalMaterial color={accent} roughness={0.35} metalness={0.12} clearcoat={0.3} clearcoatRoughness={0.2} />
-        </mesh>
+        {[-0.42, 0, 0.42].map((x, i) => (
+          <mesh key={x} position={[x, 0.012, 0]} rotation={[0, 0, -0.18]}>
+            <boxGeometry args={[0.06, 0.018, 1.4]} />
+            <meshPhysicalMaterial color={i === 1 ? stitch : accent} roughness={0.4} metalness={0.08} clearcoat={0.2} />
+          </mesh>
+        ))}
       </group>
     );
   }
@@ -130,10 +129,10 @@ function AccentDetails({ config, position = [0, 0, 0] as [number, number, number
   if (pattern === 'diamond') {
     return (
       <group position={position} scale={scale}>
-        {[-0.6, -0.2, 0.2, 0.6].map((x) => (
-          <mesh key={x} position={[x, 0.035, 0]} rotation={[0, 0, Math.PI / 4]}>
-            <boxGeometry args={[0.07, 0.04, 1.15]} />
-            <meshPhysicalMaterial color={stitching} roughness={0.5} metalness={0.03} clearcoat={0.15} />
+        {[-0.55, -0.18, 0.18, 0.55].map((x) => (
+          <mesh key={x} position={[x, 0.012, 0]} rotation={[0, 0, Math.PI / 4]}>
+            <boxGeometry args={[0.05, 0.018, 1.1]} />
+            <meshPhysicalMaterial color={stitch} roughness={0.5} metalness={0.02} clearcoat={0.12} />
           </mesh>
         ))}
       </group>
@@ -143,10 +142,10 @@ function AccentDetails({ config, position = [0, 0, 0] as [number, number, number
   if (pattern === 'ribbed') {
     return (
       <group position={position} scale={scale}>
-        {[-0.6, -0.3, 0, 0.3, 0.6].map((z) => (
-          <mesh key={z} position={[0, 0.04, z]}>
-            <boxGeometry args={[1.15, 0.05, 0.035]} />
-            <meshPhysicalMaterial color={stitching} roughness={0.6} metalness={0.02} clearcoat={0.1} />
+        {[-0.55, -0.28, 0, 0.28, 0.55].map((z) => (
+          <mesh key={z} position={[0, 0.014, z]}>
+            <boxGeometry args={[1.2, 0.022, 0.025]} />
+            <meshPhysicalMaterial color={stitch} roughness={0.6} metalness={0.02} />
           </mesh>
         ))}
       </group>
@@ -156,10 +155,10 @@ function AccentDetails({ config, position = [0, 0, 0] as [number, number, number
   if (pattern === 'carbon') {
     return (
       <group position={position} scale={scale}>
-        {[-0.45, -0.15, 0.15, 0.45].map((x) => (
-          <mesh key={x} position={[x, 0.035, 0]} rotation={[0, 0, -Math.PI / 4]}>
-            <boxGeometry args={[0.035, 0.04, 1.25]} />
-            <meshPhysicalMaterial color={accent} roughness={0.25} metalness={0.35} clearcoat={0.5} clearcoatRoughness={0.15} />
+        {[-0.42, -0.14, 0.14, 0.42].map((x) => (
+          <mesh key={x} position={[x, 0.012, 0]} rotation={[0, 0, -Math.PI / 4]}>
+            <boxGeometry args={[0.025, 0.018, 1.2]} />
+            <meshPhysicalMaterial color={accent} roughness={0.22} metalness={0.35} clearcoat={0.5} />
           </mesh>
         ))}
       </group>
@@ -168,336 +167,899 @@ function AccentDetails({ config, position = [0, 0, 0] as [number, number, number
 
   return (
     <mesh position={position} scale={scale}>
-      <boxGeometry args={[1.25, 0.035, 0.035]} />
-      <meshPhysicalMaterial color={stitching} roughness={0.55} metalness={0.03} />
+      <boxGeometry args={[1.2, 0.015, 0.015]} />
+      <meshPhysicalMaterial color={stitch} roughness={0.5} metalness={0.02} />
     </mesh>
   );
 }
 
-function JetSkiModel({ config }: VehicleModelProps) {
+/* ─── Jet Ski ─────────────────────────────────────────── */
+
+function JetSki({ config }: VehicleModelProps) {
   const main = getColor(config.mainColor, config.customMainColor, '#111827');
   const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
   const seatActive = config.product === 'jet-ski-seat';
   const matActive = config.product === 'super-jet-floor-mat-kit';
-  const seatColor = seatActive ? main : '#242c32';
-  const matColor = matActive ? main : '#193542';
+  const seatColor = seatActive ? main : '#1c262e';
+  const matColor = matActive ? main : '#162530';
 
-  const jetSkiRef = useRef<THREE.Group>(null);
+  const hullShape = useMemo(() => {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, -2.8);
+    shape.bezierCurveTo(0.35, -2.8, 1.1, -2.6, 1.45, -2.0);
+    shape.bezierCurveTo(1.7, -1.5, 1.82, -0.6, 1.82, 0);
+    shape.bezierCurveTo(1.82, 0.6, 1.7, 1.5, 1.45, 2.0);
+    shape.bezierCurveTo(1.1, 2.6, 0.35, 2.8, 0, 2.8);
+    shape.bezierCurveTo(-0.35, 2.8, -1.1, 2.6, -1.45, 2.0);
+    shape.bezierCurveTo(-1.7, 1.5, -1.82, 0.6, -1.82, 0);
+    shape.bezierCurveTo(-1.82, -0.6, -1.7, -1.5, -1.45, -2.0);
+    shape.bezierCurveTo(-1.1, -2.6, -0.35, -2.8, 0, -2.8);
+    return shape;
+  }, []);
+
+  const deckShape = useMemo(() => {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, -2.5);
+    shape.bezierCurveTo(0.3, -2.5, 0.95, -2.35, 1.2, -1.8);
+    shape.bezierCurveTo(1.42, -1.35, 1.52, -0.5, 1.52, 0);
+    shape.bezierCurveTo(1.52, 0.5, 1.42, 1.35, 1.2, 1.8);
+    shape.bezierCurveTo(0.95, 2.35, 0.3, 2.5, 0, 2.5);
+    shape.bezierCurveTo(-0.3, 2.5, -0.95, 2.35, -1.2, 1.8);
+    shape.bezierCurveTo(-1.42, 1.35, -1.52, 0.5, -1.52, 0);
+    shape.bezierCurveTo(-1.52, -0.5, -1.42, -1.35, -1.2, -1.8);
+    shape.bezierCurveTo(-0.95, -2.35, -0.3, -2.5, 0, -2.5);
+    return shape;
+  }, []);
+
+  const hullExtrudeSettings = useMemo(() => ({
+    steps: 1,
+    depth: 0.42,
+    bevelEnabled: true,
+    bevelThickness: 0.18,
+    bevelSize: 0.12,
+    bevelSegments: 8,
+  }), []);
 
   return (
-    <group ref={jetSkiRef} scale={[1, 1, 1]}>
-      {/* Hull */}
-      <mesh position={[0, -0.38, 0]} scale={[2.25, 0.42, 3.35]} castShadow receiveShadow>
-        <sphereGeometry args={[1, 64, 32]} />
-        <BodyShell color="#dbe5e7" />
+    <group rotation={[0, 0, 0]} scale={[1, 1, 1]}>
+      {/* Hull — shaped extrusion */}
+      <mesh position={[0, 0.08, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
+        <extrudeGeometry args={[hullShape, hullExtrudeSettings]} />
+        <Paint color="#cdd8db" metalness={0.35} />
       </mesh>
-      {/* Top deck */}
-      <mesh position={[0, 0.02, 0.28]} scale={[2.02, 0.2, 2.92]} castShadow>
-        <sphereGeometry args={[1, 64, 24]} />
-        <meshPhysicalMaterial color="#153344" roughness={0.38} metalness={0.22} clearcoat={0.6} clearcoatRoughness={0.15} envMapIntensity={1.1} />
+
+      {/* Deck surface */}
+      <mesh position={[0, 0.42, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <extrudeGeometry args={[deckShape, { steps: 1, depth: 0.08, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.04, bevelSegments: 4 }]} />
+        <Paint color="#132e42" clearcoat={0.85} />
       </mesh>
-      {/* Floor mat area */}
-      <mesh position={[0, 0.2, 0.75]} scale={[1.55, 0.14, 1.6]} receiveShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={matColor} config={config} photoUrl={matActive ? config.userPhoto : null} />
+
+      {/* Bow tip — pointed nose */}
+      <mesh position={[0, 0.38, -2.55]} castShadow>
+        <coneGeometry args={[0.18, 0.65, 16]} />
+        <Paint color="#cdd8db" metalness={0.35} />
       </mesh>
-      {/* Side footwell L */}
-      <mesh position={[-1.63, 0.22, 0.62]} scale={[0.22, 0.13, 1.75]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={matColor} config={config} photoUrl={matActive ? config.userPhoto : null} />
+
+      {/* Footwell / floor mat area */}
+      <mesh position={[0, 0.38, 0.6]} receiveShadow>
+        <boxGeometry args={[1.35, 0.04, 2.2]} />
+        <Upholstery color={matColor} config={config} photo={matActive ? config.userPhoto : null} />
       </mesh>
-      {/* Side footwell R */}
-      <mesh position={[1.63, 0.22, 0.62]} scale={[0.22, 0.13, 1.75]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={matColor} config={config} photoUrl={matActive ? config.userPhoto : null} />
+
+      {/* Footwell left wall */}
+      <mesh position={[-0.72, 0.42, 0.6]}>
+        <boxGeometry args={[0.06, 0.14, 2.2]} />
+        <Upholstery color={matColor} config={config} />
       </mesh>
-      {/* Seat */}
-      <mesh position={[0, 0.47, -0.9]} scale={[0.76, 0.23, 1.45]} castShadow>
-        <capsuleGeometry args={[0.58, 1.35, 16, 32]} />
-        <PhysicalSurface color={seatColor} config={config} photoUrl={seatActive ? config.userPhoto : null} />
+
+      {/* Footwell right wall */}
+      <mesh position={[0.72, 0.42, 0.6]}>
+        <boxGeometry args={[0.06, 0.14, 2.2]} />
+        <Upholstery color={matColor} config={config} />
       </mesh>
-      <AccentDetails config={config} position={[0, 0.72, -0.9]} scale={[0.62, 1, 0.88]} />
-      {/* Handlebar housing */}
-      <mesh position={[0, 0.76, 0.56]} scale={[0.68, 0.48, 0.72]} castShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshPhysicalMaterial color="#202a30" roughness={0.28} metalness={0.28} clearcoat={0.7} clearcoatRoughness={0.12} />
+
+      {/* Front cowl / hood */}
+      <mesh position={[0, 0.62, -1.1]} castShadow>
+        <boxGeometry args={[1.1, 0.22, 1.3]} />
+        <Paint color="#1a3548" clearcoat={0.9} />
       </mesh>
-      {/* Handlebar bar */}
-      <mesh position={[0, 1.26, 0.56]} rotation={[0.1, 0, 0]}>
-        <boxGeometry args={[0.1, 0.1, 1.9]} />
-        <ChromeSurface />
+
+      {/* Hood vent detail */}
+      <mesh position={[0, 0.76, -1.1]}>
+        <boxGeometry args={[0.4, 0.03, 0.6]} />
+        <meshPhysicalMaterial color="#0c1e2e" roughness={0.5} metalness={0.3} clearcoat={0.4} />
       </mesh>
-      {/* Grips */}
-      <mesh position={[-0.95, 1.25, 0.56]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.08, 0.08, 0.72, 24]} />
+
+      {/* Windscreen / instrument panel */}
+      <mesh position={[0, 0.72, -0.52]} castShadow>
+        <boxGeometry args={[0.85, 0.28, 0.35]} />
+        <Paint color="#1a3548" />
+      </mesh>
+
+      {/* Windscreen glass */}
+      <mesh position={[0, 0.92, -0.48]} rotation={[0.25, 0, 0]}>
+        <boxGeometry args={[0.72, 0.22, 0.04]} />
+        <Glass />
+      </mesh>
+
+      {/* Gauge cluster */}
+      <mesh position={[0, 0.78, -0.38]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.03, 20]} />
+        <meshPhysicalMaterial color="#0a0a0a" roughness={0.15} metalness={0.1} clearcoat={1} />
+      </mesh>
+
+      {/* Seat — main rider */}
+      <mesh position={[0, 0.68, 0.3]} castShadow>
+        <capsuleGeometry args={[0.28, 1.4, 16, 32]} />
+        <Upholstery color={seatColor} config={config} photo={seatActive ? config.userPhoto : null} />
+      </mesh>
+
+      {/* Seat — rear passenger step */}
+      <mesh position={[0, 0.72, 1.65]} castShadow>
+        <capsuleGeometry args={[0.22, 0.5, 12, 24]} />
+        <Upholstery color={seatColor} config={config} />
+      </mesh>
+
+      <Stitching config={config} position={[0, 0.96, 0.3]} scale={[0.55, 1, 0.9]} />
+
+      {/* Handlebar stem */}
+      <mesh position={[0, 0.92, -0.55]} rotation={[0.15, 0, 0]}>
+        <cylinderGeometry args={[0.045, 0.045, 0.42, 16]} />
+        <Chrome />
+      </mesh>
+
+      {/* Handlebar crossbar */}
+      <mesh position={[0, 1.08, -0.5]} rotation={[0.12, 0, 0]}>
+        <cylinderGeometry args={[0.035, 0.035, 1.05, 16]} />
+        <Chrome />
+      </mesh>
+
+      {/* Left grip */}
+      <mesh position={[-0.55, 1.08, -0.48]} rotation={[0.12, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.04, 0.04, 0.32, 16]} />
         <meshPhysicalMaterial color={accent} roughness={0.55} metalness={0.12} clearcoat={0.2} />
       </mesh>
-      <mesh position={[0.95, 1.25, 0.56]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.08, 0.08, 0.72, 24]} />
+
+      {/* Right grip */}
+      <mesh position={[0.55, 1.08, -0.48]} rotation={[0.12, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.04, 0.04, 0.32, 16]} />
         <meshPhysicalMaterial color={accent} roughness={0.55} metalness={0.12} clearcoat={0.2} />
       </mesh>
-      {/* Mirror bar */}
-      <mesh position={[0, 1.02, 0.56]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.06, 0.06, 2.15, 20]} />
-        <ChromeSurface />
+
+      {/* Left mirror */}
+      <mesh position={[-0.62, 1.12, -0.48]}>
+        <sphereGeometry args={[0.06, 16, 16]} />
+        <meshPhysicalMaterial color="#0a0a0a" roughness={0.03} metalness={0.95} clearcoat={1} envMapIntensity={2.8} />
       </mesh>
-      {/* Mirrors */}
-      <mesh position={[-1.08, 1.15, 0.56]}>
-        <sphereGeometry args={[0.08, 16, 16]} />
-        <meshPhysicalMaterial color="#1a1a1a" roughness={0.05} metalness={0.9} clearcoat={1} clearcoatRoughness={0.05} envMapIntensity={2.5} />
+      <mesh position={[-0.58, 1.06, -0.48]} rotation={[0, 0, 0.3]}>
+        <cylinderGeometry args={[0.012, 0.012, 0.12, 10]} />
+        <Chrome />
       </mesh>
-      <mesh position={[1.08, 1.15, 0.56]}>
-        <sphereGeometry args={[0.08, 16, 16]} />
-        <meshPhysicalMaterial color="#1a1a1a" roughness={0.05} metalness={0.9} clearcoat={1} clearcoatRoughness={0.05} envMapIntensity={2.5} />
+
+      {/* Right mirror */}
+      <mesh position={[0.62, 1.12, -0.48]}>
+        <sphereGeometry args={[0.06, 16, 16]} />
+        <meshPhysicalMaterial color="#0a0a0a" roughness={0.03} metalness={0.95} clearcoat={1} envMapIntensity={2.8} />
       </mesh>
-      {/* Seat accent stitching */}
-      {seatActive && <AccentDetails config={config} position={[0, 0.72, -0.9]} scale={[0.62, 1, 0.88]} />}
-      {/* Mat accent stitching */}
-      {matActive && <AccentDetails config={config} position={[0, 0.36, 0.72]} scale={[1.1, 1, 1.55]} />}
+      <mesh position={[0.58, 1.06, -0.48]} rotation={[0, 0, -0.3]}>
+        <cylinderGeometry args={[0.012, 0.012, 0.12, 10]} />
+        <Chrome />
+      </mesh>
+
+      {/* Rear platform / swim step */}
+      <mesh position={[0, 0.32, 2.55]}>
+        <boxGeometry args={[1.1, 0.06, 0.55]} />
+        <meshPhysicalMaterial color="#2a3842" roughness={0.6} metalness={0.15} clearcoat={0.3} />
+      </mesh>
+
+      {/* Rear platform mat */}
+      <mesh position={[0, 0.36, 2.55]} receiveShadow>
+        <boxGeometry args={[0.95, 0.025, 0.42]} />
+        <Upholstery color={matColor} config={config} />
+      </mesh>
+
+      {/* Exhaust outlet */}
+      <mesh position={[0, 0.18, 2.75]} rotation={[Math.PI / 2, 0, 0]}>
+        <cylinderGeometry args={[0.06, 0.07, 0.08, 16]} />
+        <Chrome tint="#888" />
+      </mesh>
+
+      {/* Side accent trim L */}
+      <mesh position={[-1.15, 0.32, 0.2]}>
+        <boxGeometry args={[0.035, 0.08, 2.6]} />
+        <meshPhysicalMaterial color={accent} roughness={0.35} metalness={0.15} clearcoat={0.3} />
+      </mesh>
+
+      {/* Side accent trim R */}
+      <mesh position={[1.15, 0.32, 0.2]}>
+        <boxGeometry args={[0.035, 0.08, 2.6]} />
+        <meshPhysicalMaterial color={accent} roughness={0.35} metalness={0.15} clearcoat={0.3} />
+      </mesh>
+
+      {/* Front accent stripe */}
+      <mesh position={[0, 0.52, -1.7]}>
+        <boxGeometry args={[0.9, 0.03, 0.03]} />
+        <meshPhysicalMaterial color={accent} roughness={0.35} metalness={0.15} clearcoat={0.3} />
+      </mesh>
+
+      {/* Tow hook */}
+      <mesh position={[0, 0.22, -2.75]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.06, 0.018, 10, 20]} />
+        <Chrome />
+      </mesh>
+
+      {/* Cleats L */}
+      <mesh position={[-0.85, 0.5, -0.1]} rotation={[Math.PI / 2, 0, 0]}>
+        <cylinderGeometry args={[0.025, 0.025, 0.08, 12]} />
+        <Chrome />
+      </mesh>
+
+      {/* Cleats R */}
+      <mesh position={[0.85, 0.5, -0.1]} rotation={[Math.PI / 2, 0, 0]}>
+        <cylinderGeometry args={[0.025, 0.025, 0.08, 12]} />
+        <Chrome />
+      </mesh>
+
+      {/* Seat grab handles */}
+      <mesh position={[-0.38, 0.82, 1.7]}>
+        <torusGeometry args={[0.04, 0.012, 8, 16, Math.PI]} />
+        <Chrome />
+      </mesh>
+      <mesh position={[0.38, 0.82, 1.7]}>
+        <torusGeometry args={[0.04, 0.012, 8, 16, Math.PI]} />
+        <Chrome />
+      </mesh>
+
+      {/* Mat stitching accent */}
+      {matActive && <Stitching config={config} position={[0, 0.42, 0.6]} scale={[1.0, 1, 1.8]} />}
     </group>
   );
 }
 
-function YachtModel({ config }: VehicleModelProps) {
+/* ─── Yacht ───────────────────────────────────────────── */
+
+function Yacht({ config }: VehicleModelProps) {
   const main = getColor(config.mainColor, config.customMainColor, '#111827');
   const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
   const seatsActive = config.product === 'yacht-seats';
   const coverActive = config.product === 'yacht-covers';
 
+  const hullShape = useMemo(() => {
+    const shape = new THREE.Shape();
+    shape.moveTo(0, -3.8);
+    shape.bezierCurveTo(0.5, -3.8, 1.6, -3.4, 1.95, -2.5);
+    shape.bezierCurveTo(2.2, -1.8, 2.35, -0.6, 2.35, 0);
+    shape.bezierCurveTo(2.35, 0.6, 2.2, 1.8, 1.95, 2.5);
+    shape.bezierCurveTo(1.6, 3.4, 0.5, 3.8, 0, 3.8);
+    shape.bezierCurveTo(-0.5, 3.8, -1.6, 3.4, -1.95, 2.5);
+    shape.bezierCurveTo(-2.2, 1.8, -2.35, 0.6, -2.35, 0);
+    shape.bezierCurveTo(-2.35, -0.6, -2.2, -1.8, -1.95, -2.5);
+    shape.bezierCurveTo(-1.6, -3.4, -0.5, -3.8, 0, -3.8);
+    return shape;
+  }, []);
+
   return (
-    <group rotation={[0, -0.18, 0]}>
+    <group rotation={[0, -0.15, 0]}>
       {/* Hull */}
-      <mesh position={[0, -0.52, 0]} scale={[3.4, 0.58, 1.5]} castShadow receiveShadow>
-        <sphereGeometry args={[1, 64, 32]} />
-        <BodyShell color="#e5ebec" metalness={0.25} />
+      <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
+        <extrudeGeometry args={[hullShape, { steps: 1, depth: 0.65, bevelEnabled: true, bevelThickness: 0.25, bevelSize: 0.18, bevelSegments: 10 }]} />
+        <Paint color="#dce4e6" metalness={0.28} />
       </mesh>
-      {/* Deck stripe */}
-      <mesh position={[0, -0.02, 0]} scale={[3.08, 0.16, 1.25]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshPhysicalMaterial color="#173448" roughness={0.42} metalness={0.22} clearcoat={0.5} clearcoatRoughness={0.18} />
+
+      {/* Waterline stripe */}
+      <mesh position={[0, -0.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <extrudeGeometry args={[hullShape, { steps: 1, depth: 0.06, bevelEnabled: false }]} />
+        <Paint color="#173448" />
       </mesh>
+
+      {/* Deck */}
+      <mesh position={[0, 0.52, 0]}>
+        <boxGeometry args={[3.6, 0.08, 6.8]} />
+        <meshPhysicalMaterial color="#e8eeef" roughness={0.25} metalness={0.2} clearcoat={0.35} />
+      </mesh>
+
       {/* Cabin */}
-      <mesh position={[0.78, 0.58, 0]} scale={[1.55, 0.78, 1.05]} castShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshPhysicalMaterial color="#d8e5e7" roughness={0.3} metalness={0.18} clearcoat={0.4} clearcoatRoughness={0.2} />
+      <mesh position={[0.8, 1.15, 0]} castShadow>
+        <boxGeometry args={[1.8, 0.95, 3.2]} />
+        <Paint color="#d4e0e3" clearcoat={0.5} />
       </mesh>
+
+      {/* Cabin roof */}
+      <mesh position={[0.8, 1.7, 0]}>
+        <boxGeometry args={[1.95, 0.08, 3.4]} />
+        <Paint color="#c8d6da" />
+      </mesh>
+
       {/* Windows */}
-      <mesh position={[0.78, 0.6, 0]} scale={[1.24, 0.45, 1.08]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <GlassSurface />
+      <mesh position={[1.72, 1.2, 0]}>
+        <boxGeometry args={[0.04, 0.55, 2.8]} />
+        <Glass />
       </mesh>
-      {/* Seating area */}
-      <mesh position={[-1.03, 0.46, 0]} scale={[1.06, 0.18, 1.03]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={seatsActive ? main : '#263944'} config={config} photoUrl={seatsActive ? config.userPhoto : null} />
+      <mesh position={[-0.12, 1.2, 0]}>
+        <boxGeometry args={[0.04, 0.55, 2.8]} />
+        <Glass />
       </mesh>
-      {/* Chairs */}
-      {[[-1.67, 0.46, 0.25], [-1.67, 0.46, -0.25]].map(([x, y, z]) => (
-        <mesh key={`${x}-${z}`} position={[x, y, z]} scale={[0.28, 0.18, 0.35]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <PhysicalSurface color={seatsActive ? accent : '#263944'} config={config} />
+
+      {/* Window pillars */}
+      {[-1.1, -0.4, 0.3, 1.0].map((z) => (
+        <mesh key={z} position={[0.8, 1.2, z]}>
+          <boxGeometry args={[1.82, 0.6, 0.06]} />
+          <Paint color="#b8c8cc" />
         </mesh>
       ))}
-      {/* Cover/canopy */}
+
+      {/* Seating area */}
+      <mesh position={[-0.8, 0.62, 0]}>
+        <boxGeometry args={[1.6, 0.16, 3.2]} />
+        <Upholstery color={seatsActive ? main : '#263944'} config={config} photo={seatsActive ? config.userPhoto : null} />
+      </mesh>
+
+      {/* Seating backrests */}
+      {[-1.3, 0, 1.3].map((z) => (
+        <mesh key={z} position={[-0.8, 0.82, z]}>
+          <boxGeometry args={[0.08, 0.28, 0.9]} />
+          <Upholstery color={seatsActive ? accent : '#263944'} config={config} />
+        </mesh>
+      ))}
+
+      {/* Seating seat cushions */}
+      {[-1.3, 0, 1.3].map((z) => (
+        <mesh key={z} position={[-0.8, 0.72, z]}>
+          <boxGeometry args={[0.75, 0.06, 0.85]} />
+          <Upholstery color={seatsActive ? main : '#2a3f4a'} config={config} />
+        </mesh>
+      ))}
+
+      {/* Bimini top / cover */}
       {coverActive && (
-        <mesh position={[0.15, 1.45, 0]} scale={[2.4, 0.08, 1.2]} rotation={[0, 0, -0.08]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <PhysicalSurface color={main} config={config} photoUrl={config.userPhoto} />
+        <mesh position={[-0.6, 2.05, 0]} rotation={[0, 0, -0.04]}>
+          <boxGeometry args={[2.8, 0.05, 3.4]} />
+          <Upholstery color={main} config={config} photo={config.userPhoto} />
         </mesh>
       )}
-      {/* Canopy poles */}
-      <mesh position={[0.15, 1.07, -0.86]} rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.04, 0.04, 2.2, 16]} />
-        <ChromeSurface color={coverActive ? accent : '#bbc8cb'} />
+
+      {/* Bimini supports */}
+      {[[-1.85, -1.5], [-1.85, 1.5], [0.65, -1.5], [0.65, 1.5]].map(([x, z]) => (
+        <mesh key={`${x}-${z}`} position={[x, 1.25, z]}>
+          <cylinderGeometry args={[0.025, 0.025, 1.6, 10]} />
+          <Chrome />
+        </mesh>
+      ))}
+
+      {/* Bow pulpit */}
+      <mesh position={[0, 0.58, -3.55]}>
+        <boxGeometry args={[0.6, 0.06, 0.8]} />
+        <Chrome />
       </mesh>
-      {seatsActive && <AccentDetails config={config} position={[-1.03, 0.58, 0]} scale={[0.8, 1, 0.8]} />}
+
+      {/* Railing */}
+      <mesh position={[0, 0.9, -2.8]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.02, 0.008, 8, 24]} />
+        <Chrome />
+      </mesh>
+
+      {/* Cleats */}
+      {[-1.9, -1.0, 0, 1.0, 1.9].map((z) => (
+        <mesh key={z} position={[1.85, 0.58, z]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.02, 0.02, 0.08, 10]} />
+          <Chrome />
+        </mesh>
+      ))}
+
+      <Stitching config={config} position={[-0.8, 0.72, 0]} scale={[0.6, 1, 2.4]} />
     </group>
   );
 }
 
-function ShipModel({ config }: VehicleModelProps) {
+/* ─── Ship ────────────────────────────────────────────── */
+
+function Ship({ config }: VehicleModelProps) {
   const main = getColor(config.mainColor, config.customMainColor, '#111827');
   const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
   const seatsActive = config.product === 'ship-seats';
   const coverActive = config.product === 'ship-covers';
 
   return (
-    <group rotation={[0, -0.2, 0]}>
+    <group rotation={[0, -0.18, 0]}>
       {/* Hull */}
-      <mesh position={[0, -0.65, 0]} scale={[4.4, 0.7, 1.6]} castShadow receiveShadow>
-        <sphereGeometry args={[1, 64, 32]} />
-        <BodyShell color="#193448" metalness={0.28} />
+      <mesh position={[0, -0.2, 0]} castShadow receiveShadow>
+        <boxGeometry args={[3.2, 1.0, 7.2]} />
+        <Paint color="#193448" metalness={0.3} />
       </mesh>
-      {/* Deck */}
-      <mesh position={[0, 0, 0]} scale={[4.05, 0.2, 1.28]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshPhysicalMaterial color="#dbe4e6" roughness={0.28} metalness={0.24} clearcoat={0.3} clearcoatRoughness={0.2} />
+
+      {/* Bow wedge */}
+      <mesh position={[0, -0.2, -4.1]} castShadow>
+        <coneGeometry args={[1.6, 1.6, 4]} />
+        <Paint color="#193448" metalness={0.3} />
       </mesh>
-      {/* Bridge */}
-      <mesh position={[1.2, 0.72, 0]} scale={[1.25, 1.3, 1.1]} castShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshPhysicalMaterial color="#23495b" roughness={0.42} metalness={0.26} clearcoat={0.35} clearcoatRoughness={0.2} />
+
+      {/* Deck plate */}
+      <mesh position={[0, 0.32, 0]}>
+        <boxGeometry args={[3.0, 0.08, 6.8]} />
+        <meshPhysicalMaterial color="#d8e2e5" roughness={0.28} metalness={0.22} clearcoat={0.3} />
       </mesh>
+
+      {/* Bridge superstructure */}
+      <mesh position={[1.2, 1.15, -0.5]} castShadow>
+        <boxGeometry args={[1.6, 1.4, 2.8]} />
+        <Paint color="#1f4058" clearcoat={0.4} />
+      </mesh>
+
       {/* Bridge windows */}
-      <mesh position={[1.2, 0.78, 0]} scale={[0.92, 0.62, 1.12]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <GlassSurface />
+      <mesh position={[2.02, 1.2, -0.5]}>
+        <boxGeometry args={[0.04, 0.65, 2.4]} />
+        <Glass />
       </mesh>
-      {/* Seating rows */}
-      {[-1.2, -0.45, 0.3].map((x) => (
-        <mesh key={x} position={[x, 0.35, 0]} scale={[0.55, 0.22, 0.92]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <PhysicalSurface color={seatsActive ? main : '#364b54'} config={config} photoUrl={seatsActive ? config.userPhoto : null} />
+
+      {/* Bridge roof */}
+      <mesh position={[1.2, 1.92, -0.5]}>
+        <boxGeometry args={[1.75, 0.06, 3.0]} />
+        <Paint color="#1a3548" />
+      </mesh>
+
+      {/* Bridge window dividers */}
+      {[-1.3, -0.6, 0.1, 0.8].map((z) => (
+        <mesh key={z} position={[1.2, 1.2, z]}>
+          <boxGeometry args={[1.62, 0.68, 0.06]} />
+          <Paint color="#162e40" />
         </mesh>
       ))}
-      {/* Cover */}
-      {coverActive && (
-        <mesh position={[-0.55, 1.12, 0]} scale={[2.75, 0.08, 1.22]} rotation={[0, 0, 0.05]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <PhysicalSurface color={main} config={config} photoUrl={config.userPhoto} />
-        </mesh>
-      )}
-      {/* Mast / antenna */}
-      <mesh position={[-2.75, 0.22, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.06, 0.06, 0.95, 16]} />
-        <ChromeSurface color={accent} />
-      </mesh>
-      {seatsActive && <AccentDetails config={config} position={[-1.2, 0.49, 0]} scale={[0.45, 1, 0.78]} />}
-    </group>
-  );
-}
 
-function BikeModel({ config }: VehicleModelProps) {
-  const main = getColor(config.mainColor, config.customMainColor, '#111827');
-  const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
-
-  return (
-    <group rotation={[0, -0.35, 0]} scale={[1, 1, 1]}>
-      {/* Wheels */}
-      <mesh position={[-1.25, -0.35, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.7, 0.14, 24, 48]} />
-        <RubberSurface />
-      </mesh>
-      <mesh position={[1.25, -0.35, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.7, 0.14, 24, 48]} />
-        <RubberSurface />
-      </mesh>
-      {/* Wheel rims */}
-      <mesh position={[-1.25, -0.35, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.42, 0.03, 12, 32]} />
-        <ChromeSurface />
-      </mesh>
-      <mesh position={[1.25, -0.35, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.42, 0.03, 12, 32]} />
-        <ChromeSurface />
-      </mesh>
-      {/* Frame */}
-      <mesh position={[0, 0.15, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.12, 0.12, 2.65, 20]} />
-        <ChromeSurface color="#9daeb3" />
-      </mesh>
-      {/* Engine block */}
-      <mesh position={[0, 0.42, 0]} scale={[1.15, 0.45, 0.5]} rotation={[0, 0, -0.15]} castShadow>
-        <sphereGeometry args={[1, 32, 20]} />
-        <meshPhysicalMaterial color="#263f4a" roughness={0.28} metalness={0.5} clearcoat={0.3} clearcoatRoughness={0.2} />
-      </mesh>
-      {/* Fuel tank */}
-      <mesh position={[0.05, 0.73, 0]} scale={[0.92, 0.16, 0.42]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={main} config={config} photoUrl={config.userPhoto} />
-      </mesh>
-      {/* Exhaust */}
-      <mesh position={[-0.63, 0.76, 0]} rotation={[0, 0, -0.12]}>
-        <boxGeometry args={[0.65, 0.12, 0.38]} />
-        <meshPhysicalMaterial color={accent} roughness={0.4} metalness={0.18} clearcoat={0.25} />
-      </mesh>
-      {/* Fork */}
-      <mesh position={[1.1, 0.84, 0]} rotation={[0, 0, 0.65]}>
-        <cylinderGeometry args={[0.07, 0.07, 1.35, 18]} />
-        <ChromeSurface color="#aebdc0" />
-      </mesh>
-      {/* Handlebars */}
-      <mesh position={[1.42, 1.18, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.07, 0.07, 1.3, 18]} />
-        <ChromeSurface color="#9daeb3" />
-      </mesh>
-      {/* Seat */}
-      <mesh position={[0, 1.08, 0]} scale={[0.95, 0.14, 0.38]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={main} config={config} photoUrl={config.userPhoto} />
-      </mesh>
-      <AccentDetails config={config} position={[0, 1.17, 0]} scale={[0.66, 1, 0.7]} />
-    </group>
-  );
-}
-
-function CarModel({ config }: VehicleModelProps) {
-  const main = getColor(config.mainColor, config.customMainColor, '#111827');
-  const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
-
-  return (
-    <group rotation={[0, -0.25, 0]}>
-      {/* Body */}
-      <mesh position={[0, 0, 0]} scale={[2.8, 0.55, 1.45]} castShadow receiveShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <BodyShell color="#304b58" metalness={0.45} />
-      </mesh>
-      {/* Roof / cabin */}
-      <mesh position={[0.25, 0.68, 0]} scale={[1.7, 0.72, 1.25]} castShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <BodyShell color="#244351" metalness={0.38} />
-      </mesh>
-      {/* Windows */}
-      <mesh position={[-0.48, 0.73, 0]} scale={[0.65, 0.46, 1.27]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <GlassSurface />
-      </mesh>
-      <mesh position={[0.58, 0.73, 0]} scale={[0.65, 0.46, 1.27]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <GlassSurface />
-      </mesh>
-      {/* Wheels */}
-      {[-1.7, 1.7].flatMap((x) => [-0.82, 0.82].map((z) => [x, -0.35, z] as [number, number, number])).map(([x, y, z]) => (
-        <group key={`${x}-${z}`} position={[x, y, z]} rotation={[Math.PI / 2, 0, 0]}>
-          <mesh>
-            <torusGeometry args={[0.42, 0.12, 24, 40]} />
-            <RubberSurface />
+      {/* Seating rows */}
+      {[-2.2, -1.2, -0.2, 0.8, 1.8].map((z) => (
+        <group key={z}>
+          <mesh position={[0, 0.45, z]}>
+            <boxGeometry args={[1.8, 0.12, 0.85]} />
+            <Upholstery color={seatsActive ? main : '#364b54'} config={config} photo={seatsActive ? config.userPhoto : null} />
           </mesh>
-          <mesh>
-            <torusGeometry args={[0.25, 0.025, 12, 24]} />
-            <ChromeSurface />
+          <mesh position={[0, 0.62, z + 0.35]}>
+            <boxGeometry args={[1.8, 0.22, 0.06]} />
+            <Upholstery color={seatsActive ? accent : '#3e5560'} config={config} />
           </mesh>
         </group>
       ))}
-      {/* Seat L */}
-      <mesh position={[-0.48, 0.1, 0]} scale={[0.82, 0.22, 1.08]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={main} config={config} photoUrl={config.userPhoto} />
+
+      {/* Cover */}
+      {coverActive && (
+        <mesh position={[-0.2, 1.55, 0]}>
+          <boxGeometry args={[3.2, 0.05, 5.6]} />
+          <Upholstery color={main} config={config} photo={config.userPhoto} />
+        </mesh>
+      )}
+
+      {/* Cover supports */}
+      {[-2.4, -1.2, 0, 1.2, 2.4].map((z) => (
+        <mesh key={z} position={[1.4, 0.9, z]}>
+          <cylinderGeometry args={[0.02, 0.02, 1.25, 8]} />
+          <Chrome />
+        </mesh>
+      ))}
+
+      {/* Mast */}
+      <mesh position={[-1.5, 1.2, -0.5]}>
+        <cylinderGeometry args={[0.04, 0.04, 2.0, 12]} />
+        <Chrome />
       </mesh>
-      {/* Seat R */}
-      <mesh position={[0.56, 0.1, 0]} scale={[0.82, 0.22, 1.08]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <PhysicalSurface color={main} config={config} photoUrl={config.userPhoto} />
+
+      {/* Radar */}
+      <mesh position={[-1.5, 2.25, -0.5]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.015, 0.015, 0.6, 10]} />
+        <Chrome />
       </mesh>
-      {/* Steering wheel */}
-      <mesh position={[0, 0.58, -1.38]} rotation={[0, 0, Math.PI / 2]}>
-        <torusGeometry args={[0.22, 0.025, 12, 32]} />
-        <meshPhysicalMaterial color="#1a1a1a" roughness={0.5} metalness={0.2} clearcoat={0.3} />
+
+      {/* Navigation lights */}
+      <mesh position={[-1.62, 0.42, -3.4]}>
+        <sphereGeometry args={[0.04, 10, 10]} />
+        <meshStandardMaterial color="#ff2222" emissive="#ff2222" emissiveIntensity={2} />
       </mesh>
-      {/* Steering column */}
-      <mesh position={[0, 0.48, -1.25]} rotation={[0.5, 0, 0]}>
-        <cylinderGeometry args={[0.02, 0.02, 0.4, 12]} />
-        <ChromeSurface />
+      <mesh position={[1.62, 0.42, -3.4]}>
+        <sphereGeometry args={[0.04, 10, 10]} />
+        <meshStandardMaterial color="#22ff22" emissive="#22ff22" emissiveIntensity={2} />
       </mesh>
-      <AccentDetails config={config} position={[-0.48, 0.23, 0]} scale={[0.68, 1, 0.78]} />
+
+      {/* Bollards */}
+      {[-2.5, 2.5].map((z) => (
+        <mesh key={z} position={[0, 0.42, z]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.04, 0.04, 0.12, 10]} />
+          <Chrome />
+        </mesh>
+      ))}
+
+      <Stitching config={config} position={[0, 0.52, 0]} scale={[1.3, 1, 4.0]} />
     </group>
   );
 }
 
+/* ─── Bike ────────────────────────────────────────────── */
+
+function Bike({ config }: VehicleModelProps) {
+  const main = getColor(config.mainColor, config.customMainColor, '#111827');
+  const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
+
+  return (
+    <group rotation={[0, -0.3, 0]}>
+      {/* Rear wheel */}
+      <group position={[-1.4, -0.32, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <mesh>
+          <torusGeometry args={[0.72, 0.13, 24, 48]} />
+          <Rubber />
+        </mesh>
+        <mesh>
+          <torusGeometry args={[0.44, 0.025, 12, 32]} />
+          <Chrome />
+        </mesh>
+        {/* Spokes */}
+        {Array.from({ length: 12 }, (_, i) => (i * Math.PI) / 6).map((angle) => (
+          <mesh key={angle} rotation={[0, 0, angle]}>
+            <cylinderGeometry args={[0.006, 0.006, 0.88, 6]} />
+            <Chrome />
+          </mesh>
+        ))}
+        <mesh>
+          <cylinderGeometry args={[0.08, 0.08, 0.14, 16]} />
+          <Chrome />
+        </mesh>
+      </group>
+
+      {/* Front wheel */}
+      <group position={[1.5, -0.32, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <mesh>
+          <torusGeometry args={[0.72, 0.13, 24, 48]} />
+          <Rubber />
+        </mesh>
+        <mesh>
+          <torusGeometry args={[0.44, 0.025, 12, 32]} />
+          <Chrome />
+        </mesh>
+        {Array.from({ length: 12 }, (_, i) => (i * Math.PI) / 6).map((angle) => (
+          <mesh key={angle} rotation={[0, 0, angle]}>
+            <cylinderGeometry args={[0.006, 0.006, 0.88, 6]} />
+            <Chrome />
+          </mesh>
+        ))}
+        <mesh>
+          <cylinderGeometry args={[0.08, 0.08, 0.14, 16]} />
+          <Chrome />
+        </mesh>
+      </group>
+
+      {/* Frame — main spine */}
+      <mesh position={[0, 0.28, 0]} rotation={[0, 0, 0.18]}>
+        <cylinderGeometry args={[0.065, 0.065, 2.8, 16]} />
+        <Paint color="#222e36" metalness={0.55} />
+      </mesh>
+
+      {/* Frame — down tube */}
+      <mesh position={[0.4, 0.05, 0]} rotation={[0, 0, 0.95]}>
+        <cylinderGeometry args={[0.05, 0.05, 1.6, 14]} />
+        <Paint color="#222e36" metalness={0.55} />
+      </mesh>
+
+      {/* Frame — rear subframe */}
+      <mesh position={[-0.8, 0.52, 0]} rotation={[0, 0, -0.35]}>
+        <cylinderGeometry args={[0.045, 0.045, 1.1, 12]} />
+        <Paint color="#222e36" metalness={0.55} />
+      </mesh>
+
+      {/* Engine block */}
+      <mesh position={[0.15, 0.08, 0]} castShadow>
+        <boxGeometry args={[0.72, 0.55, 0.52]} />
+        <meshPhysicalMaterial color="#1e2a32" roughness={0.3} metalness={0.55} clearcoat={0.3} />
+      </mesh>
+
+      {/* Engine fins */}
+      {[-0.18, -0.06, 0.06, 0.18, 0.3].map((z) => (
+        <mesh key={z} position={[0.15, 0.08, z]}>
+          <boxGeometry args={[0.74, 0.025, 0.04]} />
+          <meshPhysicalMaterial color="#2a3a44" roughness={0.35} metalness={0.5} />
+        </mesh>
+      ))}
+
+      {/* Fuel tank */}
+      <mesh position={[0.15, 0.72, 0]} castShadow>
+        <capsuleGeometry args={[0.22, 0.65, 12, 24]} />
+        <PhysicalTank color={main} config={config} />
+      </mesh>
+
+      {/* Seat */}
+      <mesh position={[-0.55, 0.68, 0]} castShadow>
+        <capsuleGeometry args={[0.14, 0.95, 12, 24]} />
+        <Upholstery color={main} config={config} photo={config.userPhoto} />
+      </mesh>
+
+      <Stitching config={config} position={[-0.55, 0.82, 0]} scale={[0.5, 1, 0.8]} />
+
+      {/* Exhaust pipes */}
+      <mesh position={[-0.15, -0.12, 0.28]} rotation={[0.05, 0, -0.12]}>
+        <cylinderGeometry args={[0.04, 0.055, 1.4, 16]} />
+        <Chrome tint="#a8a8a8" />
+      </mesh>
+      <mesh position={[-0.15, -0.12, -0.28]} rotation={[0.05, 0, -0.12]}>
+        <cylinderGeometry args={[0.04, 0.055, 1.4, 16]} />
+        <Chrome tint="#a8a8a8" />
+      </mesh>
+
+      {/* Muffler */}
+      <mesh position={[-1.3, -0.02, 0.3]} rotation={[0, 0, -0.15]}>
+        <cylinderGeometry args={[0.06, 0.06, 0.45, 16]} />
+        <Chrome tint="#888" />
+      </mesh>
+
+      {/* Front forks */}
+      <mesh position={[1.35, 0.38, 0]} rotation={[0, 0, -0.15]}>
+        <cylinderGeometry args={[0.035, 0.035, 1.3, 14]} />
+        <Chrome />
+      </mesh>
+
+      {/* Handlebars */}
+      <mesh position={[1.52, 1.12, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.03, 0.03, 0.9, 14]} />
+        <Chrome />
+      </mesh>
+
+      {/* Left grip */}
+      <mesh position={[1.52, 1.12, -0.5]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.038, 0.038, 0.22, 14]} />
+        <meshPhysicalMaterial color={accent} roughness={0.55} metalness={0.1} clearcoat={0.2} />
+      </mesh>
+
+      {/* Right grip */}
+      <mesh position={[1.52, 1.12, 0.5]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.038, 0.038, 0.22, 14]} />
+        <meshPhysicalMaterial color={accent} roughness={0.55} metalness={0.1} clearcoat={0.2} />
+      </mesh>
+
+      {/* Headlight */}
+      <mesh position={[1.55, 0.95, 0]}>
+        <sphereGeometry args={[0.09, 16, 16]} />
+        <meshPhysicalMaterial color="#fffbe6" roughness={0.1} metalness={0.05} clearcoat={1} />
+      </mesh>
+
+      {/* Tail light */}
+      <mesh position={[-1.15, 0.52, 0]}>
+        <boxGeometry args={[0.04, 0.08, 0.18]} />
+        <meshStandardMaterial color="#ff1a1a" emissive="#ff1a1a" emissiveIntensity={1.5} />
+      </mesh>
+
+      {/* Brake disc front */}
+      <mesh position={[1.5, -0.32, 0.32]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.22, 0.012, 8, 28]} />
+        <Chrome tint="#999" />
+      </mesh>
+
+      {/* Brake disc rear */}
+      <mesh position={[-1.4, -0.32, 0.32]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.22, 0.012, 8, 28]} />
+        <Chrome tint="#999" />
+      </mesh>
+
+      {/* Kickstand */}
+      <mesh position={[-0.2, -0.18, 0.42]} rotation={[0, 0, 0.35]}>
+        <cylinderGeometry args={[0.015, 0.015, 0.45, 8]} />
+        <Chrome />
+      </mesh>
+    </group>
+  );
+}
+
+function PhysicalTank({ color, config }: { color: string; config: VehicleConfiguration }) {
+  const m = getMatProps(config.material);
+  return (
+    <meshPhysicalMaterial
+      color={color}
+      roughness={Math.min(m.roughness, 0.25)}
+      metalness={Math.max(m.metalness, 0.35)}
+      clearcoat={0.85}
+      clearcoatRoughness={0.08}
+      envMapIntensity={1.5}
+      sheen={0.15}
+      sheenRoughness={0.4}
+      sheenColor={color}
+    >
+      {config.userPhoto && <PhotoTex url={config.userPhoto} />}
+    </meshPhysicalMaterial>
+  );
+}
+
+/* ─── Car ─────────────────────────────────────────────── */
+
+function Car({ config }: VehicleModelProps) {
+  const main = getColor(config.mainColor, config.customMainColor, '#111827');
+  const accent = getColor(config.accentColor, config.customAccentColor, '#c2413a');
+
+  return (
+    <group rotation={[0, -0.22, 0]}>
+      {/* Body lower */}
+      <mesh position={[0, 0.05, 0]} castShadow receiveShadow>
+        <boxGeometry args={[2.8, 0.5, 4.6]} />
+        <Paint color="#2e4a58" metalness={0.48} />
+      </mesh>
+
+      {/* Body upper / cabin */}
+      <mesh position={[0.15, 0.62, 0.1]} castShadow>
+        <boxGeometry args={[2.4, 0.65, 2.8]} />
+        <Paint color="#253f4e" metalness={0.42} />
+      </mesh>
+
+      {/* Windshield */}
+      <mesh position={[-0.75, 0.82, 0.1]} rotation={[0, 0, 0.35]}>
+        <boxGeometry args={[0.04, 0.52, 2.2]} />
+        <Glass />
+      </mesh>
+
+      {/* Rear window */}
+      <mesh position={[1.05, 0.82, 0.1]} rotation={[0, 0, -0.3]}>
+        <boxGeometry args={[0.04, 0.42, 2.1]} />
+        <Glass />
+      </mesh>
+
+      {/* Side windows */}
+      <mesh position={[0.15, 0.82, 1.12]}>
+        <boxGeometry args={[1.8, 0.38, 0.04]} />
+        <Glass />
+      </mesh>
+      <mesh position={[0.15, 0.82, -1.12]}>
+        <boxGeometry args={[1.8, 0.38, 0.04]} />
+        <Glass />
+      </mesh>
+
+      {/* Wheels */}
+      {[[-1.15, -0.38, -1.25], [-1.15, -0.38, 1.25], [1.3, -0.38, -1.25], [1.3, -0.38, 1.25]].map(([x, y, z], i) => (
+        <group key={i} position={[x, y, z]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh>
+            <torusGeometry args={[0.4, 0.13, 24, 40]} />
+            <Rubber />
+          </mesh>
+          <mesh>
+            <torusGeometry args={[0.24, 0.02, 10, 24]} />
+            <Chrome />
+          </mesh>
+          {/* Hub */}
+          <mesh>
+            <cylinderGeometry args={[0.12, 0.12, 0.08, 20]} />
+            <Chrome />
+          </mesh>
+          {/* Spoke pattern */}
+          {Array.from({ length: 5 }, (_, i) => (i * Math.PI * 2) / 5).map((angle) => (
+            <mesh key={angle} rotation={[0, 0, angle]}>
+              <boxGeometry args={[0.025, 0.22, 0.02]} />
+              <Chrome />
+            </mesh>
+          ))}
+        </group>
+      ))}
+
+      {/* Wheel arches */}
+      {[[-1.15, 0.05, -1.35], [-1.15, 0.05, 1.35], [1.3, 0.05, -1.35], [1.3, 0.05, 1.35]].map(([x, y, z], i) => (
+        <mesh key={i} position={[x, y, z]}>
+          <boxGeometry args={[0.55, 0.22, 0.1]} />
+          <Paint color="#222e38" />
+        </mesh>
+      ))}
+
+      {/* Seats */}
+      <mesh position={[-0.15, 0.22, -0.6]}>
+        <boxGeometry args={[0.72, 0.2, 0.9]} />
+        <Upholstery color={main} config={config} photo={config.userPhoto} />
+      </mesh>
+      <mesh position={[-0.15, 0.22, 0.6]}>
+        <boxGeometry args={[0.72, 0.2, 0.9]} />
+        <Upholstery color={main} config={config} />
+      </mesh>
+
+      {/* Seat backrests */}
+      <mesh position={[-0.52, 0.42, -0.6]} rotation={[0, 0, 0.1]}>
+        <boxGeometry args={[0.08, 0.35, 0.85]} />
+        <Upholstery color={main} config={config} />
+      </mesh>
+      <mesh position={[-0.52, 0.42, 0.6]} rotation={[0, 0, 0.1]}>
+        <boxGeometry args={[0.08, 0.35, 0.85]} />
+        <Upholstery color={main} config={config} />
+      </mesh>
+
+      <Stitching config={config} position={[-0.15, 0.33, 0]} scale={[0.5, 1, 1.2]} />
+
+      {/* Steering wheel */}
+      <mesh position={[-0.6, 0.55, -0.55]} rotation={[0.5, 0, 0]}>
+        <torusGeometry args={[0.16, 0.018, 10, 28]} />
+        <meshPhysicalMaterial color="#1a1a1a" roughness={0.45} metalness={0.15} clearcoat={0.3} />
+      </mesh>
+      <mesh position={[-0.6, 0.55, -0.55]} rotation={[0.5, 0, 0]}>
+        <cylinderGeometry args={[0.012, 0.012, 0.3, 8]} />
+        <Chrome />
+      </mesh>
+
+      {/* Dashboard */}
+      <mesh position={[-0.65, 0.42, 0]}>
+        <boxGeometry args={[0.22, 0.12, 1.8]} />
+        <meshPhysicalMaterial color="#1a1e22" roughness={0.7} metalness={0.08} />
+      </mesh>
+
+      {/* Headlights */}
+      <mesh position={[-1.42, 0.15, -0.7]}>
+        <sphereGeometry args={[0.09, 14, 14]} />
+        <meshPhysicalMaterial color="#fffbe6" roughness={0.05} metalness={0.02} clearcoat={1} />
+      </mesh>
+      <mesh position={[-1.42, 0.15, 0.7]}>
+        <sphereGeometry args={[0.09, 14, 14]} />
+        <meshPhysicalMaterial color="#fffbe6" roughness={0.05} metalness={0.02} clearcoat={1} />
+      </mesh>
+
+      {/* Headlight housing */}
+      <mesh position={[-1.4, 0.15, -0.7]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.04, 16]} />
+        <Chrome />
+      </mesh>
+      <mesh position={[-1.4, 0.15, 0.7]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.04, 16]} />
+        <Chrome />
+      </mesh>
+
+      {/* Tail lights */}
+      <mesh position={[1.42, 0.18, -0.85]}>
+        <boxGeometry args={[0.04, 0.1, 0.22]} />
+        <meshStandardMaterial color="#ff1a1a" emissive="#ff1a1a" emissiveIntensity={1.8} />
+      </mesh>
+      <mesh position={[1.42, 0.18, 0.85]}>
+        <boxGeometry args={[0.04, 0.1, 0.22]} />
+        <meshStandardMaterial color="#ff1a1a" emissive="#ff1a1a" emissiveIntensity={1.8} />
+      </mesh>
+
+      {/* Side mirrors */}
+      <mesh position={[-0.55, 0.72, -1.3]}>
+        <boxGeometry args={[0.1, 0.07, 0.06]} />
+        <Paint color="#222e38" />
+      </mesh>
+      <mesh position={[-0.55, 0.72, 1.3]}>
+        <boxGeometry args={[0.1, 0.07, 0.06]} />
+        <Paint color="#222e38" />
+      </mesh>
+
+      {/* Door lines */}
+      <mesh position={[-0.05, 0.35, -1.27]}>
+        <boxGeometry args={[1.6, 0.38, 0.01]} />
+        <meshPhysicalMaterial color="#1a2830" roughness={0.5} metalness={0.2} />
+      </mesh>
+      <mesh position={[-0.05, 0.35, 1.27]}>
+        <boxGeometry args={[1.6, 0.38, 0.01]} />
+        <meshPhysicalMaterial color="#1a2830" roughness={0.5} metalness={0.2} />
+      </mesh>
+
+      {/* Door handles */}
+      <mesh position={[-0.05, 0.38, -1.3]}>
+        <boxGeometry args={[0.14, 0.025, 0.015]} />
+        <Chrome />
+      </mesh>
+      <mesh position={[-0.05, 0.38, 1.3]}>
+        <boxGeometry args={[0.14, 0.025, 0.015]} />
+        <Chrome />
+      </mesh>
+
+      {/* Side accent stripe */}
+      <mesh position={[0, 0.12, -1.27]}>
+        <boxGeometry args={[2.5, 0.03, 0.01]} />
+        <meshPhysicalMaterial color={accent} roughness={0.3} metalness={0.15} clearcoat={0.3} />
+      </mesh>
+      <mesh position={[0, 0.12, 1.27]}>
+        <boxGeometry args={[2.5, 0.03, 0.01]} />
+        <meshPhysicalMaterial color={accent} roughness={0.3} metalness={0.15} clearcoat={0.3} />
+      </mesh>
+
+      {/* Antenna */}
+      <mesh position={[0.8, 1.05, -0.8]}>
+        <cylinderGeometry args={[0.008, 0.008, 0.4, 6]} />
+        <Chrome />
+      </mesh>
+    </group>
+  );
+}
+
+/* ─── Export ──────────────────────────────────────────── */
+
 export function VehicleModel({ config }: VehicleModelProps) {
-  if (config.vehicle === 'jet-ski') return <JetSkiModel config={config} />;
-  if (config.vehicle === 'yacht') return <YachtModel config={config} />;
-  if (config.vehicle === 'ship') return <ShipModel config={config} />;
-  if (config.vehicle === 'bike') return <BikeModel config={config} />;
-  return <CarModel config={config} />;
+  if (config.vehicle === 'jet-ski') return <JetSki config={config} />;
+  if (config.vehicle === 'yacht') return <Yacht config={config} />;
+  if (config.vehicle === 'ship') return <Ship config={config} />;
+  if (config.vehicle === 'bike') return <Bike config={config} />;
+  return <Car config={config} />;
 }

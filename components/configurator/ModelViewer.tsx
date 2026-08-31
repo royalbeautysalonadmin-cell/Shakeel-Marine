@@ -14,11 +14,11 @@ interface ModelViewerProps {
 }
 
 const cameraPositions: Record<CameraPreset, [number, number, number]> = {
-  perspective: [7, 4.2, 7],
-  front: [0, 2.2, 10],
-  side: [10, 2.2, 0],
-  rear: [0, 2.2, -10],
-  top: [0, 10, 0.1],
+  perspective: [8, 5.5, 8],
+  front: [0, 3, 12],
+  side: [12, 3, 0],
+  rear: [0, 3, -12],
+  top: [0, 14, 0.1],
 };
 
 function CameraRig({ preset, controlsRef }: { preset: CameraPreset; controlsRef: React.RefObject<OrbitControlsImpl | null> }) {
@@ -115,7 +115,7 @@ export function ModelViewer({ config, cameraPreset }: ModelViewerProps) {
           shadows={quality.tier !== 'low'}
         >
           <color attach="background" args={['#071b27']} />
-          <fog attach="fog" args={['#071b27', 14, 32]} />
+          <fog attach="fog" args={['#071b27', 18, 40]} />
 
           {/* Lighting */}
           <ambientLight intensity={0.6} />
@@ -137,8 +137,8 @@ export function ModelViewer({ config, cameraPreset }: ModelViewerProps) {
             enableDamping
             dampingFactor={0.08}
             enablePan={false}
-            minDistance={3.5}
-            maxDistance={18}
+            minDistance={4}
+            maxDistance={24}
             rotateSpeed={0.65}
             zoomSpeed={0.8}
             minPolarAngle={0.3}
