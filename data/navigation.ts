@@ -27,7 +27,6 @@ export const mainNavigation: NavItem[] = [
       { label: 'Ship Covers', href: '/products/ship-covers' },
     ],
   },
-  { label: 'Design Your Vehicle', href: '/design-your-vehicle' },
   { label: 'Gallery', href: '/gallery' },
   {
     label: 'Resources',
