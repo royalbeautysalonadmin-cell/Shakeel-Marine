@@ -1,8 +1,13 @@
-import { customSeatProjectImages, floorMatProjectImages } from '@/data/project-images';
+import {
+  boatShipSeatProjectImages,
+  customSeatProjectImages,
+  floorMatProjectImages,
+} from '@/data/project-images';
 
 export type GalleryCategory =
   | 'all'
   | 'boat-ship'
+  | 'seats'
   | 'upholstery'
   | 'canopy'
   | 'floor-mat'
@@ -19,6 +24,7 @@ export interface GalleryImage {
 export const galleryCategories: { value: GalleryCategory; label: string }[] = [
   { value: 'all', label: 'All' },
   { value: 'boat-ship', label: 'Boat & Ship' },
+  { value: 'seats', label: 'Seats' },
   { value: 'upholstery', label: 'Upholstery' },
   { value: 'canopy', label: 'Canopy' },
   { value: 'floor-mat', label: 'Super Jet Floor Mat Kit' },
@@ -90,4 +96,6 @@ export const galleryImages: GalleryImage[] = [
   { src: '/images/jetski-custom-seat/jetski custom seat9.jpg', alt: 'Jet Ski Custom Seat — Shakeel Marine quality', category: 'custom-seat', width: 800, height: 600 },
   ...floorMatProjectImages.map((image) => ({ ...image, category: 'floor-mat' as const })),
   ...customSeatProjectImages.map((image) => ({ ...image, category: 'custom-seat' as const })),
+  ...boatShipSeatProjectImages.map((image) => ({ ...image, category: 'boat-ship' as const })),
+  ...boatShipSeatProjectImages.map((image) => ({ ...image, category: 'seats' as const })),
 ];

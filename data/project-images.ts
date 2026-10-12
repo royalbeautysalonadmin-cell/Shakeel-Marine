@@ -67,3 +67,34 @@ export const customSeatProjectImages: ProjectImage[] = customSeatViews.map((view
   src: `/images/projects/jetski-custom-seats/custom-seat-${String(index + 1).padStart(2, '0')}.jpeg`,
   alt: `${view} by Shakeel Marine in Kuwait`,
 }));
+
+const boatShipSeatViews = [
+  'Custom boat seat upholstery in marine-grade vinyl with contrast stitching',
+  'Ship seating project finished with durable marine upholstery',
+  'Boat helm seat reupholstered with premium marine fabric',
+  'Custom ship bench seating fabricated and fitted on board',
+  'Boat seat cushions rebuilt with weather-resistant marine foam',
+  'Ship bridge seating upholstered in a tailored marine finish',
+  'Custom boat captain seat with reinforced marine stitching',
+  'Ship deck seating covered in UV-resistant marine upholstery',
+  'Boat passenger seating fitted with marine-grade covers',
+  'Custom ship interior seating with premium marine materials',
+  'Boat rear bench seat reupholstered in marine-grade vinyl',
+  'Ship lounge seating finished with a tailored marine design',
+  'Custom boat seating with detailed marine stitching and piping',
+  'Ship crew seating fabricated for durability at sea',
+  'Boat cockpit seating upholstered with marine-grade materials',
+  'Custom ship seat covers fitted with a precise tailored finish',
+  'Boat sun deck seating rebuilt with marine-resistant upholstery',
+  'Ship dining area seating upholstered in premium marine fabric',
+  'Custom boat flybridge seating with marine-grade finishing',
+  'Ship seating refurbishment completed with marine-grade covers',
+];
+
+export const boatShipSeatProjectImages: ProjectImage[] = Array.from(
+  { length: 100 },
+  (_, index) => ({
+    src: `/images/projects/seats/seat-${String(index + 1).padStart(2, '0')}.jpeg`,
+    alt: `${boatShipSeatViews[index % boatShipSeatViews.length]} by Shakeel Marine in Kuwait`,
+  })
+);

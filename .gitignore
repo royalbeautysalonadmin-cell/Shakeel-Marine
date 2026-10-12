@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Original image drop; optimized public copies are tracked instead
 /images2/
+/images3/
