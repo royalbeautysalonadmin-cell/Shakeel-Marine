@@ -25,7 +25,7 @@ export const siteConfig = {
   hours: process.env.NEXT_PUBLIC_HOURS || 'Saturday – Thursday: 8:00 AM – 6:00 PM',
   openingHours: ['Sat-Thu 08:00-18:00'],
 
-  logo: '/favicon.svg',
+  logo: '/images/logo.png',
   ogImage: '/images/sections/hero-ocean.jpg',
 
   social: {

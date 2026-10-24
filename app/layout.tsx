@@ -46,8 +46,8 @@ export const metadata: Metadata = {
   ],
   metadataBase: new URL(siteConfig.url),
   icons: {
-    icon: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
   },
   openGraph: {
     type: 'website',

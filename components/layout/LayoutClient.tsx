@@ -6,10 +6,12 @@ import { MobileActionBar } from '@/components/layout/MobileActionBar';
 import { FloatingActions } from '@/components/shared/FloatingActions';
 import { BackToTop } from '@/components/shared/BackToTop';
 import { LangProvider } from '@/components/shared/LangProvider';
+import { Preloader } from '@/components/layout/Preloader';
 
 export function LayoutClient({ children }: { children: React.ReactNode }) {
   return (
     <LangProvider>
+      <Preloader />
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <Footer />

@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import { useLang } from '@/components/shared/LangProvider';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 export function SiteHeader() {
   const { t, toggle, isArabic } = useLang();
@@ -83,14 +84,14 @@ export function SiteHeader() {
             className="relative z-10 flex items-center gap-2 group"
             onClick={() => setMobileOpen(false)}
           >
-            <div className="flex flex-col">
-              <span className="text-white font-heading font-bold text-lg sm:text-xl tracking-wide">
-                SHAKEEL
-              </span>
-              <span className="text-ocean text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase -mt-1">
-                MARINE
-              </span>
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="Shakeel Marine"
+              width={150}
+              height={70}
+              priority
+              className="h-12 w-auto sm:h-14"
+            />
           </Link>
 
           {/* Desktop Navigation */}

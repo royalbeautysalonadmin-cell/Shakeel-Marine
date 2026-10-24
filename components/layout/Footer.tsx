@@ -6,6 +6,7 @@ import { siteConfig, getWhatsAppUrl, whatsappMessages, phoneNumbers } from '@/li
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { footerQuickLinks, footerServiceLinks, footerAreaLinks } from '@/data/navigation';
 import { useLang } from '@/components/shared/LangProvider';
+import Image from 'next/image';
 
 export function Footer() {
   const { t } = useLang();
@@ -14,9 +15,14 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="inline-flex flex-col mb-5">
-              <span className="text-white font-heading font-bold text-xl tracking-wide">SHAKEEL</span>
-              <span className="text-ocean text-[10px] font-semibold tracking-[0.25em] uppercase -mt-1">MARINE</span>
+            <Link href="/" className="inline-flex mb-5">
+              <Image
+                src="/images/logo.png"
+                alt="Shakeel Marine"
+                width={180}
+                height={84}
+                className="h-16 w-auto"
+              />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs">{t.footer.description}</p>
             <div className="flex items-center gap-2 mt-5 text-ocean">
